@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "EliteRentals - Premium Car Rentals" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+  </head>
+
+  <body class="light-theme">
+    <nav class="navbar" data-controller="navigation">
+      <div class="nav-container">
+        <%= link_to root_path, class: "nav-logo" do %>
+          <span class="logo-text">EliteRentals</span>
+        <% end %>
+        
+        <div class="nav-menu" data-navigation-target="menu">
+          <%= link_to "Home", root_path, class: "nav-link #{'active' if current_page?(root_path)}" %>
+          <%= link_to "Cars", cars_path, class: "nav-link #{'active' if current_page?(cars_path)}" %>
+          <%= link_to "Bookings", bookings_path, class: "nav-link #{'active' if request.path.start_with?('/bookings')}" %>
+          <%= link_to "Dashboard", admin_root_path, class: "nav-link #{'active' if request.path.start_with?('/admin')}" %>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+        
+        <div class="nav-cta">
+          <%= link_to "Book Now", cars_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <%= yield %>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>EliteRentals</h3>
+            <p>Premium car rental service with the finest selection of vehicles.</p>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><%= link_to "Home", root_path %></li>
+              <li><%= link_to "Cars", cars_path %></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Contact Info</h4>
+            <p>📧 info@eliterentals.com</p>
+            <p>📞 +1 (555) 123-4567</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 EliteRentals. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

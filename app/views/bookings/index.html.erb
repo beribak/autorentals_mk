@@ -1,0 +1,78 @@
+<% content_for :title, "All Bookings - EliteRentals" %>
+
+<section class="bookings-header">
+  <div class="container">
+    <h1>All Bookings</h1>
+    <p>Manage and view all rental bookings</p>
+  </div>
+</section>
+
+<section class="bookings-content">
+  <div class="container">
+    <% if @bookings.any? %>
+      <div class="bookings-grid">
+        <% @bookings.each do |booking| %>
+          <div class="booking-card">
+            <div class="booking-header">
+              <div class="booking-number">Booking #<%= booking.id %></div>
+              <div class="booking-status">
+                <span class="status-badge status-<%= booking.status %>">
+                  <%= booking.status.humanize %>
+                </span>
+              </div>
+            </div>
+
+            <div class="booking-details">
+              <div class="car-info">
+                <img src="<%= booking.car.image_url %>" alt="<%= booking.car.full_name %>" class="car-thumbnail">
+                <div class="car-details">
+                  <h3><%= booking.car.full_name %></h3>
+                  <div class="car-price">$<%= booking.car.price_per_day %>/day</div>
+                </div>
+              </div>
+
+              <div class="booking-info">
+                <div class="info-item">
+                  <span class="label">Customer:</span>
+                  <span class="value"><%= booking.customer_name %></span>
+                </div>
+                <div class="info-item">
+                  <span class="label">Dates:</span>
+                  <span class="value">
+                    <%= booking.start_date.strftime("%m/%d/%Y") %> - 
+                    <%= booking.end_date.strftime("%m/%d/%Y") %>
+                  </span>
+                </div>
+                <div class="info-item">
+                  <span class="label">Total:</span>
+                  <span class="value">$<%= booking.total_price %></span>
+                </div>
+                <div class="info-item">
+                  <span class="label">Created:</span>
+                  <span class="value"><%= booking.created_at.strftime("%m/%d/%Y at %I:%M %p") %></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="booking-actions">
+              <%= link_to "View Details", booking_path(booking), class: "btn btn-sm btn-primary" %>
+              <% if booking.can_be_cancelled? %>
+                <%= link_to "Cancel", cancel_booking_path(booking), 
+                    method: :patch, 
+                    class: "btn btn-sm btn-danger", 
+                    confirm: "Are you sure?" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="empty-state">
+        <div class="empty-icon">📅</div>
+        <h3>No bookings found</h3>
+        <p>There are no bookings in the system yet.</p>
+        <%= link_to "Browse Cars", cars_path, class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</section>

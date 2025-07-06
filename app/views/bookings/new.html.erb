@@ -1,0 +1,194 @@
+<% content_for :title, "Book #{@car.full_name} - EliteRentals" %>
+
+<section class="booking-header">
+  <div class="container">
+    <div class="back-nav">
+      <%= link_to car_path(@car), class: "back-link" do %>
+        <span class="back-icon">←</span>
+        Back to Car Details
+      <% end %>
+    </div>
+    
+    <h1>Book Your Car</h1>
+    <p>Complete your reservation for the <strong><%= @car.full_name %></strong></p>
+  </div>
+</section>
+
+<section class="booking-content">
+  <div class="container">
+    <div class="booking-layout">
+      <!-- Car Summary -->
+      <div class="car-summary-card">
+        <div class="car-summary-image">
+          <img src="<%= @car.image_url %>" alt="<%= @car.full_name %>" class="summary-car-image">
+        </div>
+        <div class="car-summary-details">
+          <h3><%= @car.full_name %></h3>
+          <div class="summary-price">
+            <span class="price-amount">$<%= @car.price_per_day %></span>
+            <span class="price-unit">per day</span>
+          </div>
+          <div class="car-features">
+            <div class="feature">🛡️ Fully Insured</div>
+            <div class="feature">🔧 Well Maintained</div>
+            <div class="feature">⚡ Available Now</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Booking Form -->
+      <div class="booking-form-card">
+        <!-- Error Messages -->
+        <% if @booking.errors.any? || (@customer && @customer.errors.any?) %>
+          <div class="error-messages">
+            <h4>Please fix the following errors:</h4>
+            <ul>
+              <% @booking.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              <% if @customer && @customer.errors.any? %>
+                <% @customer.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= form_with model: [@car, @booking], class: "booking-form" do |form| %>
+          <div class="form-section">
+            <h3>Rental Dates</h3>
+            <div class="date-inputs">
+              <div class="date-group">
+                <%= form.label :start_date, "Pick-up Date", class: "form-label" %>
+                <%= form.date_field :start_date, 
+                    class: "form-input", 
+                    min: Date.current,
+                    value: @booking.start_date,
+                    data: { booking_target: "startDate", action: "change->booking#calculatePrice" } %>
+              </div>
+              <div class="date-group">
+                <%= form.label :end_date, "Drop-off Date", class: "form-label" %>
+                <%= form.date_field :end_date, 
+                    class: "form-input", 
+                    min: Date.current + 1.day,
+                    value: @booking.end_date,
+                    data: { booking_target: "endDate", action: "change->booking#calculatePrice" } %>
+              </div>
+            </div>
+            
+            <div class="availability-status" data-booking-target="availabilityStatus">
+              <!-- Availability status will be shown here -->
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Location Details</h3>
+            <div class="location-inputs">
+              <div class="input-group">
+                <%= form.label :pickup_location, "Pick-up Location", class: "form-label" %>
+                <%= form.text_field :pickup_location, 
+                    placeholder: "Enter pick-up address", 
+                    class: "form-input" %>
+              </div>
+              <div class="input-group">
+                <%= form.label :dropoff_location, "Drop-off Location", class: "form-label" %>
+                <%= form.text_field :dropoff_location, 
+                    placeholder: "Enter drop-off address (same as pick-up if not specified)", 
+                    class: "form-input" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Your Information</h3>
+            <%= fields_for :customer, @customer do |customer_form| %>
+              <div class="customer-inputs">
+                <div class="name-row">
+                  <div class="input-group">
+                    <%= customer_form.label :first_name, "First Name", class: "form-label" %>
+                    <%= customer_form.text_field :first_name, class: "form-input" %>
+                  </div>
+                  <div class="input-group">
+                    <%= customer_form.label :last_name, "Last Name", class: "form-label" %>
+                    <%= customer_form.text_field :last_name, class: "form-input" %>
+                  </div>
+                </div>
+                
+                <div class="contact-row">
+                  <div class="input-group">
+                    <%= customer_form.label :email, "Email", class: "form-label" %>
+                    <%= customer_form.email_field :email, class: "form-input" %>
+                  </div>
+                  <div class="input-group">
+                    <%= customer_form.label :phone, "Phone", class: "form-label" %>
+                    <%= customer_form.telephone_field :phone, class: "form-input" %>
+                  </div>
+                </div>
+
+                <div class="input-group">
+                  <%= customer_form.label :address, "Address", class: "form-label" %>
+                  <%= customer_form.text_area :address, rows: 2, class: "form-input" %>
+                </div>
+
+                <div class="address-row">
+                  <div class="input-group">
+                    <%= customer_form.label :city, "City", class: "form-label" %>
+                    <%= customer_form.text_field :city, class: "form-input" %>
+                  </div>
+                  <div class="input-group">
+                    <%= customer_form.label :state, "State", class: "form-label" %>
+                    <%= customer_form.text_field :state, class: "form-input" %>
+                  </div>
+                  <div class="input-group">
+                    <%= customer_form.label :zip_code, "ZIP Code", class: "form-label" %>
+                    <%= customer_form.text_field :zip_code, class: "form-input" %>
+                  </div>
+                </div>
+
+                <div class="input-group">
+                  <%= customer_form.label :country, "Country", class: "form-label" %>
+                  <%= customer_form.text_field :country, value: "United States", class: "form-input" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="form-section">
+            <h3>Additional Information</h3>
+            <div class="input-group">
+              <%= form.label :special_requests, "Special Requests (Optional)", class: "form-label" %>
+              <%= form.text_area :special_requests, 
+                  rows: 3, 
+                  placeholder: "Any special requirements or requests...", 
+                  class: "form-input" %>
+            </div>
+          </div>
+
+          <!-- Price Summary -->
+          <div class="price-summary" data-booking-target="priceSummary" style="display: none;">
+            <div class="summary-row">
+              <span>Daily Rate:</span>
+              <span data-booking-target="dailyRate">$<%= @car.price_per_day %></span>
+            </div>
+            <div class="summary-row">
+              <span>Duration:</span>
+              <span data-booking-target="duration">0 days</span>
+            </div>
+            <div class="summary-row total">
+              <span>Total:</span>
+              <span data-booking-target="totalPrice">$0.00</span>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-actions">
+            <%= form.submit "Reserve Now", 
+                class: "btn btn-primary btn-large" %>
+            <p class="form-note">You'll review your booking details before final confirmation</p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

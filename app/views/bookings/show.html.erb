@@ -1,0 +1,171 @@
+<% content_for :title, "Booking Confirmation - EliteRentals" %>
+
+<section class="booking-confirmation-header">
+  <div class="container">
+    <div class="confirmation-icon">✅</div>
+    <h1>Booking Confirmed!</h1>
+    <p>Your reservation has been successfully created</p>
+    <div class="booking-number">Booking #<%= @booking.id %></div>
+  </div>
+</section>
+
+<section class="booking-details">
+  <div class="container">
+    <div class="booking-details-layout">
+      <!-- Booking Summary -->
+      <div class="booking-summary-card">
+        <h2>Booking Summary</h2>
+        
+        <div class="booking-info-section">
+          <h3>Rental Dates</h3>
+          <div class="info-row">
+            <span class="label">Pick-up:</span>
+            <span class="value"><%= @booking.start_date.strftime("%B %d, %Y") %></span>
+          </div>
+          <div class="info-row">
+            <span class="label">Drop-off:</span>
+            <span class="value"><%= @booking.end_date.strftime("%B %d, %Y") %></span>
+          </div>
+          <div class="info-row">
+            <span class="label">Duration:</span>
+            <span class="value"><%= @booking.duration_in_days %> day<%= 's' if @booking.duration_in_days > 1 %></span>
+          </div>
+        </div>
+
+        <div class="booking-info-section">
+          <h3>Location</h3>
+          <div class="info-row">
+            <span class="label">Pick-up:</span>
+            <span class="value"><%= @booking.pickup_location %></span>
+          </div>
+          <% if @booking.dropoff_location.present? %>
+            <div class="info-row">
+              <span class="label">Drop-off:</span>
+              <span class="value"><%= @booking.dropoff_location %></span>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="booking-info-section">
+          <h3>Vehicle</h3>
+          <div class="vehicle-summary">
+            <img src="<%= @booking.car.image_url %>" alt="<%= @booking.car.full_name %>" class="vehicle-image">
+            <div class="vehicle-details">
+              <h4><%= @booking.car.full_name %></h4>
+              <div class="vehicle-price">$<%= @booking.car.price_per_day %>/day</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-info-section">
+          <h3>Customer Information</h3>
+          <div class="info-row">
+            <span class="label">Name:</span>
+            <span class="value"><%= @booking.customer_name %></span>
+          </div>
+          <div class="info-row">
+            <span class="label">Email:</span>
+            <span class="value"><%= @booking.customer.email %></span>
+          </div>
+          <div class="info-row">
+            <span class="label">Phone:</span>
+            <span class="value"><%= @booking.customer.phone %></span>
+          </div>
+        </div>
+
+        <% if @booking.special_requests.present? %>
+          <div class="booking-info-section">
+            <h3>Special Requests</h3>
+            <p class="special-requests"><%= @booking.special_requests %></p>
+          </div>
+        <% end %>
+
+        <div class="price-breakdown">
+          <div class="breakdown-row">
+            <span>Daily Rate:</span>
+            <span>$<%= @booking.car.price_per_day %></span>
+          </div>
+          <div class="breakdown-row">
+            <span>Duration:</span>
+            <span><%= @booking.duration_in_days %> day<%= 's' if @booking.duration_in_days > 1 %></span>
+          </div>
+          <div class="breakdown-row total">
+            <span>Total Amount:</span>
+            <span>$<%= @booking.total_price %></span>
+          </div>
+        </div>
+
+        <div class="booking-status">
+          <div class="status-badge status-<%= @booking.status %>">
+            <%= @booking.status.humanize %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next Steps -->
+      <div class="next-steps-card">
+        <h2>What's Next?</h2>
+        
+        <div class="steps-list">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Confirmation Email</h4>
+              <p>We've sent a confirmation email to <strong><%= @booking.customer.email %></strong> with all the details.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Prepare Documents</h4>
+              <p>Please bring a valid driver's license and credit card for pick-up.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Pick-up Day</h4>
+              <p>Arrive at the pick-up location 15 minutes early for a smooth process.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>Enjoy Your Ride</h4>
+              <p>Have a great time with your rental! Contact us anytime for support.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-support">
+          <h4>Need Help?</h4>
+          <div class="support-options">
+            <a href="tel:+15551234567" class="support-btn">
+              <span>📞</span>
+              Call Support
+            </a>
+            <a href="mailto:support@eliterentals.com" class="support-btn">
+              <span>✉️</span>
+              Email Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="booking-actions">
+      <%= link_to "View All Bookings", bookings_path, class: "btn btn-secondary" %>
+      <%= link_to "Browse More Cars", cars_path, class: "btn btn-primary" %>
+      <% if @booking.can_be_cancelled? %>
+        <%= link_to "Cancel Booking", cancel_booking_path(@booking), 
+            method: :patch, 
+            class: "btn btn-danger", 
+            confirm: "Are you sure you want to cancel this booking?" %>
+      <% end %>
+    </div>
+  </div>
+</section>

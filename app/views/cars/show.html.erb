@@ -1,0 +1,144 @@
+<% content_for :title, "#{@car.full_name} - EliteRentals" %>
+
+<section class="car-show-header">
+  <div class="container">
+    <div class="back-nav">
+      <%= link_to cars_path, class: "back-link" do %>
+        <span class="back-icon">←</span>
+        Back to Cars
+      <% end %>
+    </div>
+    
+    <div class="car-show-container">
+      <!-- Car Image Section -->
+      <div class="car-image-section">
+        <img src="<%= @car.image_url %>" alt="<%= @car.full_name %>" class="car-main-image">
+        <div class="car-image-overlay">
+          <div class="status-badge">Available</div>
+          <div class="year-badge"><%= @car.year %></div>
+        </div>
+      </div>
+      
+      <!-- Car Information Section -->
+      <div class="car-info-section">
+        <div class="car-brand-show"><%= @car.brand %></div>
+        <h1 class="car-title-show"><%= @car.model %></h1>
+        
+        <!-- Price Section -->
+        <div class="car-price-section">
+          <div class="price-display">$<%= @car.price_per_day %></div>
+          <div class="price-unit">per day</div>
+        </div>
+        
+        <!-- Specifications -->
+        <div class="car-specs-section">
+          <h3 class="specs-title">Specifications</h3>
+          <div class="specs-grid">
+            <div class="spec-item">
+              <span class="spec-icon">📅</span>
+              <div class="spec-info">
+                <div class="spec-label">Year</div>
+                <div class="spec-value"><%= @car.year %></div>
+              </div>
+            </div>
+            
+            <div class="spec-item">
+              <span class="spec-icon">🏷️</span>
+              <div class="spec-info">
+                <div class="spec-label">Brand</div>
+                <div class="spec-value"><%= @car.brand %></div>
+              </div>
+            </div>
+            
+            <div class="spec-item">
+              <span class="spec-icon">⚡</span>
+              <div class="spec-info">
+                <div class="spec-label">Status</div>
+                <div class="spec-value">
+                  <% if @car.available? %>
+                    <span style="color: #22c55e;">Available</span>
+                  <% else %>
+                    <span style="color: #ef4444;">Unavailable</span>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            
+            <div class="spec-item">
+              <span class="spec-icon">🛡️</span>
+              <div class="spec-info">
+                <div class="spec-label">Insurance</div>
+                <div class="spec-value">Full Coverage</div>
+              </div>
+            </div>
+            
+            <div class="spec-item">
+              <span class="spec-icon">🔧</span>
+              <div class="spec-info">
+                <div class="spec-label">Maintenance</div>
+                <div class="spec-value">Professional</div>
+              </div>
+            </div>
+            
+            <div class="spec-item">
+              <span class="spec-icon">🧽</span>
+              <div class="spec-info">
+                <div class="spec-label">Cleaning</div>
+                <div class="spec-value">Detailed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Description -->
+        <div class="car-description-section">
+          <h3 class="description-title">About This Vehicle</h3>
+          <p class="car-description-full"><%= @car.description %></p>
+        </div>
+        
+        <!-- Actions -->
+        <div class="car-actions-section">
+          <% if @car.available? %>
+            <%= link_to new_car_booking_path(@car), class: "book-now-btn" do %>
+              Book Now - $<%= @car.price_per_day %>/day
+            <% end %>
+          <% else %>
+            <button class="book-now-btn" disabled style="opacity: 0.5; cursor: not-allowed;">
+              Currently Unavailable
+            </button>
+          <% end %>
+          
+          <div class="secondary-actions">
+            <a href="tel:+15551234567" class="action-btn">
+              <span>📞</span>
+              Call Us
+            </a>
+            <a href="mailto:info@eliterentals.com" class="action-btn">
+              <span>✉️</span>
+              Email
+            </a>
+          </div>
+        </div>
+        
+        <!-- Contact Information -->
+        <div class="contact-section">
+          <h4 class="contact-title">Need Help?</h4>
+          <div class="contact-info">
+            <div class="contact-item">
+              <span class="contact-icon">📞</span>
+              <span>+1 (555) 123-4567</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">✉️</span>
+              <span>info@eliterentals.com</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">🕒</span>
+              <span>24/7 Customer Support</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  brand: MyString
+  model: MyString
+  year: 1
+  price_per_day: 9.99
+  description: MyText
+  image_url: MyString
+  available: false
+
+two:
+  brand: MyString
+  model: MyString
+  year: 1
+  price_per_day: 9.99
+  description: MyText
+  image_url: MyString
+  available: false

@@ -1,0 +1,114 @@
+<% content_for :title, "EliteRentals - Premium Car Rentals" %>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="hero-title">Drive Your Dreams</h1>
+      <p class="hero-subtitle">
+        Experience luxury and performance with our premium collection of vehicles. 
+        From sleek sports cars to elegant sedans, we have the perfect ride for every occasion.
+      </p>
+      <div class="hero-cta">
+        <%= link_to "Browse Cars", cars_path, class: "btn btn-primary" %>
+        <a href="#features" class="btn btn-secondary">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section" id="features">
+  <div class="container">
+    <div class="section-title">
+      <h2>Why Choose EliteRentals?</h2>
+      <p>We provide an unmatched car rental experience with premium vehicles and exceptional service.</p>
+    </div>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🚗</div>
+        <h3>Premium Fleet</h3>
+        <p>Choose from our carefully curated collection of luxury and high-performance vehicles from top brands.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Instant Booking</h3>
+        <p>Book your perfect car in seconds with our streamlined process. No hassle, no waiting.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>Full Insurance</h3>
+        <p>Drive with peace of mind knowing all our vehicles come with comprehensive insurance coverage.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">💎</div>
+        <h3>Premium Service</h3>
+        <p>Experience white-glove service from pickup to drop-off. We handle every detail for you.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>24/7 Support</h3>
+        <p>Our dedicated support team is available around the clock to assist you whenever you need help.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🌟</div>
+        <h3>Best Prices</h3>
+        <p>Competitive rates without compromising on quality. Luxury doesn't have to break the bank.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Cars Section -->
+<% if @featured_cars.any? %>
+<section class="featured-cars-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>Featured Vehicles</h2>
+      <p>Discover our most popular and stunning vehicles available for rent.</p>
+    </div>
+    
+    <div class="cars-preview-grid">
+      <% @featured_cars.each do |car| %>
+        <div class="car-preview-card">
+          <div class="car-image-container">
+            <img src="<%= car.image_url %>" alt="<%= car.full_name %>" class="car-image">
+            <div class="car-badge">Featured</div>
+          </div>
+          
+          <div class="car-info">
+            <h3 class="car-title"><%= car.full_name %></h3>
+            <p class="car-description"><%= truncate(car.description, length: 100) %></p>
+            
+            <div class="car-footer">
+              <div class="car-price"><%= car.formatted_price %></div>
+              <%= link_to "View Details", car_path(car), class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="view-all-cta">
+      <%= link_to "View All Cars", cars_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+</section>
+<% end %>
+
+<!-- Call to Action Section -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Ready to Hit the Road?</h2>
+      <p>Browse our collection and find the perfect car for your next adventure. Book online in minutes!</p>
+      <%= link_to "Start Browsing", cars_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</section>

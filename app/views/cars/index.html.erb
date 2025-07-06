@@ -1,0 +1,158 @@
+<% content_for :title, "Our Cars - EliteRentals" %>p
+
+<!-- Filters Section -->
+<section class="filters-section">
+  <div class="container">
+    <div class="filters-header">
+      <h2 class="filters-title">Find Your Perfect Car</h2>
+      <p class="filters-subtitle">Filter our premium fleet to match your preferences and dates</p>
+    </div>
+    <%= form_with url: cars_path, method: :get, data: { turbo_frame: "cars-list" }, class: "filters-form" do |form| %>
+      <div class="filters-container">
+        <!-- Date Availability Filters -->
+        <div class="date-availability-section">
+          <h4 class="filter-section-title">Check Availability</h4>
+          <div class="date-filters">
+            <div class="filter-group">
+              <label class="filter-label">Pick-up Date</label>
+              <%= form.date_field :start_date, 
+                  value: params[:start_date], 
+                  min: Date.current,
+                  class: "filter-input" %>
+            </div>
+            
+            <div class="filter-group">
+              <label class="filter-label">Drop-off Date</label>
+              <%= form.date_field :end_date, 
+                  value: params[:end_date], 
+                  min: Date.current + 1.day,
+                  class: "filter-input" %>
+            </div>
+          </div>
+          
+          <% if @date_filtered %>
+            <div class="date-filter-status">
+              <span class="status-icon">✅</span>
+              <span>Showing cars available from <%= @filter_start_date.strftime("%b %d") %> to <%= @filter_end_date.strftime("%b %d, %Y") %></span>
+              <%= link_to "Clear dates", cars_path(brand: params[:brand], year_from: params[:year_from], year_to: params[:year_to], max_price: params[:max_price]), class: "clear-dates-btn" %>
+            </div>
+          <% end %>
+        </div>
+
+        <!-- Other Filters -->
+        <div class="other-filters-section">
+          <h4 class="filter-section-title">Additional Filters</h4>
+          <div class="other-filters">
+            <div class="filter-group">
+              <label class="filter-label">Brand</label>
+              <%= form.text_field :brand, value: params[:brand], placeholder: "e.g. BMW, Mercedes", class: "filter-input" %>
+            </div>
+            
+            <div class="filter-group">
+              <label class="filter-label">Year From</label>
+              <%= form.number_field :year_from, value: params[:year_from], placeholder: "2020", class: "filter-input" %>
+            </div>
+            
+            <div class="filter-group">
+              <label class="filter-label">Year To</label>
+              <%= form.number_field :year_to, value: params[:year_to], placeholder: "2025", class: "filter-input" %>
+            </div>
+            
+            <div class="filter-group">
+              <label class="filter-label">Max Price/Day</label>
+              <%= form.number_field :max_price, value: params[:max_price], placeholder: "500", step: 0.01, class: "filter-input" %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="filters-actions">
+          <%= form.submit "Filter Cars", class: "btn btn-primary btn-filter" %>
+          <%= link_to "Reset All", cars_path, class: "btn btn-secondary btn-filter" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<!-- Cars Content -->
+<section class="cars-content" data-controller="cars">
+  <div class="container">
+    <%= turbo_frame_tag "cars-list" do %>
+      <% if @cars.any? %>
+        <div class="cars-grid" data-cars-target="grid">
+          <% @cars.each do |car| %>
+            <div class="car-card" data-cars-target="card">
+              <div class="car-image-wrapper">
+                <img src="<%= car.image_url %>" alt="<%= car.full_name %>" class="car-image">
+                <div class="car-status-badge <%= car.available? ? 'available' : 'unavailable' %>">
+                  <%= car.available? ? 'Available' : 'Unavailable' %>
+                </div>
+                <div class="car-year-badge"><%= car.year %></div>
+              </div>
+              
+              <div class="car-details">
+                <div class="car-brand"><%= car.brand %></div>
+                <h3 class="car-name"><%= car.model %></h3>
+                
+                <div class="car-specs">
+                  <div class="car-spec">
+                    <span class="car-spec-icon">📅</span>
+                    <span><%= car.year %></span>
+                  </div>
+                  <div class="car-spec">
+                    <span class="car-spec-icon">⚡</span>
+                    <span>
+                      <% if @date_filtered %>
+                        Available for your dates
+                      <% elsif car.available? %>
+                        Available
+                      <% else %>
+                        Currently unavailable
+                      <% end %>
+                    </span>
+                  </div>
+                  <div class="car-spec">
+                    <span class="car-spec-icon">🛡️</span>
+                    <span>Insured</span>
+                  </div>
+                  <div class="car-spec">
+                    <span class="car-spec-icon">🔧</span>
+                    <span>Maintained</span>
+                  </div>
+                </div>
+                
+                <p class="car-description-preview"><%= car.description %></p>
+                
+                <div class="car-actions">
+                  <div class="car-price-display">
+                    <div class="car-price">$<%= car.price_per_day %></div>
+                    <div class="car-price-unit">per day</div>
+                  </div>
+
+                  <div class="car-action-buttons">
+                    <%= link_to "View Details", car_path(car), class: "btn btn-secondary car-view-btn", data: { turbo_frame: "_top" } %>
+                    
+                    <% if @date_filtered %>
+                      <%= link_to "Book Now", new_car_booking_path(car, start_date: @filter_start_date, end_date: @filter_end_date), 
+                          class: "btn btn-primary car-book-btn", data: { turbo_frame: "_top" } %>
+                    <% else %>
+                      <%= link_to "Book Now", new_car_booking_path(car), 
+                          class: "btn btn-primary car-book-btn", data: { turbo_frame: "_top" } %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="empty-state">
+          <div class="empty-state-icon">🚗</div>
+          <h3>No cars found</h3>
+          <p>Try adjusting your filters to find the perfect car for you.</p>
+          <%= link_to "Reset Filters", cars_path, class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</section>
