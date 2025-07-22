@@ -1,11 +1,11 @@
-<% content_for :title, "#{@car.full_name} - EliteRentals" %>
+<% content_for :title, "#{@car.full_name} - autorentalsMK" %>
 
 <section class="car-show-header">
   <div class="container">
     <div class="back-nav">
       <%= link_to cars_path, class: "back-link" do %>
         <span class="back-icon">←</span>
-        Back to Cars
+        Назад кон возила
       <% end %>
     </div>
     
@@ -14,7 +14,7 @@
       <div class="car-image-section">
         <img src="<%= @car.image_url %>" alt="<%= @car.full_name %>" class="car-main-image">
         <div class="car-image-overlay">
-          <div class="status-badge">Available</div>
+          <div class="status-badge">Достапно</div>
           <div class="year-badge"><%= @car.year %></div>
         </div>
       </div>
@@ -27,17 +27,17 @@
         <!-- Price Section -->
         <div class="car-price-section">
           <div class="price-display">$<%= @car.price_per_day %></div>
-          <div class="price-unit">per day</div>
+          <div class="price-unit">на ден</div>
         </div>
         
         <!-- Specifications -->
         <div class="car-specs-section">
-          <h3 class="specs-title">Specifications</h3>
+          <h3 class="specs-title">Спецификации</h3>
           <div class="specs-grid">
             <div class="spec-item">
               <span class="spec-icon">📅</span>
               <div class="spec-info">
-                <div class="spec-label">Year</div>
+                <div class="spec-label">Година</div>
                 <div class="spec-value"><%= @car.year %></div>
               </div>
             </div>
@@ -45,7 +45,7 @@
             <div class="spec-item">
               <span class="spec-icon">🏷️</span>
               <div class="spec-info">
-                <div class="spec-label">Brand</div>
+                <div class="spec-label">Марка</div>
                 <div class="spec-value"><%= @car.brand %></div>
               </div>
             </div>
@@ -53,12 +53,12 @@
             <div class="spec-item">
               <span class="spec-icon">⚡</span>
               <div class="spec-info">
-                <div class="spec-label">Status</div>
+                <div class="spec-label">Статус</div>
                 <div class="spec-value">
                   <% if @car.available? %>
-                    <span style="color: #22c55e;">Available</span>
+                    <span style="color: #22c55e;">Достапно</span>
                   <% else %>
-                    <span style="color: #ef4444;">Unavailable</span>
+                    <span style="color: #ef4444;">Недостапно</span>
                   <% end %>
                 </div>
               </div>
@@ -67,24 +67,24 @@
             <div class="spec-item">
               <span class="spec-icon">🛡️</span>
               <div class="spec-info">
-                <div class="spec-label">Insurance</div>
-                <div class="spec-value">Full Coverage</div>
+                <div class="spec-label">Осигурување</div>
+                <div class="spec-value">Полно покритие</div>
               </div>
             </div>
             
             <div class="spec-item">
               <span class="spec-icon">🔧</span>
               <div class="spec-info">
-                <div class="spec-label">Maintenance</div>
-                <div class="spec-value">Professional</div>
+                <div class="spec-label">Одржување</div>
+                <div class="spec-value">Професионално</div>
               </div>
             </div>
             
             <div class="spec-item">
               <span class="spec-icon">🧽</span>
               <div class="spec-info">
-                <div class="spec-label">Cleaning</div>
-                <div class="spec-value">Detailed</div>
+                <div class="spec-label">Чистење</div>
+                <div class="spec-value">Детално</div>
               </div>
             </div>
           </div>
@@ -92,7 +92,7 @@
         
         <!-- Description -->
         <div class="car-description-section">
-          <h3 class="description-title">About This Vehicle</h3>
+          <h3 class="description-title">За ова возило</h3>
           <p class="car-description-full"><%= @car.description %></p>
         </div>
         
@@ -100,41 +100,41 @@
         <div class="car-actions-section">
           <% if @car.available? %>
             <%= link_to new_car_booking_path(@car), class: "book-now-btn" do %>
-              Book Now - $<%= @car.price_per_day %>/day
+              Резервирај сега - $<%= @car.price_per_day %>/ден
             <% end %>
           <% else %>
             <button class="book-now-btn" disabled style="opacity: 0.5; cursor: not-allowed;">
-              Currently Unavailable
+              Моментално недостапно
             </button>
           <% end %>
           
           <div class="secondary-actions">
-            <a href="tel:+15551234567" class="action-btn">
+            <a href="tel:+38970123456" class="action-btn">
               <span>📞</span>
-              Call Us
+              Повикај не
             </a>
-            <a href="mailto:info@eliterentals.com" class="action-btn">
+            <a href="mailto:info@autorentalsmk.com" class="action-btn">
               <span>✉️</span>
-              Email
+              Е-пошта
             </a>
           </div>
         </div>
         
         <!-- Contact Information -->
         <div class="contact-section">
-          <h4 class="contact-title">Need Help?</h4>
+          <h4 class="contact-title">Потребна ви е помош?</h4>
           <div class="contact-info">
             <div class="contact-item">
               <span class="contact-icon">📞</span>
-              <span>+1 (555) 123-4567</span>
+              <span>+389 (70) 123-456</span>
             </div>
             <div class="contact-item">
               <span class="contact-icon">✉️</span>
-              <span>info@eliterentals.com</span>
+              <span>info@autorentalsmk.com</span>
             </div>
             <div class="contact-item">
               <span class="contact-icon">🕒</span>
-              <span>24/7 Customer Support</span>
+              <span>24/7 корисничка поддршка</span>
             </div>
           </div>
         </div>

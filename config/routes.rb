@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   root "home#index"
   get "cars", to: "cars#index"
   get "cars/:id", to: "cars#show", as: :car
+  get "contact", to: "home#contact", as: :contact
 
   # Booking routes
   resources :bookings do

@@ -1,20 +1,20 @@
-<% content_for :title, "Our Cars - EliteRentals" %>p
+<% content_for :title, "Наши возила - autorentalsMK" %>
 
 <!-- Filters Section -->
 <section class="filters-section">
   <div class="container">
     <div class="filters-header">
-      <h2 class="filters-title">Find Your Perfect Car</h2>
-      <p class="filters-subtitle">Filter our premium fleet to match your preferences and dates</p>
+      <h2 class="filters-title">Најдете го вашето совршено возило</h2>
+      <p class="filters-subtitle">Филтрирајте ја нашата премиум флота за да се совпадне со вашите преференции и датуми</p>
     </div>
     <%= form_with url: cars_path, method: :get, data: { turbo_frame: "cars-list" }, class: "filters-form" do |form| %>
       <div class="filters-container">
         <!-- Date Availability Filters -->
         <div class="date-availability-section">
-          <h4 class="filter-section-title">Check Availability</h4>
+          <h4 class="filter-section-title">Проверете достапност</h4>
           <div class="date-filters">
             <div class="filter-group">
-              <label class="filter-label">Pick-up Date</label>
+              <label class="filter-label">Датум на подигање</label>
               <%= form.date_field :start_date, 
                   value: params[:start_date], 
                   min: Date.current,
@@ -22,7 +22,7 @@
             </div>
             
             <div class="filter-group">
-              <label class="filter-label">Drop-off Date</label>
+              <label class="filter-label">Датум на враќање</label>
               <%= form.date_field :end_date, 
                   value: params[:end_date], 
                   min: Date.current + 1.day,
@@ -33,41 +33,41 @@
           <% if @date_filtered %>
             <div class="date-filter-status">
               <span class="status-icon">✅</span>
-              <span>Showing cars available from <%= @filter_start_date.strftime("%b %d") %> to <%= @filter_end_date.strftime("%b %d, %Y") %></span>
-              <%= link_to "Clear dates", cars_path(brand: params[:brand], year_from: params[:year_from], year_to: params[:year_to], max_price: params[:max_price]), class: "clear-dates-btn" %>
+              <span>Прикажувам возила достапни од <%= @filter_start_date.strftime("%b %d") %> до <%= @filter_end_date.strftime("%b %d, %Y") %></span>
+              <%= link_to "Избриши датуми", cars_path(brand: params[:brand], year_from: params[:year_from], year_to: params[:year_to], max_price: params[:max_price]), class: "clear-dates-btn" %>
             </div>
           <% end %>
         </div>
 
         <!-- Other Filters -->
         <div class="other-filters-section">
-          <h4 class="filter-section-title">Additional Filters</h4>
+          <h4 class="filter-section-title">Дополнителни филтри</h4>
           <div class="other-filters">
             <div class="filter-group">
-              <label class="filter-label">Brand</label>
-              <%= form.text_field :brand, value: params[:brand], placeholder: "e.g. BMW, Mercedes", class: "filter-input" %>
+              <label class="filter-label">Марка</label>
+              <%= form.text_field :brand, value: params[:brand], placeholder: "на пр. BMW, Mercedes", class: "filter-input" %>
             </div>
             
             <div class="filter-group">
-              <label class="filter-label">Year From</label>
+              <label class="filter-label">Година од</label>
               <%= form.number_field :year_from, value: params[:year_from], placeholder: "2020", class: "filter-input" %>
             </div>
             
             <div class="filter-group">
-              <label class="filter-label">Year To</label>
+              <label class="filter-label">Година до</label>
               <%= form.number_field :year_to, value: params[:year_to], placeholder: "2025", class: "filter-input" %>
             </div>
             
             <div class="filter-group">
-              <label class="filter-label">Max Price/Day</label>
+              <label class="filter-label">Макс. цена/ден</label>
               <%= form.number_field :max_price, value: params[:max_price], placeholder: "500", step: 0.01, class: "filter-input" %>
             </div>
           </div>
         </div>
         
         <div class="filters-actions">
-          <%= form.submit "Filter Cars", class: "btn btn-primary btn-filter" %>
-          <%= link_to "Reset All", cars_path, class: "btn btn-secondary btn-filter" %>
+          <%= form.submit "Филтрирај возила", class: "btn btn-primary btn-filter" %>
+          <%= link_to "Ресетирај се", cars_path, class: "btn btn-secondary btn-filter" %>
         </div>
       </div>
     <% end %>
@@ -85,7 +85,7 @@
               <div class="car-image-wrapper">
                 <img src="<%= car.image_url %>" alt="<%= car.full_name %>" class="car-image">
                 <div class="car-status-badge <%= car.available? ? 'available' : 'unavailable' %>">
-                  <%= car.available? ? 'Available' : 'Unavailable' %>
+                  <%= car.available? ? 'Достапно' : 'Недостапно' %>
                 </div>
                 <div class="car-year-badge"><%= car.year %></div>
               </div>
@@ -103,21 +103,21 @@
                     <span class="car-spec-icon">⚡</span>
                     <span>
                       <% if @date_filtered %>
-                        Available for your dates
+                        Достапно за вашите датуми
                       <% elsif car.available? %>
-                        Available
+                        Достапно
                       <% else %>
-                        Currently unavailable
+                        Моментално недостапно
                       <% end %>
                     </span>
                   </div>
                   <div class="car-spec">
                     <span class="car-spec-icon">🛡️</span>
-                    <span>Insured</span>
+                    <span>Осигурано</span>
                   </div>
                   <div class="car-spec">
                     <span class="car-spec-icon">🔧</span>
-                    <span>Maintained</span>
+                    <span>Одржувано</span>
                   </div>
                 </div>
                 
@@ -126,17 +126,17 @@
                 <div class="car-actions">
                   <div class="car-price-display">
                     <div class="car-price">$<%= car.price_per_day %></div>
-                    <div class="car-price-unit">per day</div>
+                    <div class="car-price-unit">на ден</div>
                   </div>
 
                   <div class="car-action-buttons">
-                    <%= link_to "View Details", car_path(car), class: "btn btn-secondary car-view-btn", data: { turbo_frame: "_top" } %>
+                    <%= link_to "Погледни детали", car_path(car), class: "btn btn-secondary car-view-btn", data: { turbo_frame: "_top" } %>
                     
                     <% if @date_filtered %>
-                      <%= link_to "Book Now", new_car_booking_path(car, start_date: @filter_start_date, end_date: @filter_end_date), 
+                      <%= link_to "Резервирај сега", new_car_booking_path(car, start_date: @filter_start_date, end_date: @filter_end_date), 
                           class: "btn btn-primary car-book-btn", data: { turbo_frame: "_top" } %>
                     <% else %>
-                      <%= link_to "Book Now", new_car_booking_path(car), 
+                      <%= link_to "Резервирај сега", new_car_booking_path(car), 
                           class: "btn btn-primary car-book-btn", data: { turbo_frame: "_top" } %>
                     <% end %>
                   </div>
@@ -148,9 +148,9 @@
       <% else %>
         <div class="empty-state">
           <div class="empty-state-icon">🚗</div>
-          <h3>No cars found</h3>
-          <p>Try adjusting your filters to find the perfect car for you.</p>
-          <%= link_to "Reset Filters", cars_path, class: "btn btn-primary" %>
+          <h3>Не се пронајдени возила</h3>
+          <p>Обидете се да ги прилагодите вашите филтри за да го најдете совршеното возило за вас.</p>
+          <%= link_to "Ресетирај филтри", cars_path, class: "btn btn-primary" %>
         </div>
       <% end %>
     <% end %>

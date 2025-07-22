@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "EliteRentals - Premium Car Rentals" %></title>
+    <title><%= content_for(:title) || "autorentalsMK - Премиум изнајмување возила" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -31,19 +31,20 @@
     <nav class="navbar" data-controller="navigation">
       <div class="nav-container">
         <%= link_to root_path, class: "nav-logo" do %>
-          <span class="logo-text">EliteRentals</span>
+          <%= image_tag "autorentals_logo.jpg", alt: "autorentalsMK лого", class: "logo-image" %>
+          <span class="logo-text">autorentalsMK</span>
         <% end %>
         
         <div class="nav-menu" data-navigation-target="menu">
-          <%= link_to "Home", root_path, class: "nav-link #{'active' if current_page?(root_path)}" %>
-          <%= link_to "Cars", cars_path, class: "nav-link #{'active' if current_page?(cars_path)}" %>
-          <%= link_to "Bookings", bookings_path, class: "nav-link #{'active' if request.path.start_with?('/bookings')}" %>
-          <%= link_to "Dashboard", admin_root_path, class: "nav-link #{'active' if request.path.start_with?('/admin')}" %>
-          <a href="#contact" class="nav-link">Contact</a>
+          <%= link_to "Дома", root_path, class: "nav-link #{'active' if current_page?(root_path)}" %>
+          <%= link_to "Возила", cars_path, class: "nav-link #{'active' if current_page?(cars_path)}" %>
+          <%= link_to "Резервации", bookings_path, class: "nav-link #{'active' if request.path.start_with?('/bookings')}" %>
+          <%= link_to "Табла", admin_root_path, class: "nav-link #{'active' if request.path.start_with?('/admin')}" %>
+          <%= link_to "Контакт", contact_path, class: "nav-link #{'active' if current_page?(contact_path)}" %>
         </div>
         
         <div class="nav-cta">
-          <%= link_to "Book Now", cars_path, class: "btn btn-primary" %>
+          <%= link_to "Резервирај сега", cars_path, class: "btn btn-primary" %>
         </div>
       </div>
     </nav>
@@ -56,25 +57,25 @@
       <div class="footer-container">
         <div class="footer-content">
           <div class="footer-section">
-            <h3>EliteRentals</h3>
-            <p>Premium car rental service with the finest selection of vehicles.</p>
+            <h3>autorentalsMK</h3>
+            <p>Премиум услуга за изнајмување возила со најфината селекција на возила.</p>
           </div>
           <div class="footer-section">
-            <h4>Quick Links</h4>
+            <h4>Брзи врски</h4>
             <ul>
-              <li><%= link_to "Home", root_path %></li>
-              <li><%= link_to "Cars", cars_path %></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><%= link_to "Дома", root_path %></li>
+              <li><%= link_to "Возила", cars_path %></li>
+              <li><%= link_to "Контакт", contact_path %></li>
             </ul>
           </div>
           <div class="footer-section">
-            <h4>Contact Info</h4>
-            <p>📧 info@eliterentals.com</p>
-            <p>📞 +1 (555) 123-4567</p>
+            <h4>Контакт информации</h4>
+            <p>📧 info@autorentalsmk.com</p>
+            <p>📞 +389 (70) 123-456</p>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2025 EliteRentals. All rights reserved.</p>
+          <p>&copy; 2025 autorentalsMK. Сите права задржани.</p>
         </div>
       </div>
     </footer>

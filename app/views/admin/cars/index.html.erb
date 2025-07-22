@@ -1,9 +1,9 @@
-<% content_for :title, "Car Management Dashboard - EliteRentals" %>
+<% content_for :title, "Табла за управување со возила - autorentalsMK" %>
 
 <div class="container">
   <div class="dashboard-header">
-    <h1 class="dashboard-title">Car Management Dashboard</h1>
-    <p class="dashboard-subtitle">Manage your premium car rental fleet</p>
+    <h1 class="dashboard-title">Табла за управување со возила</h1>
+    <p class="dashboard-subtitle">Управувајте со вашата премиум флота за изнајмување возила</p>
   </div>
 
   <% if notice %>
@@ -16,27 +16,27 @@
   <div class="stats-grid">
     <div class="stat-card">
       <div class="stat-number"><%= @total_cars %></div>
-      <p class="stat-label">Total Cars</p>
+      <p class="stat-label">Вкупно возила</p>
     </div>
     <div class="stat-card">
       <div class="stat-number"><%= @available_cars %></div>
-      <p class="stat-label">Available Cars</p>
+      <p class="stat-label">Достапни возила</p>
     </div>
     <div class="stat-card">
       <div class="stat-number"><%= @total_cars - @available_cars %></div>
-      <p class="stat-label">Rented Cars</p>
+      <p class="stat-label">Изнајмени возила</p>
     </div>
     <div class="stat-card">
       <div class="stat-number">$<%= number_with_delimiter(@total_revenue.to_i) %></div>
-      <p class="stat-label">Daily Revenue Potential</p>
+      <p class="stat-label">Дневен потенцијал за приход</p>
     </div>
   </div>
 
   <!-- Actions Section -->
   <div class="dashboard-actions">
     <div class="flex-between">
-      <h3>Car Fleet Management</h3>
-      <%= link_to "Add New Car", new_admin_car_path, class: "btn btn-primary" %>
+      <h3>Управување со флотата возила</h3>
+      <%= link_to "Додај ново возило", new_admin_car_path, class: "btn btn-primary" %>
     </div>
   </div>
 

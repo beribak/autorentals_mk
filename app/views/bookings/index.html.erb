@@ -1,9 +1,9 @@
-<% content_for :title, "All Bookings - EliteRentals" %>
+<% content_for :title, "Сите резервации - autorentalsMK" %>
 
 <section class="bookings-header">
   <div class="container">
-    <h1>All Bookings</h1>
-    <p>Manage and view all rental bookings</p>
+    <h1>Сите резервации</h1>
+    <p>Управувајте и прегледајте ги сите резервации за изнајмување</p>
   </div>
 </section>
 
@@ -14,7 +14,7 @@
         <% @bookings.each do |booking| %>
           <div class="booking-card">
             <div class="booking-header">
-              <div class="booking-number">Booking #<%= booking.id %></div>
+              <div class="booking-number">Резервација #<%= booking.id %></div>
               <div class="booking-status">
                 <span class="status-badge status-<%= booking.status %>">
                   <%= booking.status.humanize %>
@@ -27,40 +27,40 @@
                 <img src="<%= booking.car.image_url %>" alt="<%= booking.car.full_name %>" class="car-thumbnail">
                 <div class="car-details">
                   <h3><%= booking.car.full_name %></h3>
-                  <div class="car-price">$<%= booking.car.price_per_day %>/day</div>
+                  <div class="car-price">$<%= booking.car.price_per_day %>/ден</div>
                 </div>
               </div>
 
               <div class="booking-info">
                 <div class="info-item">
-                  <span class="label">Customer:</span>
+                  <span class="label">Клиент:</span>
                   <span class="value"><%= booking.customer_name %></span>
                 </div>
                 <div class="info-item">
-                  <span class="label">Dates:</span>
+                  <span class="label">Датуми:</span>
                   <span class="value">
-                    <%= booking.start_date.strftime("%m/%d/%Y") %> - 
-                    <%= booking.end_date.strftime("%m/%d/%Y") %>
+                    <%= booking.start_date.strftime("%d/%m/%Y") %> - 
+                    <%= booking.end_date.strftime("%d/%m/%Y") %>
                   </span>
                 </div>
                 <div class="info-item">
-                  <span class="label">Total:</span>
+                  <span class="label">Вкупно:</span>
                   <span class="value">$<%= booking.total_price %></span>
                 </div>
                 <div class="info-item">
-                  <span class="label">Created:</span>
-                  <span class="value"><%= booking.created_at.strftime("%m/%d/%Y at %I:%M %p") %></span>
+                  <span class="label">Креирано:</span>
+                  <span class="value"><%= booking.created_at.strftime("%d/%m/%Y во %H:%M") %></span>
                 </div>
               </div>
             </div>
 
             <div class="booking-actions">
-              <%= link_to "View Details", booking_path(booking), class: "btn btn-sm btn-primary" %>
+              <%= link_to "Погледни детали", booking_path(booking), class: "btn btn-sm btn-primary" %>
               <% if booking.can_be_cancelled? %>
-                <%= link_to "Cancel", cancel_booking_path(booking), 
+                <%= link_to "Откажи", cancel_booking_path(booking), 
                     method: :patch, 
                     class: "btn btn-sm btn-danger", 
-                    confirm: "Are you sure?" %>
+                    confirm: "Дали сте сигурни?" %>
               <% end %>
             </div>
           </div>
@@ -69,9 +69,9 @@
     <% else %>
       <div class="empty-state">
         <div class="empty-icon">📅</div>
-        <h3>No bookings found</h3>
-        <p>There are no bookings in the system yet.</p>
-        <%= link_to "Browse Cars", cars_path, class: "btn btn-primary" %>
+        <h3>Не се пронајдени резервации</h3>
+        <p>Сѐ уште нема резервации во системот.</p>
+        <%= link_to "Прелистај возила", cars_path, class: "btn btn-primary" %>
       </div>
     <% end %>
   </div>
