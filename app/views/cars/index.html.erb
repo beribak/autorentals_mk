@@ -125,7 +125,7 @@
                 
                 <div class="car-actions">
                   <div class="car-price-display">
-                    <div class="car-price">$<%= car.price_per_day %></div>
+                    <div class="car-price">€<%= car.price_per_day %></div>
                     <div class="car-price-unit">на ден</div>
                   </div>
 
@@ -133,10 +133,10 @@
                     <%= link_to "Погледни детали", car_path(car), class: "btn btn-secondary car-view-btn", data: { turbo_frame: "_top" } %>
                     
                     <% if @date_filtered %>
-                      <%= link_to "Резервирај сега", new_car_booking_path(car, start_date: @filter_start_date, end_date: @filter_end_date), 
+                      <%= link_to "Испрати барање", new_car_booking_inquiry_path(car, start_date: @filter_start_date, end_date: @filter_end_date), 
                           class: "btn btn-primary car-book-btn", data: { turbo_frame: "_top" } %>
                     <% else %>
-                      <%= link_to "Резервирај сега", new_car_booking_path(car), 
+                      <%= link_to "Испрати барање", new_car_booking_inquiry_path(car), 
                           class: "btn btn-primary car-book-btn", data: { turbo_frame: "_top" } %>
                     <% end %>
                   </div>

@@ -43,7 +43,7 @@ This dashboard provides a comprehensive interface for managing your car rental f
    - Brand (e.g., BMW, Mercedes, Audi)
    - Model (e.g., M5, S-Class, A8)
    - Year (1900 - current year + 1)
-   - Price per Day (minimum $0)
+   - Price per Day (minimum €0)
    - Image URL (live preview available)
    - Description (detailed car information)
    - Availability status

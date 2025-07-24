@@ -1,0 +1,156 @@
+<% content_for :title, "Барање за резервација#{" - #{@car.full_name}" if @car} - autorentalsMK" %>
+
+<section class="booking-header">
+  <div class="container">
+    <% if @car %>
+      <div class="back-nav">
+        <%= link_to car_path(@car), class: "back-link" do %>
+          <span class="back-icon">←</span>
+          Назад кон детали за возилото
+        <% end %>
+      </div>
+    <% end %>
+    
+    <h1>Барање за резервација</h1>
+    <p>Испратете ни барање за резервација и ќе ве контактираме во најкраток рок</p>
+  </div>
+</section>
+
+<section class="booking-content">
+  <div class="container">
+    <div class="booking-layout">
+      <!-- Car Summary (if car is selected) -->
+      <% if @car %>
+        <div class="car-summary-card">
+          <div class="car-summary-image">
+            <img src="<%= @car.image_url %>" alt="<%= @car.full_name %>" class="summary-car-image">
+          </div>
+          <div class="car-summary-details">
+            <h3><%= @car.full_name %></h3>
+            <div class="summary-price">
+              <span class="price-amount">€<%= @car.price_per_day %></span>
+              <span class="price-unit">на ден</span>
+            </div>
+            <div class="car-features">
+              <div class="feature">🛡️ Целосно осигурано</div>
+              <div class="feature">🔧 Добро одржувано</div>
+              <div class="feature">⚡ Достапно за изнајмување</div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- Inquiry Form -->
+      <div class="booking-form-card">
+        <% if flash[:alert] %>
+          <div class="error-messages">
+            <h4>Грешка</h4>
+            <p><%= flash[:alert] %></p>
+          </div>
+        <% end %>
+
+        <%= form_with url: @car ? car_booking_inquiries_path(@car) : booking_inquiries_path, class: "booking-form" do |form| %>
+          <div class="form-section">
+            <h3>Датуми за изнајмување</h3>
+            <div class="date-inputs">
+              <div class="date-group">
+                <%= form.label "inquiry[start_date]", "Датум на подигање", class: "form-label" %>
+                <%= form.date_field "inquiry[start_date]", 
+                    class: "form-input border", 
+                    min: Date.current,
+                    value: @inquiry[:start_date],
+                    required: true %>
+              </div>
+              <div class="date-group">
+                <%= form.label "inquiry[end_date]", "Датум на враќање", class: "form-label" %>
+                <%= form.date_field "inquiry[end_date]", 
+                    class: "form-input border", 
+                    min: Date.current + 1.day,
+                    value: @inquiry[:end_date],
+                    required: true %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Детали за локацијата</h3>
+            <div class="input-group">
+              <%= form.label "inquiry[pickup_location]", "Преферирана локација за подигање", class: "form-label" %>
+              <%= form.text_field "inquiry[pickup_location]", 
+                  placeholder: "Внесете адреса или опис на локацијата", 
+                  class: "form-input border" %>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Ваши информации</h3>
+            <div class="customer-inputs">
+              <div class="name-row">
+                <div class="input-group">
+                  <%= form.label "inquiry[first_name]", "Име", class: "form-label" %>
+                  <%= form.text_field "inquiry[first_name]", class: "form-input border", required: true %>
+                </div>
+                <div class="input-group">
+                  <%= form.label "inquiry[last_name]", "Презиме", class: "form-label" %>
+                  <%= form.text_field "inquiry[last_name]", class: "form-input border", required: true %>
+                </div>
+              </div>
+              
+              <div class="contact-row">
+                <div class="input-group">
+                  <%= form.label "inquiry[email]", "Е-пошта", class: "form-label" %>
+                  <%= form.email_field "inquiry[email]", class: "form-input border", required: true %>
+                </div>
+                <div class="input-group">
+                  <%= form.label "inquiry[phone]", "Телефон", class: "form-label" %>
+                  <%= form.telephone_field "inquiry[phone]", class: "form-input border", required: true %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Дополнителни информации</h3>
+            <div class="input-group">
+              <%= form.label "inquiry[message]", "Порака (опционално)", class: "form-label" %>
+              <%= form.text_area "inquiry[message]", 
+                  rows: 4, 
+                  placeholder: "Додајте било какви специјални барања, прашања или дополнителни информации...", 
+                  class: "form-input border" %>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-actions">
+            <%= form.submit "Испрати барање", 
+                class: "btn btn-primary btn-large" %>
+            <p class="form-note">Ќе ве контактираме во рок од 2 часа со потврда и детали</p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Information Section -->
+<section class="info-section" style="background: var(--bg-secondary); padding: var(--spacing-2xl) 0;">
+  <div class="container">
+    <div class="info-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-xl);">
+      <div class="info-card" style="text-align: center; padding: var(--spacing-xl); background: var(--bg-primary); border-radius: var(--radius-lg);">
+        <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">⚡</div>
+        <h4>Брза реакција</h4>
+        <p>Одговараме на сите барања во рок од 2 часа</p>
+      </div>
+      <div class="info-card" style="text-align: center; padding: var(--spacing-xl); background: var(--bg-primary); border-radius: var(--radius-lg);">
+        <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">💰</div>
+        <h4>Најдобри цени</h4>
+        <p>Конкурентни цени и специјални попусти</p>
+      </div>
+      <div class="info-card" style="text-align: center; padding: var(--spacing-xl); background: var(--bg-primary); border-radius: var(--radius-lg);">
+        <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">🛡️</div>
+        <h4>Сигурност</h4>
+        <p>Сите возила се целосно осигурани и проверени</p>
+      </div>
+    </div>
+  </div>
+</section>

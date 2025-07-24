@@ -458,3 +458,58 @@ textarea.form-input {
     padding: var(--spacing-xl) 0;
   }
 }
+
+/* Single contact card layout (centered) */
+.contact-layout-single {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.contact-layout-single .contact-info-card {
+  max-width: 800px;
+  width: 100%;
+}
+
+/* Contact methods grid (2 columns) */
+.contact-methods-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.contact-methods-grid .contact-method {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Center the 5th item (Instagram) that spans across both columns */
+.contact-method-centered {
+  grid-column: 1 / -1;
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  .contact-methods-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .contact-method-centered {
+    grid-column: 1;
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  .contact-layout-single .contact-info-card {
+    max-width: 100%;
+  }
+}

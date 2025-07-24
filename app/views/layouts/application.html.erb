@@ -13,9 +13,7 @@
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,8 +36,8 @@
         <div class="nav-menu" data-navigation-target="menu">
           <%= link_to "Дома", root_path, class: "nav-link #{'active' if current_page?(root_path)}" %>
           <%= link_to "Возила", cars_path, class: "nav-link #{'active' if current_page?(cars_path)}" %>
-          <%= link_to "Резервации", bookings_path, class: "nav-link #{'active' if request.path.start_with?('/bookings')}" %>
-          <%= link_to "Табла", admin_root_path, class: "nav-link #{'active' if request.path.start_with?('/admin')}" %>
+          <%#= link_to "Резервации", bookings_path, class: "nav-link #{'active' if request.path.start_with?('/bookings')}" %>
+          <%#= link_to "Табла", admin_root_path, class: "nav-link #{'active' if request.path.start_with?('/admin')}" %>
           <%= link_to "Контакт", contact_path, class: "nav-link #{'active' if current_page?(contact_path)}" %>
         </div>
         
@@ -70,8 +68,8 @@
           </div>
           <div class="footer-section">
             <h4>Контакт информации</h4>
-            <p>📧 info@autorentalsmk.com</p>
-            <p>📞 +389 (70) 123-456</p>
+            <p>📧 contact@autorentals.mk</p>
+            <p>📞 +389 71 297 645</p>
           </div>
         </div>
         <div class="footer-bottom">

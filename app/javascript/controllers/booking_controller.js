@@ -5,7 +5,7 @@ export default class extends Controller {
 
   connect() {
     this.carId = this.element.dataset.carId || window.location.pathname.split('/')[2]
-    this.pricePerDay = parseFloat(this.dailyRateTarget.textContent.replace('$', ''))
+    this.pricePerDay = parseFloat(this.dailyRateTarget.textContent.replace('€', ''))
     
     // Check if dates are pre-filled and calculate price immediately
     setTimeout(() => {
@@ -29,7 +29,7 @@ export default class extends Controller {
     
     if (duration > 0) {
       this.durationTarget.textContent = `${duration} day${duration > 1 ? 's' : ''}`
-      this.totalPriceTarget.textContent = `$${totalPrice.toFixed(2)}`
+      this.totalPriceTarget.textContent = `€${totalPrice.toFixed(2)}`
       this.priceSummaryTarget.style.display = 'block'
       this.enableSubmitButton()
     }

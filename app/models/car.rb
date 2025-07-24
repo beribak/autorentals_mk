@@ -17,7 +17,7 @@ class Car < ApplicationRecord
   end
 
   def formatted_price
-    "$#{price_per_day}/day"
+    "€#{price_per_day}/day"
   end
 
   def available_for_dates?(start_date, end_date)

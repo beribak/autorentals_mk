@@ -1,0 +1,29 @@
+Ново барање за резервација - autorentalsMK
+===============================================
+
+<% if @car %>
+Бараното возило: <%= @car.full_name %>
+Цена: €<%= @car.price_per_day %>/ден
+
+<% end %>
+Информации за клиентот:
+- Име: <%= @inquiry[:first_name] %> <%= @inquiry[:last_name] %>
+- Е-пошта: <%= @inquiry[:email] %>
+- Телефон: <%= @inquiry[:phone] %>
+
+Детали за резервацијата:
+- Датум на подигање: <%= Date.parse(@inquiry[:start_date]).strftime("%d.%m.%Y") if @inquiry[:start_date] %>
+- Датум на враќање: <%= Date.parse(@inquiry[:end_date]).strftime("%d.%m.%Y") if @inquiry[:end_date] %>
+<% if @inquiry[:pickup_location].present? %>- Локација за подигање: <%= @inquiry[:pickup_location] %><% end %>
+
+<% if @inquiry[:message].present? %>
+Дополнителна порака:
+<%= @inquiry[:message] %>
+
+<% end %>
+Ве молиме контактирајте го клиентот во најкраток можен рок!
+
+---
+autorentalsMK
++389 71 297 645
+contact@autorentals.mk

@@ -15,23 +15,30 @@ Rails.application.routes.draw do
   get "cars/:id", to: "cars#show", as: :car
   get "contact", to: "home#contact", as: :contact
 
-  # Booking routes
-  resources :bookings do
+  # Booking inquiry routes (replaces old booking system)
+  resources :booking_inquiries, only: [ :new, :create ] do
+    collection do
+      get :confirmation
+    end
+  end
+
+  # Nested route for creating inquiries from cars
+  resources :cars, only: [] do
+    resources :booking_inquiries, only: [ :new, :create ], path: "inquiry"
+  end
+
+  # Keep booking routes for existing bookings (view only)
+  resources :bookings, only: [ :index, :show ] do
     member do
       patch :cancel
     end
   end
 
-  # Nested route for creating bookings from cars
-  resources :cars, only: [] do
-    resources :bookings, only: [ :new, :create ]
-  end
-
-  # AJAX route for checking availability
+  # AJAX route for checking availability (kept for compatibility)
   get "check_availability", to: "bookings#check_availability"
 
   # Admin dashboard routes
-  namespace :admin do
+  namespace :admin, path: "admin_daniel" do
     resources :cars do
       member do
         patch :toggle_availability

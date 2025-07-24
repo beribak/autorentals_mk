@@ -1,0 +1,63 @@
+<% content_for :subject, "Ново барање за резервација - #{@car&.full_name || 'Општо барање'}" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background: #2563eb; color: white; padding: 20px; text-align: center; }
+    .content { padding: 20px; background: #f9fafb; }
+    .section { margin-bottom: 20px; }
+    .label { font-weight: bold; color: #4b5563; }
+    .value { margin-left: 10px; }
+    .car-info { background: white; padding: 15px; border-radius: 8px; margin: 15px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Ново барање за резервација</h1>
+      <p>autorentalsMK</p>
+    </div>
+    
+    <div class="content">
+      <% if @car %>
+        <div class="car-info">
+          <h3>Бараното возило:</h3>
+          <p><strong><%= @car.full_name %></strong></p>
+          <p>Цена: €<%= @car.price_per_day %>/ден</p>
+        </div>
+      <% end %>
+
+      <div class="section">
+        <h3>Информации за клиентот:</h3>
+        <p><span class="label">Име:</span><span class="value"><%= @inquiry[:first_name] %> <%= @inquiry[:last_name] %></span></p>
+        <p><span class="label">Е-пошта:</span><span class="value"><%= @inquiry[:email] %></span></p>
+        <p><span class="label">Телефон:</span><span class="value"><%= @inquiry[:phone] %></span></p>
+      </div>
+
+      <div class="section">
+        <h3>Детали за резервацијата:</h3>
+        <p><span class="label">Датум на подигање:</span><span class="value"><%= Date.parse(@inquiry[:start_date]).strftime("%d.%m.%Y") if @inquiry[:start_date] %></span></p>
+        <p><span class="label">Датум на враќање:</span><span class="value"><%= Date.parse(@inquiry[:end_date]).strftime("%d.%m.%Y") if @inquiry[:end_date] %></span></p>
+        <% if @inquiry[:pickup_location].present? %>
+          <p><span class="label">Локација за подигање:</span><span class="value"><%= @inquiry[:pickup_location] %></span></p>
+        <% end %>
+      </div>
+
+      <% if @inquiry[:message].present? %>
+        <div class="section">
+          <h3>Дополнителна порака:</h3>
+          <p><%= simple_format(@inquiry[:message]) %></p>
+        </div>
+      <% end %>
+
+      <div class="section">
+        <p><strong>Ве молиме контактирајте го клиентот во најкраток можен рок!</strong></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

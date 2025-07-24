@@ -25,7 +25,7 @@
         <div class="car-summary-details">
           <h3><%= @car.full_name %></h3>
           <div class="summary-price">
-            <span class="price-amount">$<%= @car.price_per_day %></span>
+            <span class="price-amount">€<%= @car.price_per_day %></span>
             <span class="price-unit">на ден</span>
           </div>
           <div class="car-features">
@@ -169,7 +169,7 @@
           <div class="price-summary" data-booking-target="priceSummary" style="display: none;">
             <div class="summary-row">
               <span>Дневна стапка:</span>
-              <span data-booking-target="dailyRate">$<%= @car.price_per_day %></span>
+              <span data-booking-target="dailyRate">€<%= @car.price_per_day %></span>
             </div>
             <div class="summary-row">
               <span>Времетраење:</span>
@@ -177,7 +177,7 @@
             </div>
             <div class="summary-row total">
               <span>Вкупно:</span>
-              <span data-booking-target="totalPrice">$0.00</span>
+              <span data-booking-target="totalPrice">€0.00</span>
             </div>
           </div>
 

@@ -26,7 +26,7 @@
         
         <!-- Price Section -->
         <div class="car-price-section">
-          <div class="price-display">$<%= @car.price_per_day %></div>
+          <div class="price-display">€<%= @car.price_per_day %></div>
           <div class="price-unit">на ден</div>
         </div>
         
@@ -99,8 +99,8 @@
         <!-- Actions -->
         <div class="car-actions-section">
           <% if @car.available? %>
-            <%= link_to new_car_booking_path(@car), class: "book-now-btn" do %>
-              Резервирај сега - $<%= @car.price_per_day %>/ден
+            <%= link_to new_car_booking_inquiry_path(@car), class: "book-now-btn" do %>
+              Испрати барање за резервација - €<%= @car.price_per_day %>/ден
             <% end %>
           <% else %>
             <button class="book-now-btn" disabled style="opacity: 0.5; cursor: not-allowed;">

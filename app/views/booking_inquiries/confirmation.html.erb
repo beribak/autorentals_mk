@@ -1,0 +1,96 @@
+<% content_for :title, "Барањето е испратено - autorentalsMK" %>
+
+<section class="booking-confirmation-header">
+  <div class="container">
+    <div class="confirmation-icon">✅</div>
+    <h1>Барањето е успешно испратено!</h1>
+    <p>Ви благодариме за вашето барање за резервација</p>
+  </div>
+</section>
+
+<section class="booking-details">
+  <div class="container">
+    <div class="booking-details-layout">
+      <!-- Main Content -->
+      <div class="booking-summary-card">
+        <h2>Што следи?</h2>
+        
+        <div class="steps-list">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Преглед на барањето</h4>
+              <p>Нашиот тим ќе го прегледа вашето барање и ќе ја провери достапноста на возилото за саканите датуми.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Контакт во рок од 2 часа</h4>
+              <p>Ќе ве контактираме на наведениот телефонски број или е-пошта со потврда и сите детали за резервацијата.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Потврда и плаќање</h4>
+              <p>Ако сè е во ред, ќе договориме начин на плаќање и финални детали за подигањето на возилото.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>Уживајте во вашата возба</h4>
+              <p>На договорениот ден, подигнете го возилото и уживајте во вашето патување!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next Steps -->
+      <div class="next-steps-card">
+        <h2>Потребна ви е помош?</h2>
+        
+        <div class="contact-support">
+          <div class="support-options">
+            <a href="tel:+38971297645" class="support-btn">
+              <span>📞</span>
+              Повикај не
+            </a>
+            <a href="mailto:contact@autorentals.mk" class="support-btn">
+              <span>✉️</span>
+              Испрати е-пошта
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-info" style="margin-top: var(--spacing-xl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-color);">
+          <h4>Контакт информации</h4>
+          <div class="contact-details" style="margin-top: var(--spacing-md);">
+            <div class="contact-item" style="margin-bottom: var(--spacing-sm);">
+              <span class="contact-icon">📞</span>
+              <span>+389 71 297 645</span>
+            </div>
+            <div class="contact-item" style="margin-bottom: var(--spacing-sm);">
+              <span class="contact-icon">✉️</span>
+              <span>contact@autorentals.mk</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">🕒</span>
+              <span>Достапни 24/7</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="booking-actions">
+      <a href="<%= cars_path %>" class="btn btn-primary">Прелистај повеќе возила</a>
+      <a href="<%= root_path %>" class="btn btn-secondary">Оди на почетна</a>
+    </div>
+  </div>
+</section>

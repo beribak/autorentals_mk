@@ -27,7 +27,7 @@
       <p class="stat-label">Изнајмени возила</p>
     </div>
     <div class="stat-card">
-      <div class="stat-number">$<%= number_with_delimiter(@total_revenue.to_i) %></div>
+      <div class="stat-number">€<%= number_with_delimiter(@total_revenue.to_i) %></div>
       <p class="stat-label">Дневен потенцијал за приход</p>
     </div>
   </div>
@@ -63,7 +63,7 @@
             <td><strong><%= car.brand %></strong></td>
             <td><%= car.model %></td>
             <td><%= car.year %></td>
-            <td><strong>$<%= number_with_delimiter(car.price_per_day.to_i) %></strong></td>
+            <td><strong>€<%= number_with_delimiter(car.price_per_day.to_i) %></strong></td>
             <td>
               <div class="status-availability-container">
                 <span class="status-badge <%= car.available? ? 'available' : 'unavailable' %>">
