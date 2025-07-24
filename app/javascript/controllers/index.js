@@ -4,5 +4,17 @@
 
 import { application } from "./application"
 
+import BookingController from "./booking_controller"
+application.register("booking", BookingController)
+
+import CarsController from "./cars_controller"
+application.register("cars", CarsController)
+
+import DashboardController from "./dashboard_controller"
+application.register("dashboard", DashboardController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import NavigationController from "./navigation_controller"
+application.register("navigation", NavigationController)
