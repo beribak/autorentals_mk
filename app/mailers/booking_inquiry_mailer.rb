@@ -1,5 +1,5 @@
 class BookingInquiryMailer < ApplicationMailer
-  default from: "noreply@autorentalsmk.com"
+  default from: "contact@autorentals.mk"
 
   def new_inquiry(inquiry_params)
     @inquiry = inquiry_params

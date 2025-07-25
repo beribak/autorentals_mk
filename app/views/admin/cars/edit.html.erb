@@ -1,83 +1,283 @@
-<% content_for :title, "Edit #{@car.full_name} - EliteRentals Dashboard" %>
+<% content_for :title, "Уреди #{@car.full_name} - EliteRentals Контролна табла" %>
+<%= stylesheet_link_tag 'admin_cars_edit', 'data-turbo-track': 'reload' %>
 
 <div class="container">
   <div class="dashboard-header">
-    <h1 class="dashboard-title">Edit Car</h1>
-    <p class="dashboard-subtitle">Update <%= @car.full_name %> details</p>
+    <h1 class="dashboard-title">Уреди автомобил</h1>
+    <p class="dashboard-subtitle">Ажурирај ги деталите за <%= @car.full_name %></p>
   </div>
 
-  <div class="form-container" data-controller="dashboard">
-    <% if @car.errors.any? %>
-      <div class="error-messages">
-        <h4><%= pluralize(@car.errors.count, "error") %> prohibited this car from being saved:</h4>
-        <ul>
-          <% @car.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+  <!-- Main Layout: Car Form and Booking Form Side by Side -->
+  <div class="admin-layout">
+    <!-- Car Edit Form (Left Column) -->
+    <div class="form-container car-form" data-controller="dashboard">
+      <h2 class="form-title">Детали за автомобилот</h2>
+      
+      <% if @car.errors.any? %>
+        <div class="error-messages">
+          <h4><%= pluralize(@car.errors.count, "грешка") %> го спречи зачувувањето на автомобилот:</h4>
+          <ul>
+            <% @car.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-    <%= form_with model: [:admin, @car], local: true do |form| %>
-      <div class="form-row">
-        <div class="form-group">
-          <%= form.label :brand, class: "form-label" %>
-          <%= form.text_field :brand, class: "form-input", placeholder: "e.g., BMW, Mercedes, Audi" %>
-        </div>
-        
-        <div class="form-group">
-          <%= form.label :model, class: "form-label" %>
-          <%= form.text_field :model, class: "form-input", placeholder: "e.g., M5, S-Class, A8" %>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <%= form.label :year, class: "form-label" %>
-          <%= form.number_field :year, class: "form-input", placeholder: "e.g., 2024", min: 1900, max: Date.current.year + 1 %>
-        </div>
-        
-        <div class="form-group">
-          <%= form.label :price_per_day, "Price per Day (€)", class: "form-label" %>
-          <%= form.number_field :price_per_day, class: "form-input", placeholder: "e.g., 299", step: 0.01, min: 0 %>
-        </div>
-      </div>
-
-      <div class="form-row single">
-        <div class="form-group">
-          <%= form.label :image_url, "Image URL", class: "form-label" %>
-          <%= form.url_field :image_url, class: "form-input", 
-              placeholder: "https://example.com/car-image.jpg",
-              data: { dashboard_target: "imageUrl", action: "input->dashboard#previewImage" } %>
-          <img data-dashboard-target="imagePreview" 
-               src="<%= @car.image_url if @car.image_url.present? %>"
-               style="<%= @car.image_url.present? ? 'display: block;' : 'display: none;' %> margin-top: 10px; max-width: 200px; border-radius: var(--radius-md);" 
-               alt="Image preview">
-        </div>
-      </div>
-
-      <div class="form-row single">
-        <div class="form-group">
-          <%= form.label :description, class: "form-label" %>
-          <%= form.text_area :description, class: "form-input form-textarea", 
-              placeholder: "Describe the car's features, luxury amenities, and what makes it special..." %>
-        </div>
-      </div>
-
-      <div class="form-row single">
-        <div class="form-group">
-          <div class="form-checkbox-group">
-            <%= form.check_box :available, class: "form-checkbox" %>
-            <%= form.label :available, "Available for rent", class: "form-label" %>
+      <%= form_with model: [:admin, @car], local: true do |form| %>
+        <div class="form-row">
+          <div class="form-group">
+            <%= form.label :brand, "Марка", class: "form-label" %>
+            <%= form.text_field :brand, class: "form-input", placeholder: "на пр., BMW, Mercedes, Audi" %>
+          </div>
+          
+          <div class="form-group">
+            <%= form.label :model, "Модел", class: "form-label" %>
+            <%= form.text_field :model, class: "form-input", placeholder: "на пр., M5, S-Class, A8" %>
           </div>
         </div>
-      </div>
 
-      <div class="form-actions">
-        <%= link_to "Cancel", admin_cars_path, class: "btn btn-secondary" %>
-        <%= link_to "View Car", car_path(@car), class: "btn btn-ghost", target: "_blank" %>
-        <%= form.submit "Update Car", class: "btn btn-primary" %>
-      </div>
-    <% end %>
+        <div class="form-row">
+          <div class="form-group">
+            <%= form.label :year, "Година", class: "form-label" %>
+            <%= form.number_field :year, class: "form-input", placeholder: "на пр., 2024", min: 1900, max: Date.current.year + 1 %>
+          </div>
+          
+          <div class="form-group">
+            <%= form.label :price_per_day, "Цена по ден (€)", class: "form-label" %>
+            <%= form.number_field :price_per_day, class: "form-input", placeholder: "на пр., 299", step: 0.01, min: 0 %>
+          </div>
+        </div>
+
+        <div class="form-row single">
+          <div class="form-group">
+            <%= form.label :image_url, "URL на слика", class: "form-label" %>
+            <%= form.url_field :image_url, class: "form-input", 
+                placeholder: "https://example.com/car-image.jpg",
+                data: { dashboard_target: "imageUrl", action: "input->dashboard#previewImage" } %>
+            <img data-dashboard-target="imagePreview" 
+                 src="<%= @car.image_url if @car.image_url.present? %>"
+                 style="<%= @car.image_url.present? ? 'display: block;' : 'display: none;' %> margin-top: 10px; max-width: 200px; border-radius: var(--radius-md);" 
+                 alt="Преглед на слика">
+          </div>
+        </div>
+
+        <div class="form-row single">
+          <div class="form-group">
+            <%= form.label :description, "Опис", class: "form-label" %>
+            <%= form.text_area :description, class: "form-input form-textarea", rows: 3,
+                placeholder: "Опишете ги карактеристиките на автомобилот, луксузните садржини и што го прави посебен..." %>
+          </div>
+        </div>
+
+        <div class="form-row single">
+          <div class="form-group">
+            <div class="form-checkbox-group">
+              <%= form.check_box :available, class: "form-checkbox" %>
+              <%= form.label :available, "Достапен за изнајмување", class: "form-label" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <%= link_to "Откажи", admin_cars_path, class: "btn btn-secondary" %>
+          <%= link_to "Погледни автомобил", car_path(@car), class: "btn btn-ghost", target: "_blank" %>
+          <%= form.submit "Ажурирај автомобил", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Booking Form (Right Column) -->
+    <div class="form-container booking-form">
+      <h2 class="form-title">Креирај резервација</h2>
+      
+      <% if @booking&.errors&.any? %>
+        <div class="error-messages">
+          <h4><%= pluralize(@booking.errors.count, "грешка") %> го спречи зачувувањето на резервацијата:</h4>
+          <ul>
+            <% @booking.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form_with model: @booking, url: create_booking_admin_car_path(@car), local: true do |form| %>
+        <!-- Customer Information -->
+        <div class="form-section">
+          <h3 class="form-section-title">Информации за клиентот</h3>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <%= label_tag :booking_customer_first_name, "Име", class: "form-label" %>
+              <%= text_field_tag :booking_customer_first_name, "", class: "form-input", placeholder: "Име", required: true %>
+            </div>
+            
+            <div class="form-group">
+              <%= label_tag :booking_customer_last_name, "Презиме", class: "form-label" %>
+              <%= text_field_tag :booking_customer_last_name, "", class: "form-input", placeholder: "Презиме", required: true %>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <%= label_tag :booking_customer_email, "Е-маил", class: "form-label" %>
+              <%= email_field_tag :booking_customer_email, "", class: "form-input", placeholder: "klient@example.com", required: true %>
+            </div>
+            
+            <div class="form-group">
+              <%= label_tag :booking_customer_phone, "Телефон", class: "form-label" %>
+              <%= telephone_field_tag :booking_customer_phone, "", class: "form-input", placeholder: "+389 XX XXX XXX", required: true %>
+            </div>
+          </div>
+          <small class="form-help">Ако клиентот постои, неговите информации ќе бидат ажурирани</small>
+        </div>
+
+        <!-- Booking Details -->
+        <div class="form-section">
+          <h3 class="form-section-title">Детали за резервацијата</h3>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <%= form.label :start_date, "Почетен датум", class: "form-label" %>
+              <%= form.date_field :start_date, class: "form-input", min: Date.current, required: true %>
+            </div>
+            
+            <div class="form-group">
+              <%= form.label :end_date, "Краен датум", class: "form-label" %>
+              <%= form.date_field :end_date, class: "form-input", min: Date.current, required: true %>
+            </div>
+          </div>
+
+          <div class="form-row single">
+            <div class="form-group">
+              <%= form.label :pickup_location, "Локација за преземање", class: "form-label" %>
+              <%= form.text_field :pickup_location, class: "form-input", placeholder: "Адреса или локација за преземање", required: true %>
+            </div>
+          </div>
+
+          <div class="form-row single">
+            <div class="form-group">
+              <%= form.label :special_requests, "Забелешки (Опционално)", class: "form-label" %>
+              <%= form.text_area :special_requests, class: "form-input form-textarea", rows: 2, placeholder: "Било какви посебни барања или забелешки..." %>
+            </div>
+          </div>
+
+          <div class="booking-summary">
+            <h4>Резиме</h4>
+            <p><strong>Автомобил:</strong> <%= @car.full_name %></p>
+            <p><strong>Цена по ден:</strong> €<%= @car.price_per_day %></p>
+            <p><strong>Статус:</strong> <span class="status-badge status-confirmed">Потврдено</span></p>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <%= form.submit "Креирај резервација", class: "btn btn-primary", data: { confirm: "Дали сте сигурни дека сакате да креирате оваа резервација?" } %>
+        </div>
+      <% end %>
+    </div>
   </div>
+
+  <!-- Calendar View for Future Bookings -->
+  <div class="form-container calendar-section" 
+       data-controller="calendar" 
+       data-calendar-booked-dates-value="<%= 
+         booked_dates = Set.new
+         @future_bookings.each do |booking|
+           (booking.start_date..booking.end_date).each do |date|
+             booked_dates.add(date.strftime('%Y-%m-%d'))
+           end
+         end
+         booked_dates.to_a.to_json 
+       %>"
+       data-calendar-month-names-value='["Јануари", "Февруари", "Март", "Април", "Мај", "Јуни", "Јули", "Август", "Септември", "Октомври", "Ноември", "Декември"]'
+       data-calendar-weekday-names-value='["Нед", "Пон", "Вто", "Сре", "Чет", "Пет", "Саб"]'>
+    <h2 class="form-title">Календар за достапност</h2>
+    
+    <div class="calendar-navigation">
+      <button type="button" class="calendar-nav-button" data-action="click->calendar#changeMonth" data-direction="-1">‹</button>
+      <div class="calendar-month-range" data-calendar-target="monthRange"></div>
+      <button type="button" class="calendar-nav-button" data-action="click->calendar#changeMonth" data-direction="1">›</button>
+    </div>
+    
+    <div class="calendars-container" data-calendar-target="calendarsContainer">
+      <!-- Calendars will be populated by Stimulus controller -->
+    </div>
+    
+    <div class="calendar-legend">
+      <div class="legend-item">
+        <span class="legend-box available"></span>
+        <span>Достапно</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-box booked"></span>
+        <span>Резервирано</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-box today"></span>
+        <span>Денес</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Existing Bookings -->
+  <% if @existing_bookings.any? %>
+    <div class="form-container bookings-section">
+      <h2 class="form-title">Постоечки резервации</h2>
+      
+      <div class="bookings-grid">
+        <% @existing_bookings.each do |booking| %>
+          <div class="booking-card-compact">
+            <div class="booking-header-compact">
+              <h4><%= booking.customer.full_name %></h4>
+              <div class="booking-header-actions">
+                <span class="status-badge status-<%= booking.status %>">
+                  <% case booking.status %>
+                  <% when 'pending' %>
+                    Во очекување
+                  <% when 'confirmed' %>
+                    Потврдено
+                  <% when 'in_progress' %>
+                    Во тек
+                  <% when 'completed' %>
+                    Завршено
+                  <% when 'cancelled' %>
+                    Откажано
+                  <% when 'refunded' %>
+                    Рефундирано
+                  <% else %>
+                    <%= booking.status.humanize %>
+                  <% end %>
+                </span>
+                <%= link_to destroy_booking_admin_car_path(@car, booking_id: booking.id), 
+                    method: :delete,
+                    class: "btn btn-delete btn-sm",
+                    data: { 
+                      confirm: "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
+                      turbo_method: :delete
+                    } do %>
+                  Избриши
+                <% end %>
+              </div>
+            </div>
+            
+            <div class="booking-content">
+              <div class="booking-dates">
+                <strong><%= booking.start_date.strftime("%m/%d") %> - <%= booking.end_date.strftime("%m/%d/%Y") %></strong>
+                <span class="duration"><%= booking.duration_in_days %> дена • €<%= booking.total_price %></span>
+              </div>
+              
+              <div class="booking-details-compact">
+                <p><%= booking.pickup_location %></p>
+                <p><%= booking.customer.email %> • <%= booking.customer.phone %></p>
+                <% if booking.special_requests.present? %>
+                  <p class="notes"><%= truncate(booking.special_requests, length: 60) %></p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
 </div>

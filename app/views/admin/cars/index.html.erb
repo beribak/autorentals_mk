@@ -45,13 +45,13 @@
     <table class="cars-table">
       <thead>
         <tr>
-          <th>Image</th>
-          <th>Brand</th>
-          <th>Model</th>
-          <th>Year</th>
-          <th>Price/Day</th>
-          <th>Status</th>
-          <th>Actions</th>
+          <th>Слика</th>
+          <th>Марка</th>
+          <th>Модел</th>
+          <th>Година</th>
+          <th>Цена/Ден</th>
+          <th>Статус</th>
+          <th>Акции</th>
         </tr>
       </thead>
       <tbody>
@@ -67,14 +67,14 @@
             <td>
               <div class="status-availability-container">
                 <span class="status-badge <%= car.available? ? 'available' : 'unavailable' %>">
-                  <%= car.available? ? 'Available' : 'Unavailable' %>
+                  <%= car.available? ? 'Достапно' : 'Недостапно' %>
                 </span>
                 
                 <!-- Active bookings info -->
                 <% active_bookings = car.bookings.active.count %>
                 <% if active_bookings > 0 %>
                   <div class="booking-info">
-                    <span class="booking-count"><%= active_bookings %> active booking<%= 's' if active_bookings > 1 %></span>
+                    <span class="booking-count"><%= active_bookings %> активн<%= active_bookings == 1 ? 'а резервација' : 'и резервации' %></span>
                   </div>
                 <% end %>
               </div>
@@ -86,17 +86,17 @@
                     method: :patch, 
                     class: "btn btn-toggle btn-sm #{'btn-enable' if car.available? == false}#{'btn-disable' if car.available?}",
                     data: { 
-                      confirm: car.available? ? "Mark this car as unavailable?" : "Mark this car as available?",
+                      confirm: car.available? ? "Означи го возилото како недостапно?" : "Означи го возилото како достапно?",
                       turbo_method: :patch
                     } do %>
-                  <%= car.available? ? "Mark Unavailable" : "Mark Available" %>
+                  <%= car.available? ? "Означи недостапно" : "Означи достапно" %>
                 <% end %>
                 
-                <%= link_to "Edit", edit_admin_car_path(car), class: "btn btn-edit btn-sm" %>
-                <%= link_to "Delete", admin_car_path(car), method: :delete, 
+                <%= link_to "Уреди", edit_admin_car_path(car), class: "btn btn-edit btn-sm" %>
+                <%= link_to "Избриши", admin_car_path(car), method: :delete, 
                     class: "btn btn-delete btn-sm",
                     data: { 
-                      confirm: "Are you sure you want to delete #{car.full_name}? This action cannot be undone.",
+                      confirm: "Дали сте сигурни дека сакате да го избришете #{car.full_name}? Оваа акција не може да се врати.",
                       car_name: car.full_name 
                     } %>
               </div>
@@ -108,9 +108,9 @@
     
     <% if @cars.empty? %>
       <div class="empty-state">
-        <h3>No cars found</h3>
-        <p>Start by adding your first car to the fleet.</p>
-        <%= link_to "Add Your First Car", new_admin_car_path, class: "btn btn-primary" %>
+        <h3>Нема пронајдени возила</h3>
+        <p>Започнете со додавање на вашето прво возило во флотата.</p>
+        <%= link_to "Додајте го вашето прво возило", new_admin_car_path, class: "btn btn-primary" %>
       </div>
     <% end %>
   </div>

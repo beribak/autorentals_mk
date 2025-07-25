@@ -42,6 +42,8 @@ Rails.application.routes.draw do
     resources :cars do
       member do
         patch :toggle_availability
+        post :create_booking
+        delete "bookings/:booking_id", action: :destroy_booking, as: :destroy_booking
       end
     end
     root "cars#index"

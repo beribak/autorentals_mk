@@ -1,5 +1,5 @@
 class Admin::CarsController < Admin::ApplicationController
-  before_action :set_car, only: [ :show, :edit, :update, :destroy, :toggle_availability ]
+  before_action :set_car, only: [ :show, :edit, :update, :destroy, :toggle_availability, :create_booking, :destroy_booking ]
 
   def index
     @cars = Car.all.order(:brand, :model)
@@ -26,12 +26,16 @@ class Admin::CarsController < Admin::ApplicationController
   end
 
   def edit
+    @booking = Booking.new
+    @booking.car = @car
+    set_booking_data
   end
 
   def update
     if @car.update(car_params)
       redirect_to admin_cars_path, notice: "Car was successfully updated."
     else
+      set_booking_data
       render :edit, status: :unprocessable_entity
     end
   end
@@ -50,10 +54,72 @@ class Admin::CarsController < Admin::ApplicationController
     redirect_to admin_cars_path, notice: "Car has been marked as #{status}."
   end
 
+  # Create booking action for admins
+  def create_booking
+    # Extract customer parameters with the correct prefix
+    customer_params = {
+      customer_first_name: params[:booking_customer_first_name],
+      customer_last_name: params[:booking_customer_last_name],
+      customer_email: params[:booking_customer_email],
+      customer_phone: params[:booking_customer_phone]
+    }
+
+    booking_params = params.require(:booking).permit(:start_date, :end_date, :pickup_location, :special_requests)
+
+    # Find or create customer
+    @customer = Customer.find_by(email: customer_params[:customer_email])
+    if @customer.nil?
+      @customer = Customer.new(
+        first_name: customer_params[:customer_first_name],
+        last_name: customer_params[:customer_last_name],
+        email: customer_params[:customer_email],
+        phone: customer_params[:customer_phone]
+      )
+
+      unless @customer.save
+        @booking = Booking.new(booking_params)
+        @booking.car = @car
+        @booking.errors.add(:base, "Customer validation failed: #{@customer.errors.full_messages.join(', ')}")
+        set_booking_data
+        render :edit, status: :unprocessable_entity
+        return
+      end
+    end
+
+    # Create booking
+    @booking = @customer.bookings.new(booking_params)
+    @booking.car = @car
+    @booking.status = :confirmed  # Admin bookings are automatically confirmed
+
+    if @booking.save
+      redirect_to edit_admin_car_path(@car), notice: "Booking successfully created for #{@customer.full_name}."
+    else
+      set_booking_data
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  # Delete booking action for admins
+  def destroy_booking
+    @booking = @car.bookings.find(params[:booking_id])
+    customer_name = @booking.customer.full_name
+
+    @booking.destroy
+    redirect_to edit_admin_car_path(@car), notice: "Резервацијата на #{customer_name} е успешно избришана."
+  end
+
   private
 
   def set_car
     @car = Car.find(params[:id])
+  end
+
+  def set_booking_data
+    @existing_bookings = @car.bookings.includes(:customer).order(:start_date)
+    @future_bookings = @car.bookings.includes(:customer)
+                          .where("start_date >= ?", Date.current)
+                          .where(status: [ :pending, :confirmed, :in_progress ])
+                          .order(:start_date)
   end
 
   def car_params
