@@ -64,14 +64,14 @@ Rails.application.configure do
 
   # Specify outgoing SMTP server using environment variables for security
   config.action_mailer.smtp_settings = {
-    address: "autorentals.mk",
-    port: 465,
+    address: "mail.autorentals.mk",
+    port: 587,
     domain: "autorentals.mk",
     user_name: ENV["SMTP_USERNAME"],
     password: ENV["SMTP_PASSWORD"],
     authentication: :plain,
-    ssl: true,
-    enable_starttls_auto: false
+    enable_starttls_auto: true,
+    tls: true
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
