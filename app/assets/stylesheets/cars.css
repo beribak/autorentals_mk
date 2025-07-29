@@ -23,7 +23,7 @@
 
 /* Filters Section */
 .filters-section {
-  padding: var(--spacing-2xl) 0;
+  padding: var(--spacing-lg) 0;
   background: linear-gradient(135deg, 
     var(--bg-tertiary) 0%, 
     var(--bg-secondary) 50%, 
@@ -57,13 +57,13 @@
 .filters-container {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-md);
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
-  padding: var(--spacing-xl);
-  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   max-width: 1000px;
   margin: 0 auto;
 }
@@ -71,39 +71,39 @@
 .filter-group {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
-  min-width: 150px;
+  gap: var(--spacing-xs);
+  min-width: 120px;
   position: relative;
 }
 
 .filter-label {
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   color: var(--text-primary);
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 2px;
+  letter-spacing: 0.3px;
+  margin-bottom: 1px;
 }
 
 .filter-input {
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-sm) var(--spacing-md);
   background: rgba(255, 255, 255, 0.9);
-  border: 2px solid transparent;
-  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
   color: var(--text-primary);
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 0.9rem;
+  font-weight: 400;
   transition: all var(--transition-fast);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   backdrop-filter: blur(5px);
 }
 
 .filter-input:focus {
   outline: none;
   border-color: var(--accent-primary);
-  box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.2), 
-              0 4px 20px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.15), 
+              0 2px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
   background: rgba(255, 255, 255, 1);
 }
 
@@ -114,19 +114,19 @@
 
 .filters-actions {
   display: flex;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm);
   align-items: center;
 }
 
 .btn-filter {
-  padding: var(--spacing-md) var(--spacing-xl);
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: var(--radius-lg);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: var(--radius-md);
   transition: all var(--transition-fast);
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 
 .btn-filter.btn-primary {
@@ -419,7 +419,7 @@
 /* Date Availability Filtering */
 .date-availability-section, .other-filters-section {
   margin-bottom: 0;
-  padding-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -428,25 +428,25 @@
 }
 
 .filter-section-title {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 500;
   color: var(--text-primary);
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 
 .date-filters {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-lg);
-  margin-bottom: var(--spacing-lg);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
 }
 
 .other-filters {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: var(--spacing-lg);
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--spacing-md);
 }
 
 .date-filter-status {
