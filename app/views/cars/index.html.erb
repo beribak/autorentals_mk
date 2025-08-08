@@ -5,8 +5,10 @@
   <div class="container">
     <div class="filters-header">
       <h2 class="filters-title">Најдете го вашето совршено возило</h2>
-      <p class="filters-subtitle">Филтрирајте ја нашата премиум флота за да се совпадне со вашите преференции и датуми</p>
+      <p class="filters-subtitle">Од модерни мали до високо луксузни возила.</p>
+      <p class="filters-subtitle">AutoRentals rent a car Skopje ви го нуди најдобриот избор на возила за вашите потреби.</p>
     </div>
+
     <%= form_with url: cars_path, method: :get, data: { turbo_frame: "cars-list" }, class: "filters-form" do |form| %>
       <div class="filters-container">
         <!-- Date Availability Filters -->

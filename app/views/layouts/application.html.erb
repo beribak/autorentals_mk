@@ -30,14 +30,12 @@
       <div class="nav-container">
         <%= link_to root_path, class: "nav-logo" do %>
           <%= image_tag "autorentals_logo.jpg", alt: "autorentalsMK лого", class: "logo-image" %>
-          <span class="logo-text">autorentalsMK</span>
+          <span class="logo-text">AutoRentalsMK</span>
         <% end %>
         
         <div class="nav-menu" data-navigation-target="menu">
-          <%= link_to "Дома", root_path, class: "nav-link #{'active' if current_page?(root_path)}" %>
-          <%= link_to "Возила", cars_path, class: "nav-link #{'active' if current_page?(cars_path)}" %>
-          <%#= link_to "Резервации", bookings_path, class: "nav-link #{'active' if request.path.start_with?('/bookings')}" %>
-          <%#= link_to "Табла", admin_root_path, class: "nav-link #{'active' if request.path.start_with?('/admin')}" %>
+          <%= link_to "Дома", cars_path, class: "nav-link #{'active' if current_page?(cars_path)}" %>
+            <%= link_to "За нас", root_path, class: "nav-link #{'active' if current_page?(root_path)}" %>
           <%= link_to "Контакт", contact_path, class: "nav-link #{'active' if current_page?(contact_path)}" %>
         </div>
         
@@ -61,8 +59,8 @@
       <div class="footer-container">
         <div class="footer-content">
           <div class="footer-section">
-            <h3>autorentalsMK</h3>
-            <p>Премиум услуга за изнајмување возила со најфината селекција на возила.</p>
+            <h3>AutoRentalsMK</h3>
+            <p>AutoRentalsMK ви нуди премиум услуга за изнајмување на возила за сечиј вкус.</p>
           </div>
           <div class="footer-section">
             <h4>Брзи врски</h4>

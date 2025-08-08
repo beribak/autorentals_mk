@@ -1,8 +1,9 @@
 /* Homepage Styles */
 .hero-section {
-  min-height: 100vh;
+  padding-bottom: 60px;
+  min-height: 50vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
@@ -25,10 +26,11 @@
   position: relative;
   z-index: 2;
   text-align: center;
+  padding-top: 4rem;
 }
 
 .hero-title {
-  font-size: 4rem;
+  font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: var(--spacing-lg);
   background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--accent-tertiary) 100%);
@@ -39,7 +41,7 @@
 }
 
 .hero-subtitle {
-  font-size: 1.5rem;
+  font-size: 1.0rem;
   color: var(--text-secondary);
   margin-bottom: var(--spacing-xl);
   max-width: 600px;
