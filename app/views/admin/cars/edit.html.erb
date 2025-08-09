@@ -28,31 +28,31 @@
         <div class="form-row">
           <div class="form-group">
             <%= form.label :brand, "Марка", class: "form-label" %>
-            <%= form.text_field :brand, class: "form-input", placeholder: "на пр., BMW, Mercedes, Audi" %>
+            <%= form.text_field :brand, class: "form-input border", placeholder: "на пр., BMW, Mercedes, Audi" %>
           </div>
           
           <div class="form-group">
             <%= form.label :model, "Модел", class: "form-label" %>
-            <%= form.text_field :model, class: "form-input", placeholder: "на пр., M5, S-Class, A8" %>
+            <%= form.text_field :model, class: "form-input border", placeholder: "на пр., M5, S-Class, A8" %>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
             <%= form.label :year, "Година", class: "form-label" %>
-            <%= form.number_field :year, class: "form-input", placeholder: "на пр., 2024", min: 1900, max: Date.current.year + 1 %>
+            <%= form.number_field :year, class: "form-input border", placeholder: "на пр., 2024", min: 1900, max: Date.current.year + 1 %>
           </div>
           
           <div class="form-group">
             <%= form.label :price_per_day, "Цена по ден (€)", class: "form-label" %>
-            <%= form.number_field :price_per_day, class: "form-input", placeholder: "на пр., 299", step: 0.01, min: 0 %>
+            <%= form.number_field :price_per_day, class: "form-input border", placeholder: "на пр., 299", step: 0.01, min: 0 %>
           </div>
         </div>
 
         <div class="form-row single">
           <div class="form-group">
             <%= form.label :image_url, "URL на слика", class: "form-label" %>
-            <%= form.url_field :image_url, class: "form-input", 
+            <%= form.url_field :image_url, class: "form-input border", 
                 placeholder: "https://example.com/car-image.jpg",
                 data: { dashboard_target: "imageUrl", action: "input->dashboard#previewImage" } %>
             <img data-dashboard-target="imagePreview" 
@@ -65,7 +65,7 @@
         <div class="form-row single">
           <div class="form-group">
             <%= form.label :description, "Опис", class: "form-label" %>
-            <%= form.text_area :description, class: "form-input form-textarea", rows: 3,
+            <%= form.text_area :description, class: "form-input form-textarea border", rows: 3,
                 placeholder: "Опишете ги карактеристиките на автомобилот, луксузните садржини и што го прави посебен..." %>
           </div>
         </div>
@@ -110,24 +110,24 @@
           <div class="form-row">
             <div class="form-group">
               <%= label_tag :booking_customer_first_name, "Име", class: "form-label" %>
-              <%= text_field_tag :booking_customer_first_name, "", class: "form-input", placeholder: "Име", required: true %>
+              <%= text_field_tag :booking_customer_first_name, "", class: "form-input border", placeholder: "Име", required: true %>
             </div>
             
             <div class="form-group">
               <%= label_tag :booking_customer_last_name, "Презиме", class: "form-label" %>
-              <%= text_field_tag :booking_customer_last_name, "", class: "form-input", placeholder: "Презиме", required: true %>
+              <%= text_field_tag :booking_customer_last_name, "", class: "form-input border", placeholder: "Презиме", required: true %>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
               <%= label_tag :booking_customer_email, "Е-маил", class: "form-label" %>
-              <%= email_field_tag :booking_customer_email, "", class: "form-input", placeholder: "klient@example.com", required: true %>
+              <%= email_field_tag :booking_customer_email, "", class: "form-input border", placeholder: "klient@example.com", required: true %>
             </div>
             
             <div class="form-group">
               <%= label_tag :booking_customer_phone, "Телефон", class: "form-label" %>
-              <%= telephone_field_tag :booking_customer_phone, "", class: "form-input", placeholder: "+389 XX XXX XXX", required: true %>
+              <%= telephone_field_tag :booking_customer_phone, "", class: "form-input border", placeholder: "+389 XX XXX XXX", required: true %>
             </div>
           </div>
           <small class="form-help">Ако клиентот постои, неговите информации ќе бидат ажурирани</small>
@@ -140,26 +140,26 @@
           <div class="form-row">
             <div class="form-group">
               <%= form.label :start_date, "Почетен датум", class: "form-label" %>
-              <%= form.date_field :start_date, class: "form-input", min: Date.current, required: true %>
+              <%= form.date_field :start_date, class: "form-input border", min: Date.current, required: true %>
             </div>
             
             <div class="form-group">
               <%= form.label :end_date, "Краен датум", class: "form-label" %>
-              <%= form.date_field :end_date, class: "form-input", min: Date.current, required: true %>
+              <%= form.date_field :end_date, class: "form-input border", min: Date.current, required: true %>
             </div>
           </div>
 
           <div class="form-row single">
             <div class="form-group">
               <%= form.label :pickup_location, "Локација за преземање", class: "form-label" %>
-              <%= form.text_field :pickup_location, class: "form-input", placeholder: "Адреса или локација за преземање", required: true %>
+              <%= form.text_field :pickup_location, class: "form-input border", placeholder: "Адреса или локација за преземање", required: true %>
             </div>
           </div>
 
           <div class="form-row single">
             <div class="form-group">
               <%= form.label :special_requests, "Забелешки (Опционално)", class: "form-label" %>
-              <%= form.text_area :special_requests, class: "form-input form-textarea", rows: 2, placeholder: "Било какви посебни барања или забелешки..." %>
+              <%= form.text_area :special_requests, class: "form-input form-textarea border", rows: 2, placeholder: "Било какви посебни барања или забелешки..." %>
             </div>
           </div>
 

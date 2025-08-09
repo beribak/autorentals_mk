@@ -2,9 +2,11 @@
 <html>
   <head>
     <title><%= content_for(:title) || "autorentalsMK - Премиум изнајмување возила" %></title>
+    <meta name="description" content="Rent a car Skopje - AutoRentalsMK ви нуди премиум услуга за изнајмување на возила во Скопје за сечиј вкус.">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="google-site-verification" content="LDPcj-YlJPc9zq5zh2gHfjqYjNDuMfIvVaZDUquOLrw">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -28,8 +30,8 @@
   <body class="light-theme">
     <nav class="navbar" data-controller="navigation">
       <div class="nav-container">
-        <%= link_to root_path, class: "nav-logo" do %>
-          <%= image_tag "autorentals_logo.jpg", alt: "autorentalsMK лого", class: "logo-image" %>
+        <%= link_to cars_path, class: "nav-logo" do %>
+          <%= image_tag "autorentals_logo.jpg", alt: "Rent a car Skopje - autorentalsMK лого", class: "logo-image" %>
           <span class="logo-text">AutoRentalsMK</span>
         <% end %>
         

@@ -22,31 +22,31 @@
       <div class="form-row">
         <div class="form-group">
           <%= form.label :brand, class: "form-label" %>
-          <%= form.text_field :brand, class: "form-input", placeholder: "e.g., BMW, Mercedes, Audi" %>
+          <%= form.text_field :brand, class: "form-input border", placeholder: "e.g., BMW, Mercedes, Audi" %>
         </div>
         
         <div class="form-group">
           <%= form.label :model, class: "form-label" %>
-          <%= form.text_field :model, class: "form-input", placeholder: "e.g., M5, S-Class, A8" %>
+          <%= form.text_field :model, class: "form-input border", placeholder: "e.g., M5, S-Class, A8" %>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
           <%= form.label :year, class: "form-label" %>
-          <%= form.number_field :year, class: "form-input", placeholder: "e.g., 2024", min: 1900, max: Date.current.year + 1 %>
+          <%= form.number_field :year, class: "form-input border", placeholder: "e.g., 2024", min: 1900, max: Date.current.year + 1 %>
         </div>
         
         <div class="form-group">
           <%= form.label :price_per_day, "Price per Day (€)", class: "form-label" %>
-          <%= form.number_field :price_per_day, class: "form-input", placeholder: "e.g., 299", step: 0.01, min: 0 %>
+          <%= form.number_field :price_per_day, class: "form-input border", placeholder: "e.g., 299", step: 0.01, min: 0 %>
         </div>
       </div>
 
       <div class="form-row single">
         <div class="form-group">
           <%= form.label :image_url, "Image URL", class: "form-label" %>
-          <%= form.url_field :image_url, class: "form-input", 
+          <%= form.url_field :image_url, class: "form-input border", 
               placeholder: "https://example.com/car-image.jpg",
               data: { dashboard_target: "imageUrl", action: "input->dashboard#previewImage" } %>
           <img data-dashboard-target="imagePreview" 
@@ -58,7 +58,7 @@
       <div class="form-row single">
         <div class="form-group">
           <%= form.label :description, class: "form-label" %>
-          <%= form.text_area :description, class: "form-input form-textarea", 
+          <%= form.text_area :description, class: "form-input form-textarea border", 
               placeholder: "Describe the car's features, luxury amenities, and what makes it special..." %>
         </div>
       </div>

@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   end
 
   # AJAX route for checking availability (kept for compatibility)
-  get "check_availability", to: "bookings#check_availability"
+  # get "check_availability", to: "bookings#check_availability"
 
   # Admin dashboard routes
   namespace :admin, path: "admin_daniel" do

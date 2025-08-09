@@ -85,7 +85,7 @@
           <% @cars.each do |car| %>
             <div class="car-card" data-cars-target="card">
               <div class="car-image-wrapper">
-                <img src="<%= car.image_url %>" alt="<%= car.full_name %>" class="car-image">
+                <img src="<%= car.image_url %>" alt="Rent a car Skopje - <%= car.full_name %>" class="car-image">
                 <div class="car-status-badge <%= car.available? ? 'available' : 'unavailable' %>">
                   <%= car.available? ? 'Достапно' : 'Недостапно' %>
                 </div>

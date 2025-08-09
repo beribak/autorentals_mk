@@ -23,7 +23,7 @@
       <% if @car %>
         <div class="car-summary-card">
           <div class="car-summary-image">
-            <img src="<%= @car.image_url %>" alt="<%= @car.full_name %>" class="summary-car-image">
+            <img src="<%= @car.image_url %>" alt="Rent a car Skopje - <%= @car.full_name %>" class="summary-car-image">
           </div>
           <div class="car-summary-details">
             <h3><%= @car.full_name %></h3>
@@ -76,9 +76,14 @@
             <h3>Детали за локацијата</h3>
             <div class="input-group">
               <%= form.label "inquiry[pickup_location]", "Преферирана локација за подигање", class: "form-label" %>
-              <%= form.text_field "inquiry[pickup_location]", 
-                  placeholder: "Внесете адреса или опис на локацијата", 
-                  class: "form-input border" %>
+              <%= form.select "inquiry[pickup_location]", 
+                  [
+                    ["Изберете локација", ""],
+                    ["Скопје Велес", "Скопје Велес"],
+                    ["Скопје Аеродром", "Скопје Аеродром"]
+                  ],
+                  { selected: @inquiry[:pickup_location] }, 
+                  { class: "form-input border", required: true } %>
             </div>
           </div>
 

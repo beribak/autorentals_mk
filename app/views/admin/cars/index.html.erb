@@ -58,7 +58,7 @@
         <% @cars.each do |car| %>
           <tr>
             <td>
-              <%= image_tag car.image_url, alt: car.full_name, class: "car-image-thumb" %>
+              <%= image_tag car.image_url, alt: "Rent a car Skopje - #{car.full_name}", class: "car-image-thumb" %>
             </td>
             <td><strong><%= car.brand %></strong></td>
             <td><%= car.model %></td>
