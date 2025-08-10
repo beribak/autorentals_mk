@@ -21,3 +21,6 @@ application.register("hello", HelloController)
 
 import NavigationController from "./navigation_controller"
 application.register("navigation", NavigationController)
+
+import FiltersController from "./filters_controller"
+application.register("filters", FiltersController)

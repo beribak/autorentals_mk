@@ -134,6 +134,53 @@ en:
       empty_title: "No vehicles found"
       empty_body: "Try adjusting your filters to find the perfect vehicle for you."
       reset_filters: "Reset filters"
+  contact:
+    page_title: "Contact - autorentalsMK"
+    header_title: "Contact us"
+    header_subtitle: "We're here to help. Reach out with any questions or to book a vehicle."
+    info:
+      heading: "Our information"
+      phone:
+        title: "Phone"
+        number: "+389 71 297 645"
+        note: "Available 24/7 for emergencies"
+      email:
+        title: "Email"
+        address: "contact@autorentals.mk"
+        note: "We reply within 2 hours"
+      address:
+        title: "Address"
+        line_html: "Rashtanski Pat, No. 4<br>1400 Veles, North Macedonia"
+        note: "Open: Monday - Sunday, 08:00 - 20:00"
+      instagram:
+        title: "Instagram"
+        handle: "@autorentalsmk"
+        note: "Follow us for the latest vehicles"
+    faq:
+      heading: "Frequently asked questions"
+      subtitle: "Find answers to the most common questions"
+      items:
+        age_q: "How old do I need to be to rent a vehicle?"
+        age_a: "You must be at least 21 years old with a valid driving license. For some premium vehicles the minimum age is 25."
+        docs_q: "What documents do I need?"
+        docs_a: "A valid driving license, a credit card in your name and a valid ID document (ID card or passport)."
+        insurance_q: "Are the vehicles insured?"
+        insurance_a: "Yes, all our vehicles have comprehensive insurance that covers you in case of accident or damage."
+        cancel_q: "Can I cancel a booking?"
+        cancel_a: "You can cancel up to 24 hours before pickup without any penalty."
+        extend_q: "Can I extend the rental period?"
+        extend_a: "Yes, you can extend if the vehicle is available. Contact us to arrange it."
+        late_q: "What happens if I'm late returning?"
+        late_a: "We charge an additional late fee. Please contact us if you know you'll be late."
+    map:
+      heading: "Our location"
+      subtitle: "Visit us at our main office in Veles"
+      open_in_maps: "Open in Google Maps"
+    emergency:
+      heading: "24/7 emergency support"
+      body: "If you have an urgent issue with the vehicle or are in trouble, contact us immediately:"
+      call: "Call"
+      phone_label: "+389 71 297 645"
   booking_inquiries:
     new:
       title: "Booking inquiry"

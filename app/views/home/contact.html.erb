@@ -1,11 +1,11 @@
-<% content_for :title, "Контакт - autorentalsMK" %>
+<% content_for :title, t('contact.page_title') %>
 
 <!-- Contact Header Section -->
 <section class="contact-header-section">
   <div class="container">
     <div class="contact-header">
-      <h1 class="contact-title">Контактирајте не</h1>
-      <p class="contact-subtitle">Овде сме за да ви помогнеме. Контактирајте не за било какви прашања или за да резервирате возило.</p>
+  <h1 class="contact-title"><%= t('contact.header_title') %></h1>
+  <p class="contact-subtitle"><%= t('contact.header_subtitle') %></p>
     </div>
   </div>
 </section>
@@ -16,42 +16,42 @@
     <div class="contact-layout-single">
       <!-- Contact Information -->
       <div class="contact-info-card">
-        <h2>Наши информации</h2>
+  <h2><%= t('contact.info.heading') %></h2>
         
         <div class="contact-methods-grid">
           <div class="contact-method">
             <div class="contact-icon">📞</div>
             <div class="contact-details">
-              <h4>Телефон</h4>
-              <p>+389 71 297 645</p>
-              <small>Достапни 24/7 за итни случаи</small>
+              <h4><%= t('contact.info.phone.title') %></h4>
+              <p><%= t('contact.info.phone.number') %></p>
+              <small><%= t('contact.info.phone.note') %></small>
             </div>
           </div>
 
           <div class="contact-method">
             <div class="contact-icon">✉️</div>
             <div class="contact-details">
-              <h4>Е-пошта</h4>
-              <p>contact@autorentals.mk</p>
-              <small>Одговараме во рок од 2 часа</small>
+              <h4><%= t('contact.info.email.title') %></h4>
+              <p><%= t('contact.info.email.address') %></p>
+              <small><%= t('contact.info.email.note') %></small>
             </div>
           </div>
 
           <div class="contact-method">
             <div class="contact-icon">📍</div>
             <div class="contact-details">
-              <h4>Адреса</h4>
-              <p>Раштански Пат, бр. 4<br>1400 Велес, Северна Македонија</p>
-              <small>Отворено: Понеделник - Недела, 08:00 - 20:00</small>
+              <h4><%= t('contact.info.address.title') %></h4>
+              <p><%= t('contact.info.address.line_html').html_safe %></p>
+              <small><%= t('contact.info.address.note') %></small>
             </div>
           </div>
 
           <div class="contact-method">
             <div class="contact-icon">📷</div>
             <div class="contact-details">
-              <h4>Instagram</h4>
-              <p><a href="https://www.instagram.com/autorentalsmk" target="_blank">@autorentalsmk</a></p>
-              <small>Следете не за најновите возила</small>
+              <h4><%= t('contact.info.instagram.title') %></h4>
+              <p><a href="https://www.instagram.com/autorentalsmk" target="_blank"><%= t('contact.info.instagram.handle') %></a></p>
+              <small><%= t('contact.info.instagram.note') %></small>
             </div>
           </div>
         </div>
@@ -116,39 +116,34 @@
 <section class="faq-section">
   <div class="container">
     <div class="section-title">
-      <h2>Често поставувани прашања</h2>
-      <p>Најдете одговори на најчесто поставуваните прашања</p>
+  <h2><%= t('contact.faq.heading') %></h2>
+  <p><%= t('contact.faq.subtitle') %></p>
     </div>
 
     <div class="faq-grid">
       <div class="faq-item">
-        <h4>Колку стари треба да бидам за да изнајмам возило?</h4>
-        <p>Морате да бидете најмалку 21 година стари со важечка возачка дозвола. За некои премиум возила, минималната возраст е 25 години.</p>
+        <h4><%= t('contact.faq.items.age_q') %></h4>
+        <p><%= t('contact.faq.items.age_a') %></p>
       </div>
-
       <div class="faq-item">
-        <h4>Што документи ми требаат?</h4>
-        <p>Потребни се важечка возачка дозвола, кредитна картичка на ваше име и валиден личен документ (лична карта или пасош).</p>
+        <h4><%= t('contact.faq.items.docs_q') %></h4>
+        <p><%= t('contact.faq.items.docs_a') %></p>
       </div>
-
       <div class="faq-item">
-        <h4>Дали возилата се осигурани?</h4>
-        <p>Да, сите наши возила имаат сеопфатно осигурување кое ве покрива во случај на несреќа или штета.</p>
+        <h4><%= t('contact.faq.items.insurance_q') %></h4>
+        <p><%= t('contact.faq.items.insurance_a') %></p>
       </div>
-
       <div class="faq-item">
-        <h4>Можам ли да откажам резервација?</h4>
-        <p>Можете да ја откажете резервацијата до 24 часа пред датумот на подигање без никаква казна.</p>
+        <h4><%= t('contact.faq.items.cancel_q') %></h4>
+        <p><%= t('contact.faq.items.cancel_a') %></p>
       </div>
-
       <div class="faq-item">
-        <h4>Дали можам да го продолжам периодот на изнајмување?</h4>
-        <p>Да, можете да го продолжите периодот доколку возилото е достапно. Контактирајте не за да го организираме тоа.</p>
+        <h4><%= t('contact.faq.items.extend_q') %></h4>
+        <p><%= t('contact.faq.items.extend_a') %></p>
       </div>
-
       <div class="faq-item">
-        <h4>Што се случува ако се задоцнам за враќање?</h4>
-        <p>Наплаќаме додатна такса за доцнење. Ве молиме контактирајте не ако знаете дека ќе се задоцните.</p>
+        <h4><%= t('contact.faq.items.late_q') %></h4>
+        <p><%= t('contact.faq.items.late_a') %></p>
       </div>
     </div>
   </div>
@@ -158,18 +153,18 @@
 <section class="map-section">
   <div class="container">
     <div class="section-title">
-      <h2>Нашата локација</h2>
-      <p>Посетете не во нашиот главен офис во Велес</p>
+  <h2><%= t('contact.map.heading') %></h2>
+  <p><%= t('contact.map.subtitle') %></p>
     </div>
 
     <div class="map-container">
       <div class="map-placeholder">
         <div class="map-content">
           <div class="map-icon">🗺️</div>
-          <h3>autorentalsMK</h3>
-          <p>Раштански Пат, бр. 4<br>1400 Велес, Северна Македонија</p>
+          <h3><%= t('app.brand') %></h3>
+          <p><%= t('contact.info.address.line_html').html_safe %></p>
           <div class="map-actions">
-            <a href="https://maps.google.com/?q=Раштански Пат, бр. 4, 1400 Велес, Северна Македонија" target="_blank" class="btn btn-secondary">Отвори во Google Maps</a>
+            <a href="https://maps.google.com/?q=Раштански Пат, бр. 4, 1400 Велес, Северна Македонија" target="_blank" class="btn btn-secondary"><%= t('contact.map.open_in_maps') %></a>
           </div>
         </div>
       </div>
@@ -183,10 +178,10 @@
     <div class="emergency-card">
       <div class="emergency-icon">🚨</div>
       <div class="emergency-content">
-        <h3>Итна поддршка 24/7</h3>
-        <p>Доколку имате итен проблем со возилото или се во невоља, контактирајте не веднаш:</p>
+        <h3><%= t('contact.emergency.heading') %></h3>
+        <p><%= t('contact.emergency.body') %></p>
         <div class="emergency-number">
-          <a href="tel:+38971297645">📞 +389 71 297 645</a>
+          <a href="tel:+38971297645">📞 <%= t('contact.emergency.phone_label') %></a>
         </div>
       </div>
     </div>

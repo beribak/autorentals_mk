@@ -13,14 +13,14 @@
         <% end %>
       <% end %>
     </div>
-    
+
     <div class="filters-header">
       <h2 class="filters-title"><%= t('cars.index.find_perfect') %></h2>
       <p class="filters-subtitle"><%= t('cars.index.subtitle1') %></p>
       <p class="filters-subtitle"><%= t('cars.index.subtitle2') %></p>
     </div>
 
-    <%= form_with url: cars_path, method: :get, data: { turbo_frame: "cars-list" }, class: "filters-form" do |form| %>
+  <%= form_with url: cars_path, method: :get, data: { turbo_frame: "cars-list" }, class: "filters-form", html: { data: { controller: "filters" } } do |form| %>
       <div class="filters-container">
         <!-- Date Availability Filters -->
         <div class="date-availability-section">
@@ -52,25 +52,32 @@
           <% end %>
         </div>
 
-        <!-- Other Filters -->
-        <div class="other-filters-section">
+        <!-- Collapsible Other Filters -->
+        <div class="other-filters-toggle-wrapper">
+          <button type="button" class="btn btn-secondary btn-filter btn-filter-toggle"
+                  data-filters-target="button"
+                  data-action="filters#toggle"
+                  data-label="<%= t('cars.index.more_filters') %>"
+                  aria-expanded="false" aria-controls="additional-filters-panel">
+            <span data-filters-target="toggleLabel">➕ <%= t('cars.index.more_filters') %></span>
+          </button>
+        </div>
+
+        <div id="additional-filters-panel" class="other-filters-section" data-filters-target="panel" hidden>
           <h4 class="filter-section-title"><%= t('cars.index.more_filters') %></h4>
           <div class="other-filters">
             <div class="filter-group">
               <label class="filter-label"><%= t('cars.index.brand') %></label>
               <%= form.text_field :brand, value: params[:brand], placeholder: t('cars.index.brand_placeholder'), class: "filter-input" %>
             </div>
-            
             <div class="filter-group">
               <label class="filter-label"><%= t('cars.index.year_from') %></label>
               <%= form.number_field :year_from, value: params[:year_from], placeholder: "2020", class: "filter-input" %>
             </div>
-            
             <div class="filter-group">
               <label class="filter-label"><%= t('cars.index.year_to') %></label>
               <%= form.number_field :year_to, value: params[:year_to], placeholder: "2025", class: "filter-input" %>
             </div>
-            
             <div class="filter-group">
               <label class="filter-label"><%= t('cars.index.max_price') %></label>
               <%= form.number_field :max_price, value: params[:max_price], placeholder: "500", step: 0.01, class: "filter-input" %>
