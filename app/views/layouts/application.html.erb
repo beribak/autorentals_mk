@@ -36,8 +36,8 @@
         <% end %>
         
         <div class="nav-menu" data-navigation-target="menu">
-          <%= link_to t('app.nav.home'), cars_path(locale: I18n.locale), class: "nav-link #{'active' if current_page?(cars_path)}" %>
-          <%= link_to t('app.nav.about'), root_path(locale: I18n.locale), class: "nav-link #{'active' if current_page?(root_path)}" %>
+          <%= link_to t('app.nav.home'), root_path(locale: I18n.locale), class: "nav-link #{'active' if current_page?(root_path)}" %>
+          <%= link_to t('app.nav.about'), home_path(locale: I18n.locale), class: "nav-link #{'active' if current_page?(home_path)}" %>
           <%= link_to t('app.nav.contact'), contact_path(locale: I18n.locale), class: "nav-link #{'active' if current_page?(contact_path)}" %>
         </div>
         
@@ -88,7 +88,7 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2025 autorentalsMK. <%= t('app.footer.rights') %></p>
+          <p>&copy; 2025 AutoRentalsMK. <%= t('app.footer.rights') %></p>
         </div>
       </div>
     </footer>

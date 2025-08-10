@@ -34,6 +34,43 @@
   position: relative;
 }
 
+/* Mobile language switcher shown under navbar on cars index */
+.mobile-language-switcher {
+  display: none; /* default hidden (desktop) */
+  position: absolute;
+  top: 4px;
+  right: 16px;
+  z-index: 5;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.mobile-language-switcher .lang {
+  text-decoration: none;
+  color: var(--text-secondary);
+  padding: 4px 8px;
+  border-radius: 12px;
+  transition: all var(--transition-fast);
+  display: inline-block;
+}
+
+.mobile-language-switcher .lang.current {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: #fff;
+}
+
+.mobile-language-switcher .lang:not(.current):hover {
+  color: var(--accent-primary);
+}
+
 .filters-section::before {
   content: '';
   position: absolute;
@@ -482,9 +519,12 @@
   .cars-header h1 {
     font-size: 2.5rem;
   }
+
+  /* Show mobile language switcher only on mobile */
+  .mobile-language-switcher { display: flex; }
   
   .filters-section {
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-2xl) 0;
   }
 
   .filters-container {

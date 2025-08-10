@@ -3,10 +3,21 @@
 <!-- Filters Section -->
 <section class="filters-section">
   <div class="container">
+    <!-- Mobile Language Switcher (hidden on desktop) -->
+    <div class="mobile-language-switcher">
+      <% I18n.available_locales.each do |loc| %>
+        <% if loc == I18n.locale %>
+          <span class="lang current"><%= t("app.language.#{loc}") %></span>
+        <% else %>
+          <%= link_to t("app.language.#{loc}"), url_for(params.permit!.to_h.merge(locale: loc)), class: 'lang' %>
+        <% end %>
+      <% end %>
+    </div>
+    
     <div class="filters-header">
-  <h2 class="filters-title"><%= t('cars.index.find_perfect') %></h2>
-  <p class="filters-subtitle"><%= t('cars.index.subtitle1') %></p>
-  <p class="filters-subtitle"><%= t('cars.index.subtitle2') %></p>
+      <h2 class="filters-title"><%= t('cars.index.find_perfect') %></h2>
+      <p class="filters-subtitle"><%= t('cars.index.subtitle1') %></p>
+      <p class="filters-subtitle"><%= t('cars.index.subtitle2') %></p>
     </div>
 
     <%= form_with url: cars_path, method: :get, data: { turbo_frame: "cars-list" }, class: "filters-form" do |form| %>
