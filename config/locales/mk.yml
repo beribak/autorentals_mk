@@ -1,7 +1,7 @@
 mk:
   app:
     meta:
-      title: "autorentalsMK - Премиум изнајмување возила"
+      title: "AutoRentalsMK - Премиум изнајмување возила"
       description: "Rent a car Skopje - AutoRentalsMK ви нуди премиум услуга за изнајмување на возила во Скопје за сечиј вкус."
     nav:
       home: "Дома"
@@ -25,7 +25,7 @@ mk:
   home:
     browse_cars: "Прелистај возила"
     learn_more: "Дознај повеќе"
-    why_choose: "Зошто да изберете autorentalsMK?"
+    why_choose: "Зошто да изберете AutoRentalsMK?"
     why_choose_desc: "Обезбедуваме непревзојдено искуство за изнајмување возила со премиум возила и исклучителна услуга."
     features:
       premium_fleet:

@@ -17,7 +17,7 @@ class BookingInquiryMailer < ApplicationMailer
 
     mail(
       to: @inquiry[:email],
-      subject: "Потврда за вашето барање - autorentalsMK"
+      subject: "Потврда за вашето барање - AutoRentalsMK"
     )
   end
 end

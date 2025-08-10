@@ -30,7 +30,7 @@
 en:
   app:
     meta:
-      title: "autorentalsMK - Premium car rentals"
+      title: "AutoRentalsMK - Premium car rentals"
       description: "Rent a car Skopje - AutoRentalsMK offers premium vehicle rental service in Skopje for every taste."
     nav:
       home: "Home"
@@ -54,7 +54,7 @@ en:
   home:
     browse_cars: "Browse cars"
     learn_more: "Learn more"
-    why_choose: "Why choose autorentalsMK?"
+    why_choose: "Why choose AutoRentalsMK?"
     why_choose_desc: "We provide an unmatched car rental experience with premium vehicles and exceptional service."
     features:
       premium_fleet:
