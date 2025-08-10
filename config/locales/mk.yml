@@ -119,7 +119,7 @@ mk:
       location_heading: "Детали за локацијата"
       pickup_location: "Преферирана локација за подигање"
       choose_location: "Изберете локација"
-      location_option_center: "Скопје Велес"
+      location_option_center: "Скопје"
       location_option_airport: "Скопје Аеродром"
       your_info_heading: "Ваши информации"
       first_name: "Име"

@@ -19,7 +19,7 @@
   <div class="container">
     <div class="header">
   <h1><%= t('booking_inquiry_mailer.new_inquiry.heading') %></h1>
-      <p>autorentalsMK</p>
+      <p>AutoRentalsMK</p>
     </div>
     
     <div class="content">
@@ -40,8 +40,8 @@
 
       <div class="section">
         <h3>Детали за резервацијата:</h3>
-  <p><span class="label"><%= t('cars.index.pickup_date') %>:</span><span class="value"><%= Date.parse(@inquiry[:start_date]).strftime("%d.%m.%Y") if @inquiry[:start_date] %></span></p>
-  <p><span class="label"><%= t('cars.index.dropoff_date') %>:</span><span class="value"><%= Date.parse(@inquiry[:end_date]).strftime("%d.%m.%Y") if @inquiry[:end_date] %></span></p>
+        <p><span class="label"><%= t('cars.index.pickup_date') %>:</span><span class="value"><%= Date.parse(@inquiry[:start_date]).strftime("%d.%m.%Y") if @inquiry[:start_date] %></span></p>
+        <p><span class="label"><%= t('cars.index.dropoff_date') %>:</span><span class="value"><%= Date.parse(@inquiry[:end_date]).strftime("%d.%m.%Y") if @inquiry[:end_date] %></span></p>
         <% if @inquiry[:pickup_location].present? %>
           <p><span class="label"><%= t('booking_inquiries.new.pickup_location') %>:</span><span class="value"><%= @inquiry[:pickup_location] %></span></p>
         <% end %>
