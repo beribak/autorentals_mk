@@ -93,6 +93,12 @@
   width: 100%;
 }
 
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
 .nav-cta .btn {
   padding: var(--spacing-sm) var(--spacing-lg);
   font-size: 0.9rem;

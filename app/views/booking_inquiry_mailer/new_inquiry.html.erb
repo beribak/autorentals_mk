@@ -1,4 +1,4 @@
-<% content_for :subject, "Ново барање за резервација - #{@car&.full_name || 'Општо барање'}" %>
+<% content_for :subject, t('booking_inquiry_mailer.new_inquiry.subject', car: (@car&.full_name || t('booking_inquiry_mailer.new_inquiry.general_request'))) %>
 
 <!DOCTYPE html>
 <html>
@@ -18,7 +18,7 @@
 <body>
   <div class="container">
     <div class="header">
-      <h1>Ново барање за резервација</h1>
+  <h1><%= t('booking_inquiry_mailer.new_inquiry.heading') %></h1>
       <p>autorentalsMK</p>
     </div>
     
@@ -34,16 +34,16 @@
       <div class="section">
         <h3>Информации за клиентот:</h3>
         <p><span class="label">Име:</span><span class="value"><%= @inquiry[:first_name] %> <%= @inquiry[:last_name] %></span></p>
-        <p><span class="label">Е-пошта:</span><span class="value"><%= @inquiry[:email] %></span></p>
-        <p><span class="label">Телефон:</span><span class="value"><%= @inquiry[:phone] %></span></p>
+  <p><span class="label"><%= t('booking_inquiries.new.email') %>:</span><span class="value"><%= @inquiry[:email] %></span></p>
+  <p><span class="label"><%= t('booking_inquiries.new.phone') %>:</span><span class="value"><%= @inquiry[:phone] %></span></p>
       </div>
 
       <div class="section">
         <h3>Детали за резервацијата:</h3>
-        <p><span class="label">Датум на подигање:</span><span class="value"><%= Date.parse(@inquiry[:start_date]).strftime("%d.%m.%Y") if @inquiry[:start_date] %></span></p>
-        <p><span class="label">Датум на враќање:</span><span class="value"><%= Date.parse(@inquiry[:end_date]).strftime("%d.%m.%Y") if @inquiry[:end_date] %></span></p>
+  <p><span class="label"><%= t('cars.index.pickup_date') %>:</span><span class="value"><%= Date.parse(@inquiry[:start_date]).strftime("%d.%m.%Y") if @inquiry[:start_date] %></span></p>
+  <p><span class="label"><%= t('cars.index.dropoff_date') %>:</span><span class="value"><%= Date.parse(@inquiry[:end_date]).strftime("%d.%m.%Y") if @inquiry[:end_date] %></span></p>
         <% if @inquiry[:pickup_location].present? %>
-          <p><span class="label">Локација за подигање:</span><span class="value"><%= @inquiry[:pickup_location] %></span></p>
+          <p><span class="label"><%= t('booking_inquiries.new.pickup_location') %>:</span><span class="value"><%= @inquiry[:pickup_location] %></span></p>
         <% end %>
       </div>
 

@@ -1,4 +1,4 @@
-<% content_for :title, "Барање за резервација#{" - #{@car.full_name}" if @car} - autorentalsMK" %>
+<% content_for :title, "#{t('booking_inquiries.new.title')}#{" - #{@car.full_name}" if @car} - #{t('app.brand')}" %>
 
 <section class="booking-header">
   <div class="container">
@@ -6,13 +6,13 @@
       <div class="back-nav">
         <%= link_to car_path(@car), class: "back-link" do %>
           <span class="back-icon">←</span>
-          Назад кон детали за возилото
+          <%= t('booking_inquiries.new.back_to_car') %>
         <% end %>
       </div>
     <% end %>
     
-    <h1>Барање за резервација</h1>
-    <p>Испратете ни барање за резервација и ќе ве контактираме во најкраток рок</p>
+  <h1><%= t('booking_inquiries.new.heading') %></h1>
+  <p><%= t('pages.booking_inquiries.new.intro', default: t('booking_inquiries.new.heading')) %></p>
   </div>
 </section>
 
@@ -29,12 +29,12 @@
             <h3><%= @car.full_name %></h3>
             <div class="summary-price">
               <span class="price-amount">€<%= @car.price_per_day %></span>
-              <span class="price-unit">на ден</span>
+              <span class="price-unit"><%= t('booking_inquiries.new.price_per_day') %></span>
             </div>
             <div class="car-features">
-              <div class="feature">🛡️ Целосно осигурано</div>
-              <div class="feature">🔧 Добро одржувано</div>
-              <div class="feature">⚡ Достапно за изнајмување</div>
+              <div class="feature"><%= t('booking_inquiries.new.car_fully_insured') %></div>
+              <div class="feature"><%= t('booking_inquiries.new.car_well_maintained') %></div>
+              <div class="feature"><%= t('booking_inquiries.new.car_available') %></div>
             </div>
           </div>
         </div>
@@ -51,10 +51,10 @@
 
         <%= form_with url: @car ? car_booking_inquiries_path(@car) : booking_inquiries_path, class: "booking-form" do |form| %>
           <div class="form-section">
-            <h3>Датуми за изнајмување</h3>
+            <h3><%= t('booking_inquiries.new.dates_heading') %></h3>
             <div class="date-inputs">
               <div class="date-group">
-                <%= form.label "inquiry[start_date]", "Датум на подигање", class: "form-label" %>
+                <%= form.label "inquiry[start_date]", t('cars.index.pickup_date'), class: "form-label" %>
                 <%= form.date_field "inquiry[start_date]", 
                     class: "form-input border", 
                     min: Date.current,
@@ -62,7 +62,7 @@
                     required: true %>
               </div>
               <div class="date-group">
-                <%= form.label "inquiry[end_date]", "Датум на враќање", class: "form-label" %>
+                <%= form.label "inquiry[end_date]", t('cars.index.dropoff_date'), class: "form-label" %>
                 <%= form.date_field "inquiry[end_date]", 
                     class: "form-input border", 
                     min: Date.current + 1.day,
@@ -73,14 +73,14 @@
           </div>
 
           <div class="form-section">
-            <h3>Детали за локацијата</h3>
+            <h3><%= t('booking_inquiries.new.location_heading') %></h3>
             <div class="input-group">
-              <%= form.label "inquiry[pickup_location]", "Преферирана локација за подигање", class: "form-label" %>
+              <%= form.label "inquiry[pickup_location]", t('booking_inquiries.new.pickup_location'), class: "form-label" %>
               <%= form.select "inquiry[pickup_location]", 
                   [
-                    ["Изберете локација", ""],
-                    ["Скопје Велес", "Скопје Велес"],
-                    ["Скопје Аеродром", "Скопје Аеродром"]
+                    [t('booking_inquiries.new.choose_location'), ""],
+                    [t('booking_inquiries.new.location_option_center'), t('booking_inquiries.new.location_option_center')],
+                    [t('booking_inquiries.new.location_option_airport'), t('booking_inquiries.new.location_option_airport')]
                   ],
                   { selected: @inquiry[:pickup_location] }, 
                   { class: "form-input border", required: true } %>
@@ -88,26 +88,26 @@
           </div>
 
           <div class="form-section">
-            <h3>Ваши информации</h3>
+            <h3><%= t('booking_inquiries.new.your_info_heading') %></h3>
             <div class="customer-inputs">
               <div class="name-row">
                 <div class="input-group">
-                  <%= form.label "inquiry[first_name]", "Име", class: "form-label" %>
+                  <%= form.label "inquiry[first_name]", t('booking_inquiries.new.first_name'), class: "form-label" %>
                   <%= form.text_field "inquiry[first_name]", class: "form-input border", required: true %>
                 </div>
                 <div class="input-group">
-                  <%= form.label "inquiry[last_name]", "Презиме", class: "form-label" %>
+                  <%= form.label "inquiry[last_name]", t('booking_inquiries.new.last_name'), class: "form-label" %>
                   <%= form.text_field "inquiry[last_name]", class: "form-input border", required: true %>
                 </div>
               </div>
               
               <div class="contact-row">
                 <div class="input-group">
-                  <%= form.label "inquiry[email]", "Е-пошта", class: "form-label" %>
+                  <%= form.label "inquiry[email]", t('booking_inquiries.new.email'), class: "form-label" %>
                   <%= form.email_field "inquiry[email]", class: "form-input border", required: true %>
                 </div>
                 <div class="input-group">
-                  <%= form.label "inquiry[phone]", "Телефон", class: "form-label" %>
+                  <%= form.label "inquiry[phone]", t('booking_inquiries.new.phone'), class: "form-label" %>
                   <%= form.telephone_field "inquiry[phone]", class: "form-input border", required: true %>
                 </div>
               </div>
@@ -115,21 +115,21 @@
           </div>
 
           <div class="form-section">
-            <h3>Дополнителни информации</h3>
+            <h3><%= t('booking_inquiries.new.additional_info_heading') %></h3>
             <div class="input-group">
-              <%= form.label "inquiry[message]", "Порака (опционално)", class: "form-label" %>
+              <%= form.label "inquiry[message]", t('booking_inquiries.new.message_optional'), class: "form-label" %>
               <%= form.text_area "inquiry[message]", 
                   rows: 4, 
-                  placeholder: "Додајте било какви специјални барања, прашања или дополнителни информации...", 
+                  placeholder: t('booking_inquiries.new.message_placeholder'), 
                   class: "form-input border" %>
             </div>
           </div>
 
           <!-- Submit Button -->
           <div class="form-actions">
-            <%= form.submit "Испрати барање", 
+            <%= form.submit t('booking_inquiries.new.send_request'), 
                 class: "btn btn-primary btn-large" %>
-            <p class="form-note">Ќе ве контактираме во рок од 2 часа со потврда и детали</p>
+            <p class="form-note"><%= t('booking_inquiries.new.note_response') %></p>
           </div>
         <% end %>
       </div>
@@ -143,18 +143,18 @@
     <div class="info-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-xl);">
       <div class="info-card" style="text-align: center; padding: var(--spacing-xl); background: var(--bg-primary); border-radius: var(--radius-lg);">
         <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">⚡</div>
-        <h4>Брза реакција</h4>
-        <p>Одговараме на сите барања во рок од 2 часа</p>
+            <h4><%= t('booking_inquiries.new.info_cards.fast_response_title') %></h4>
+            <p><%= t('booking_inquiries.new.info_cards.fast_response_body') %></p>
       </div>
       <div class="info-card" style="text-align: center; padding: var(--spacing-xl); background: var(--bg-primary); border-radius: var(--radius-lg);">
         <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">💰</div>
-        <h4>Најдобри цени</h4>
-        <p>Конкурентни цени и специјални попусти</p>
+            <h4><%= t('booking_inquiries.new.info_cards.best_prices_title') %></h4>
+            <p><%= t('booking_inquiries.new.info_cards.best_prices_body') %></p>
       </div>
       <div class="info-card" style="text-align: center; padding: var(--spacing-xl); background: var(--bg-primary); border-radius: var(--radius-lg);">
         <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">🛡️</div>
-        <h4>Сигурност</h4>
-        <p>Сите возила се целосно осигурани и проверени</p>
+            <h4><%= t('booking_inquiries.new.info_cards.safety_title') %></h4>
+            <p><%= t('booking_inquiries.new.info_cards.safety_body') %></p>
       </div>
     </div>
   </div>

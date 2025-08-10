@@ -1,22 +1,22 @@
-<% content_for :title, "Наши возила - autorentalsMK" %>
+<% content_for :title, "#{t('cars.index.title')} - #{t('app.brand')}" %>
 
 <!-- Filters Section -->
 <section class="filters-section">
   <div class="container">
     <div class="filters-header">
-      <h2 class="filters-title">Најдете го вашето совршено возило</h2>
-      <p class="filters-subtitle">Од модерни мали до високо луксузни возила.</p>
-      <p class="filters-subtitle">AutoRentals rent a car Skopje ви го нуди најдобриот избор на возила за вашите потреби.</p>
+  <h2 class="filters-title"><%= t('cars.index.find_perfect') %></h2>
+  <p class="filters-subtitle"><%= t('cars.index.subtitle1') %></p>
+  <p class="filters-subtitle"><%= t('cars.index.subtitle2') %></p>
     </div>
 
     <%= form_with url: cars_path, method: :get, data: { turbo_frame: "cars-list" }, class: "filters-form" do |form| %>
       <div class="filters-container">
         <!-- Date Availability Filters -->
         <div class="date-availability-section">
-          <h4 class="filter-section-title">Проверете достапност</h4>
+          <h4 class="filter-section-title"><%= t('cars.index.check_availability') %></h4>
           <div class="date-filters">
             <div class="filter-group">
-              <label class="filter-label">Датум на подигање</label>
+              <label class="filter-label"><%= t('cars.index.pickup_date') %></label>
               <%= form.date_field :start_date, 
                   value: params[:start_date], 
                   min: Date.current,
@@ -24,7 +24,7 @@
             </div>
             
             <div class="filter-group">
-              <label class="filter-label">Датум на враќање</label>
+              <label class="filter-label"><%= t('cars.index.dropoff_date') %></label>
               <%= form.date_field :end_date, 
                   value: params[:end_date], 
                   min: Date.current + 1.day,
@@ -35,41 +35,41 @@
           <% if @date_filtered %>
             <div class="date-filter-status">
               <span class="status-icon">✅</span>
-              <span>Прикажувам возила достапни од <%= @filter_start_date.strftime("%b %d") %> до <%= @filter_end_date.strftime("%b %d, %Y") %></span>
-              <%= link_to "Избриши датуми", cars_path(brand: params[:brand], year_from: params[:year_from], year_to: params[:year_to], max_price: params[:max_price]), class: "clear-dates-btn" %>
+              <span><%= t('cars.index.showing_for_dates', from: @filter_start_date.strftime('%b %d'), to: @filter_end_date.strftime('%b %d, %Y')) %></span>
+              <%= link_to t('cars.index.clear_dates'), cars_path(brand: params[:brand], year_from: params[:year_from], year_to: params[:year_to], max_price: params[:max_price]), class: "clear-dates-btn" %>
             </div>
           <% end %>
         </div>
 
         <!-- Other Filters -->
         <div class="other-filters-section">
-          <h4 class="filter-section-title">Дополнителни филтри</h4>
+          <h4 class="filter-section-title"><%= t('cars.index.more_filters') %></h4>
           <div class="other-filters">
             <div class="filter-group">
-              <label class="filter-label">Марка</label>
-              <%= form.text_field :brand, value: params[:brand], placeholder: "на пр. BMW, Mercedes", class: "filter-input" %>
+              <label class="filter-label"><%= t('cars.index.brand') %></label>
+              <%= form.text_field :brand, value: params[:brand], placeholder: t('cars.index.brand_placeholder'), class: "filter-input" %>
             </div>
             
             <div class="filter-group">
-              <label class="filter-label">Година од</label>
+              <label class="filter-label"><%= t('cars.index.year_from') %></label>
               <%= form.number_field :year_from, value: params[:year_from], placeholder: "2020", class: "filter-input" %>
             </div>
             
             <div class="filter-group">
-              <label class="filter-label">Година до</label>
+              <label class="filter-label"><%= t('cars.index.year_to') %></label>
               <%= form.number_field :year_to, value: params[:year_to], placeholder: "2025", class: "filter-input" %>
             </div>
             
             <div class="filter-group">
-              <label class="filter-label">Макс. цена/ден</label>
+              <label class="filter-label"><%= t('cars.index.max_price') %></label>
               <%= form.number_field :max_price, value: params[:max_price], placeholder: "500", step: 0.01, class: "filter-input" %>
             </div>
           </div>
         </div>
         
         <div class="filters-actions">
-          <%= form.submit "Филтрирај возила", class: "btn btn-primary btn-filter" %>
-          <%= link_to "Ресетирај се", cars_path, class: "btn btn-secondary btn-filter" %>
+          <%= form.submit t('cars.index.filter_submit'), class: "btn btn-primary btn-filter" %>
+          <%= link_to t('cars.index.reset_all'), cars_path, class: "btn btn-secondary btn-filter" %>
         </div>
       </div>
     <% end %>
@@ -87,7 +87,7 @@
               <div class="car-image-wrapper">
                 <img src="<%= car.image_url %>" alt="Rent a car Skopje - <%= car.full_name %>" class="car-image">
                 <div class="car-status-badge <%= car.available? ? 'available' : 'unavailable' %>">
-                  <%= car.available? ? 'Достапно' : 'Недостапно' %>
+                  <%= car.available? ? t('cars.show.available') : t('cars.show.unavailable') %>
                 </div>
                 <div class="car-year-badge"><%= car.year %></div>
               </div>
@@ -105,21 +105,21 @@
                     <span class="car-spec-icon">⚡</span>
                     <span>
                       <% if @date_filtered %>
-                        Достапно за вашите датуми
+                        <%= t('cars.index.available_for_dates') %>
                       <% elsif car.available? %>
-                        Достапно
+                        <%= t('cars.show.available') %>
                       <% else %>
-                        Моментално недостапно
+                        <%= t('cars.show.currently_unavailable') %>
                       <% end %>
                     </span>
                   </div>
                   <div class="car-spec">
                     <span class="car-spec-icon">🛡️</span>
-                    <span>Осигурано</span>
+                    <span><%= t('cars.index.insured') %></span>
                   </div>
                   <div class="car-spec">
                     <span class="car-spec-icon">🔧</span>
-                    <span>Одржувано</span>
+                    <span><%= t('cars.index.maintained') %></span>
                   </div>
                 </div>
                 
@@ -128,17 +128,17 @@
                 <div class="car-actions">
                   <div class="car-price-display">
                     <div class="car-price">€<%= car.price_per_day %></div>
-                    <div class="car-price-unit">на ден</div>
+                    <div class="car-price-unit"><%= t('cars.index.price_per_day') %></div>
                   </div>
 
                   <div class="car-action-buttons">
-                    <%= link_to "Погледни детали", car_path(car), class: "btn btn-secondary car-view-btn", data: { turbo_frame: "_top" } %>
+                    <%= link_to t('cars.index.view_details'), car_path(car), class: "btn btn-secondary car-view-btn", data: { turbo_frame: "_top" } %>
                     
                     <% if @date_filtered %>
-                      <%= link_to "Испрати барање", new_car_booking_inquiry_path(car, start_date: @filter_start_date, end_date: @filter_end_date), 
+                      <%= link_to t('cars.index.send_inquiry'), new_car_booking_inquiry_path(car, start_date: @filter_start_date, end_date: @filter_end_date), 
                           class: "btn btn-primary car-book-btn", data: { turbo_frame: "_top" } %>
                     <% else %>
-                      <%= link_to "Испрати барање", new_car_booking_inquiry_path(car), 
+                      <%= link_to t('cars.index.send_inquiry'), new_car_booking_inquiry_path(car), 
                           class: "btn btn-primary car-book-btn", data: { turbo_frame: "_top" } %>
                     <% end %>
                   </div>
@@ -150,9 +150,9 @@
       <% else %>
         <div class="empty-state">
           <div class="empty-state-icon">🚗</div>
-          <h3>Не се пронајдени возила</h3>
-          <p>Обидете се да ги прилагодите вашите филтри за да го најдете совршеното возило за вас.</p>
-          <%= link_to "Ресетирај филтри", cars_path, class: "btn btn-primary" %>
+          <h3><%= t('cars.index.empty_title') %></h3>
+          <p><%= t('cars.index.empty_body') %></p>
+          <%= link_to t('cars.index.reset_filters'), cars_path, class: "btn btn-primary" %>
         </div>
       <% end %>
     <% end %>

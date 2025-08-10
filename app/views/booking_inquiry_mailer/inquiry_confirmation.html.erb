@@ -18,14 +18,14 @@
 <body>
   <div class="container">
     <div class="header">
-      <h1>Потврда за вашето барање</h1>
+  <h1><%= t('booking_inquiry_mailer.inquiry_confirmation.heading') %></h1>
       <p>autorentalsMK</p>
     </div>
     
     <div class="content">
       <p>Почитуван/а <%= @inquiry[:first_name] %>,</p>
       
-      <p>Ви благодариме што не избравте за вашите потреби за изнајмување возило! Вашето барање е успешно примено.</p>
+  <p><%= t('booking_inquiry_mailer.inquiry_confirmation.thank_you') %></p>
 
       <% if @car %>
         <div class="car-info">
@@ -36,18 +36,18 @@
       <% end %>
 
       <div class="section">
-        <h3>Детали на вашето барање:</h3>
-        <p><span class="label">Датум на подигање:</span><span class="value"><%= Date.parse(@inquiry[:start_date]).strftime("%d.%m.%Y") if @inquiry[:start_date] %></span></p>
-        <p><span class="label">Датум на враќање:</span><span class="value"><%= Date.parse(@inquiry[:end_date]).strftime("%d.%m.%Y") if @inquiry[:end_date] %></span></p>
+  <h3><%= t('booking_inquiry_mailer.inquiry_confirmation.request_details') %></h3>
+  <p><span class="label"><%= t('cars.index.pickup_date') %>:</span><span class="value"><%= Date.parse(@inquiry[:start_date]).strftime("%d.%m.%Y") if @inquiry[:start_date] %></span></p>
+  <p><span class="label"><%= t('cars.index.dropoff_date') %>:</span><span class="value"><%= Date.parse(@inquiry[:end_date]).strftime("%d.%m.%Y") if @inquiry[:end_date] %></span></p>
         <% if @inquiry[:pickup_location].present? %>
-          <p><span class="label">Локација за подигање:</span><span class="value"><%= @inquiry[:pickup_location] %></span></p>
+          <p><span class="label"><%= t('booking_inquiries.new.pickup_location') %>:</span><span class="value"><%= @inquiry[:pickup_location] %></span></p>
         <% end %>
       </div>
 
       <div class="next-steps">
         <h3>Што следи?</h3>
         <ol>
-          <li>Нашиот тим ќе го прегледа вашето барање</li>
+          <li><%= t('booking_inquiries_confirmation.steps.review_request') %></li>
           <li>Ќе ве контактираме во рок од 2 часа</li>
           <li>Ќе договориме сите детали за резервацијата</li>
           <li>Ќе уживате во вашето возило!</li>

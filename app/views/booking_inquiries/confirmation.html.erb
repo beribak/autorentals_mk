@@ -1,10 +1,10 @@
-<% content_for :title, "Барањето е испратено - autorentalsMK" %>
+<% content_for :title, "#{t('booking_inquiries_confirmation.title')} - #{t('app.brand')}" %>
 
 <section class="booking-confirmation-header">
   <div class="container">
     <div class="confirmation-icon">✅</div>
-    <h1>Барањето е успешно испратено!</h1>
-    <p>Ви благодариме за вашето барање за резервација</p>
+  <h1><%= t('booking_inquiries_confirmation.success_heading') %></h1>
+  <p><%= t('booking_inquiries_confirmation.success_subheading') %></p>
   </div>
 </section>
 
@@ -13,38 +13,38 @@
     <div class="booking-details-layout">
       <!-- Main Content -->
       <div class="booking-summary-card">
-        <h2>Што следи?</h2>
+  <h2><%= t('booking_inquiries_confirmation.what_next_heading') %></h2>
         
         <div class="steps-list">
           <div class="step">
             <div class="step-number">1</div>
             <div class="step-content">
-              <h4>Преглед на барањето</h4>
-              <p>Нашиот тим ќе го прегледа вашето барање и ќе ја провери достапноста на возилото за саканите датуми.</p>
+              <h4><%= t('booking_inquiries_confirmation.steps.review_title') %></h4>
+              <p><%= t('booking_inquiries_confirmation.steps.review_body') %></p>
             </div>
           </div>
 
           <div class="step">
             <div class="step-number">2</div>
             <div class="step-content">
-              <h4>Контакт во рок од 2 часа</h4>
-              <p>Ќе ве контактираме на наведениот телефонски број или е-пошта со потврда и сите детали за резервацијата.</p>
+              <h4><%= t('booking_inquiries_confirmation.steps.contact_title') %></h4>
+              <p><%= t('booking_inquiries_confirmation.steps.contact_body') %></p>
             </div>
           </div>
 
           <div class="step">
             <div class="step-number">3</div>
             <div class="step-content">
-              <h4>Потврда и плаќање</h4>
-              <p>Ако сè е во ред, ќе договориме начин на плаќање и финални детали за подигањето на возилото.</p>
+              <h4><%= t('booking_inquiries_confirmation.steps.confirm_title') %></h4>
+              <p><%= t('booking_inquiries_confirmation.steps.confirm_body') %></p>
             </div>
           </div>
 
           <div class="step">
             <div class="step-number">4</div>
             <div class="step-content">
-              <h4>Уживајте во вашата возба</h4>
-              <p>На договорениот ден, подигнете го возилото и уживајте во вашето патување!</p>
+              <h4><%= t('booking_inquiries_confirmation.steps.enjoy_title') %></h4>
+              <p><%= t('booking_inquiries_confirmation.steps.enjoy_body') %></p>
             </div>
           </div>
         </div>
@@ -52,23 +52,23 @@
 
       <!-- Next Steps -->
       <div class="next-steps-card">
-        <h2>Потребна ви е помош?</h2>
+  <h2><%= t('booking_inquiries_confirmation.need_help_heading') %></h2>
         
         <div class="contact-support">
           <div class="support-options">
             <a href="tel:+38971297645" class="support-btn">
               <span>📞</span>
-              Повикај не
+              <%= t('booking_inquiries_confirmation.call_us') %>
             </a>
             <a href="mailto:contact@autorentals.mk" class="support-btn">
               <span>✉️</span>
-              Испрати е-пошта
+              <%= t('booking_inquiries_confirmation.send_email') %>
             </a>
           </div>
         </div>
 
         <div class="contact-info" style="margin-top: var(--spacing-xl); padding-top: var(--spacing-xl); border-top: 1px solid var(--border-color);">
-          <h4>Контакт информации</h4>
+          <h4><%= t('booking_inquiries_confirmation.contact_info_heading') %></h4>
           <div class="contact-details" style="margin-top: var(--spacing-md);">
             <div class="contact-item" style="margin-bottom: var(--spacing-sm);">
               <span class="contact-icon">📞</span>
@@ -80,7 +80,7 @@
             </div>
             <div class="contact-item">
               <span class="contact-icon">🕒</span>
-              <span>Достапни 24/7</span>
+              <span><%= t('booking_inquiries_confirmation.available_247') %></span>
             </div>
           </div>
         </div>
@@ -89,8 +89,8 @@
 
     <!-- Actions -->
     <div class="booking-actions">
-      <a href="<%= cars_path %>" class="btn btn-primary">Прелистај повеќе возила</a>
-      <a href="<%= root_path %>" class="btn btn-secondary">Оди на почетна</a>
+  <a href="<%= cars_path %>" class="btn btn-primary"><%= t('booking_inquiries_confirmation.browse_other_cars') %></a>
+  <a href="<%= root_path %>" class="btn btn-secondary"><%= t('booking_inquiries_confirmation.go_home') %></a>
     </div>
   </div>
 </section>

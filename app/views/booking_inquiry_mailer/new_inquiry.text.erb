@@ -1,4 +1,4 @@
-Ново барање за резервација - autorentalsMK
+<%= t('booking_inquiry_mailer.new_inquiry.subject', car: (@car&.full_name || t('booking_inquiry_mailer.new_inquiry.general_request'))) %> - <%= t('app.brand') %>
 ===============================================
 
 <% if @car %>
@@ -8,7 +8,7 @@
 <% end %>
 Информации за клиентот:
 - Име: <%= @inquiry[:first_name] %> <%= @inquiry[:last_name] %>
-- Е-пошта: <%= @inquiry[:email] %>
+<%= t('booking_inquiries.new.email') %>: <%= @inquiry[:email] %>
 - Телефон: <%= @inquiry[:phone] %>
 
 Детали за резервацијата:

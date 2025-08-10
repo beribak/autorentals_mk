@@ -1,11 +1,11 @@
-<% content_for :title, "#{@car.full_name} - autorentalsMK" %>
+<% content_for :title, "#{@car.full_name} - #{t('app.brand')}" %>
 
 <section class="car-show-header">
   <div class="container">
     <div class="back-nav">
       <%= link_to cars_path, class: "back-link" do %>
-        <span class="back-icon">←</span>
-        Назад кон возила
+  <span class="back-icon">←</span>
+  <%= t('cars.show.back') %>
       <% end %>
     </div>
     
@@ -14,7 +14,7 @@
       <div class="car-image-section">
         <img src="<%= @car.image_url %>" alt="Rent a car Skopje - <%= @car.full_name %>" class="car-main-image">
         <div class="car-image-overlay">
-          <div class="status-badge">Достапно</div>
+          <div class="status-badge"><%= t('cars.show.available') %></div>
           <div class="year-badge"><%= @car.year %></div>
         </div>
       </div>
@@ -27,17 +27,17 @@
         <!-- Price Section -->
         <div class="car-price-section">
           <div class="price-display">€<%= @car.price_per_day %></div>
-          <div class="price-unit">на ден</div>
+          <div class="price-unit"><%= t('cars.show.per_day') %></div>
         </div>
         
         <!-- Specifications -->
         <div class="car-specs-section">
-          <h3 class="specs-title">Спецификации</h3>
+          <h3 class="specs-title"><%= t('cars.show.specs') %></h3>
           <div class="specs-grid">
             <div class="spec-item">
               <span class="spec-icon">📅</span>
               <div class="spec-info">
-                <div class="spec-label">Година</div>
+                <div class="spec-label"><%= t('cars.show.year') %></div>
                 <div class="spec-value"><%= @car.year %></div>
               </div>
             </div>
@@ -45,7 +45,7 @@
             <div class="spec-item">
               <span class="spec-icon">🏷️</span>
               <div class="spec-info">
-                <div class="spec-label">Марка</div>
+                <div class="spec-label"><%= t('cars.show.brand') %></div>
                 <div class="spec-value"><%= @car.brand %></div>
               </div>
             </div>
@@ -53,12 +53,12 @@
             <div class="spec-item">
               <span class="spec-icon">⚡</span>
               <div class="spec-info">
-                <div class="spec-label">Статус</div>
+                <div class="spec-label"><%= t('cars.show.status') %></div>
                 <div class="spec-value">
                   <% if @car.available? %>
-                    <span style="color: #22c55e;">Достапно</span>
+                    <span style="color: #22c55e;"><%= t('cars.show.available') %></span>
                   <% else %>
-                    <span style="color: #ef4444;">Недостапно</span>
+                    <span style="color: #ef4444;"><%= t('cars.show.unavailable') %></span>
                   <% end %>
                 </div>
               </div>
@@ -67,24 +67,24 @@
             <div class="spec-item">
               <span class="spec-icon">🛡️</span>
               <div class="spec-info">
-                <div class="spec-label">Осигурување</div>
-                <div class="spec-value">Полно покритие</div>
+                <div class="spec-label"><%= t('cars.show.insurance') %></div>
+                <div class="spec-value"><%= t('cars.show.insurance_full') %></div>
               </div>
             </div>
             
             <div class="spec-item">
               <span class="spec-icon">🔧</span>
               <div class="spec-info">
-                <div class="spec-label">Одржување</div>
-                <div class="spec-value">Професионално</div>
+                <div class="spec-label"><%= t('cars.show.maintenance') %></div>
+                <div class="spec-value"><%= t('cars.show.maintenance_professional') %></div>
               </div>
             </div>
             
             <div class="spec-item">
               <span class="spec-icon">🧽</span>
               <div class="spec-info">
-                <div class="spec-label">Чистење</div>
-                <div class="spec-value">Детално</div>
+                <div class="spec-label"><%= t('cars.show.cleaning') %></div>
+                <div class="spec-value"><%= t('cars.show.cleaning_detailed') %></div>
               </div>
             </div>
           </div>
@@ -92,7 +92,7 @@
         
         <!-- Description -->
         <div class="car-description-section">
-          <h3 class="description-title">За ова возило</h3>
+          <h3 class="description-title"><%= t('cars.show.about') %></h3>
           <p class="car-description-full"><%= @car.description %></p>
         </div>
         
@@ -100,29 +100,29 @@
         <div class="car-actions-section">
           <% if @car.available? %>
             <%= link_to new_car_booking_inquiry_path(@car), class: "book-now-btn" do %>
-              Испрати барање за резервација - €<%= @car.price_per_day %>/ден
+              <%= t('cars.show.send_inquiry') %> - €<%= @car.price_per_day %>/<%= t('cars.show.per_day') %>
             <% end %>
           <% else %>
             <button class="book-now-btn" disabled style="opacity: 0.5; cursor: not-allowed;">
-              Моментално недостапно
+              <%= t('cars.show.currently_unavailable') %>
             </button>
           <% end %>
           
           <div class="secondary-actions">
             <a href="tel:+38970123456" class="action-btn">
               <span>📞</span>
-              Повикај не
+              <%= t('cars.show.call_us') %>
             </a>
             <a href="mailto:contact@autorentals.mk" class="action-btn">
               <span>✉️</span>
-              Е-пошта
+              <%= t('cars.show.email') %>
             </a>
           </div>
         </div>
         
         <!-- Contact Information -->
         <div class="contact-section">
-          <h4 class="contact-title">Потребна ви е помош?</h4>
+          <h4 class="contact-title"><%= t('cars.show.need_help') %></h4>
           <div class="contact-info">
             <div class="contact-item">
               <span class="contact-icon">📞</span>
@@ -134,7 +134,7 @@
             </div>
             <div class="contact-item">
               <span class="contact-icon">🕒</span>
-              <span>24/7 корисничка поддршка</span>
+              <span><%= t('cars.show.support_247') %></span>
             </div>
           </div>
         </div>

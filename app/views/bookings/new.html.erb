@@ -1,16 +1,16 @@
-<% content_for :title, "Резервирај #{@car.full_name} - autorentalsMK" %>
+<% content_for :title, "#{t('bookings.new.title', car: @car.full_name)} - #{t('app.brand')}" %>
 
 <section class="booking-header">
   <div class="container">
     <div class="back-nav">
       <%= link_to car_path(@car), class: "back-link" do %>
         <span class="back-icon">←</span>
-        Назад кон детали за возилото
+  <%= t('booking_inquiries.new.back_to_car') %>
       <% end %>
     </div>
     
-    <h1>Резервирајте го вашето возило</h1>
-    <p>Завршете ја вашата резервација за <strong><%= @car.full_name %></strong></p>
+  <h1><%= t('bookings.new.heading') %></h1>
+  <p><%= t('bookings.new.subheading_html', car: @car.full_name).html_safe %></p>
   </div>
 </section>
 
@@ -26,12 +26,12 @@
           <h3><%= @car.full_name %></h3>
           <div class="summary-price">
             <span class="price-amount">€<%= @car.price_per_day %></span>
-            <span class="price-unit">на ден</span>
+            <span class="price-unit"><%= t('booking_inquiries.new.price_per_day') %></span>
           </div>
           <div class="car-features">
-            <div class="feature">🛡️ Целосно осигурано</div>
-            <div class="feature">🔧 Добро одржувано</div>
-            <div class="feature">⚡ Достапно сега</div>
+            <div class="feature"><%= t('booking_inquiries.new.car_fully_insured') %></div>
+            <div class="feature"><%= t('booking_inquiries.new.car_well_maintained') %></div>
+            <div class="feature"><%= t('booking_inquiries.new.car_available') %></div>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@
         <!-- Error Messages -->
         <% if @booking.errors.any? || (@customer && @customer.errors.any?) %>
           <div class="error-messages">
-            <h4>Ве молиме поправете ги следните грешки:</h4>
+            <h4><%= t('bookings.new.correct_errors') %></h4>
             <ul>
               <% @booking.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
@@ -57,10 +57,10 @@
 
         <%= form_with model: [@car, @booking], class: "booking-form" do |form| %>
           <div class="form-section">
-            <h3>Датуми за изнајмување</h3>
+            <h3><%= t('booking_inquiries.new.dates_heading') %></h3>
             <div class="date-inputs">
               <div class="date-group">
-                <%= form.label :start_date, "Датум на подигање", class: "form-label" %>
+                <%= form.label :start_date, t('cars.index.pickup_date'), class: "form-label" %>
                 <%= form.date_field :start_date, 
                     class: "form-input", 
                     min: Date.current,
@@ -68,7 +68,7 @@
                     data: { booking_target: "startDate", action: "change->booking#calculatePrice" } %>
               </div>
               <div class="date-group">
-                <%= form.label :end_date, "Датум на враќање", class: "form-label" %>
+                <%= form.label :end_date, t('cars.index.dropoff_date'), class: "form-label" %>
                 <%= form.date_field :end_date, 
                     class: "form-input", 
                     min: Date.current + 1.day,
@@ -83,84 +83,84 @@
           </div>
 
           <div class="form-section">
-            <h3>Детали за локацијата</h3>
+            <h3><%= t('booking_inquiries.new.location_heading') %></h3>
             <div class="location-inputs">
               <div class="input-group">
-                <%= form.label :pickup_location, "Локација за подигање", class: "form-label" %>
+                <%= form.label :pickup_location, t('bookings.new.pickup_location'), class: "form-label" %>
                 <%= form.text_field :pickup_location, 
-                    placeholder: "Внесете адреса за подигање", 
+                    placeholder: t('bookings.new.pickup_location_placeholder'), 
                     class: "form-input" %>
               </div>
               <div class="input-group">
-                <%= form.label :dropoff_location, "Локација за враќање", class: "form-label" %>
+                <%= form.label :dropoff_location, t('bookings.new.dropoff_location'), class: "form-label" %>
                 <%= form.text_field :dropoff_location, 
-                    placeholder: "Внесете адреса за враќање (исто како подигањето ако не е наведено)", 
+                    placeholder: t('bookings.new.dropoff_location_placeholder'), 
                     class: "form-input" %>
               </div>
             </div>
           </div>
 
           <div class="form-section">
-            <h3>Ваши информации</h3>
+            <h3><%= t('booking_inquiries.new.your_info_heading') %></h3>
             <%= fields_for :customer, @customer do |customer_form| %>
               <div class="customer-inputs">
                 <div class="name-row">
                   <div class="input-group">
-                    <%= customer_form.label :first_name, "Име", class: "form-label" %>
+                    <%= customer_form.label :first_name, t('booking_inquiries.new.first_name'), class: "form-label" %>
                     <%= customer_form.text_field :first_name, class: "form-input" %>
                   </div>
                   <div class="input-group">
-                    <%= customer_form.label :last_name, "Презиме", class: "form-label" %>
+                    <%= customer_form.label :last_name, t('booking_inquiries.new.last_name'), class: "form-label" %>
                     <%= customer_form.text_field :last_name, class: "form-input" %>
                   </div>
                 </div>
                 
                 <div class="contact-row">
                   <div class="input-group">
-                    <%= customer_form.label :email, "Е-пошта", class: "form-label" %>
+                    <%= customer_form.label :email, t('booking_inquiries.new.email'), class: "form-label" %>
                     <%= customer_form.email_field :email, class: "form-input" %>
                   </div>
                   <div class="input-group">
-                    <%= customer_form.label :phone, "Телефон", class: "form-label" %>
+                    <%= customer_form.label :phone, t('booking_inquiries.new.phone'), class: "form-label" %>
                     <%= customer_form.telephone_field :phone, class: "form-input" %>
                   </div>
                 </div>
 
                 <div class="input-group">
-                  <%= customer_form.label :address, "Адреса", class: "form-label" %>
+                  <%= customer_form.label :address, t('bookings.new.address'), class: "form-label" %>
                   <%= customer_form.text_area :address, rows: 2, class: "form-input" %>
                 </div>
 
                 <div class="address-row">
                   <div class="input-group">
-                    <%= customer_form.label :city, "Град", class: "form-label" %>
+                    <%= customer_form.label :city, t('bookings.new.city'), class: "form-label" %>
                     <%= customer_form.text_field :city, class: "form-input" %>
                   </div>
                   <div class="input-group">
-                    <%= customer_form.label :state, "Округ", class: "form-label" %>
+                    <%= customer_form.label :state, t('bookings.new.state'), class: "form-label" %>
                     <%= customer_form.text_field :state, class: "form-input" %>
                   </div>
                   <div class="input-group">
-                    <%= customer_form.label :zip_code, "Поштенски код", class: "form-label" %>
+                    <%= customer_form.label :zip_code, t('bookings.new.zip_code'), class: "form-label" %>
                     <%= customer_form.text_field :zip_code, class: "form-input" %>
                   </div>
                 </div>
 
                 <div class="input-group">
-                  <%= customer_form.label :country, "Земја", class: "form-label" %>
-                  <%= customer_form.text_field :country, value: "Македонија", class: "form-input" %>
+                  <%= customer_form.label :country, t('bookings.new.country'), class: "form-label" %>
+                  <%= customer_form.text_field :country, value: t('bookings.new.country_default'), class: "form-input" %>
                 </div>
               </div>
             <% end %>
           </div>
 
           <div class="form-section">
-            <h3>Дополнителни информации</h3>
+            <h3><%= t('booking_inquiries.new.additional_info_heading') %></h3>
             <div class="input-group">
-              <%= form.label :special_requests, "Специјални барања (опционално)", class: "form-label" %>
+              <%= form.label :special_requests, t('bookings.new.special_requests'), class: "form-label" %>
               <%= form.text_area :special_requests, 
                   rows: 3, 
-                  placeholder: "Било какви специјални барања или желби...", 
+                  placeholder: t('bookings.new.special_requests_placeholder'), 
                   class: "form-input" %>
             </div>
           </div>
@@ -168,24 +168,24 @@
           <!-- Price Summary -->
           <div class="price-summary" data-booking-target="priceSummary" style="display: none;">
             <div class="summary-row">
-              <span>Дневна стапка:</span>
+              <span><%= t('bookings.new.daily_rate') %>:</span>
               <span data-booking-target="dailyRate">€<%= @car.price_per_day %></span>
             </div>
             <div class="summary-row">
-              <span>Времетраење:</span>
+              <span><%= t('bookings.new.duration') %>:</span>
               <span data-booking-target="duration">0 дена</span>
             </div>
             <div class="summary-row total">
-              <span>Вкупно:</span>
+              <span><%= t('bookings.new.total') %>:</span>
               <span data-booking-target="totalPrice">€0.00</span>
             </div>
           </div>
 
           <!-- Submit Button -->
           <div class="form-actions">
-            <%= form.submit "Резервирај сега", 
+            <%= form.submit t('bookings.new.book_now'), 
                 class: "btn btn-primary btn-large" %>
-            <p class="form-note">Ќе ги прегледате деталите за резервацијата пред финалната потврда</p>
+            <p class="form-note"><%= t('bookings.new.review_note') %></p>
           </div>
         <% end %>
       </div>
