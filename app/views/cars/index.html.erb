@@ -2,16 +2,22 @@
 
 <!-- Filters Section -->
 <section class="filters-section">
-  <div class="container">
-    <!-- Mobile Language Switcher (hidden on desktop) -->
-    <div class="mobile-language-switcher">
-      <% I18n.available_locales.each do |loc| %>
-        <% if loc == I18n.locale %>
-          <span class="lang current"><%= t("app.language.#{loc}") %></span>
-        <% else %>
-          <%= link_to t("app.language.#{loc}"), url_for(params.permit!.to_h.merge(locale: loc)), class: 'lang' %>
+  <div class="container mb-2">
+  <div class="mobile-top-bar">
+      <!-- Mobile Language Switcher (hidden on desktop) -->
+      <div class="mobile-quick-call">
+        <span class="mobile-call-text"><%#= t('cars.index.call_to_book') %></span>
+        <a href="tel:+38971297645" class="quick-call-link" aria-label="<%= t('contact.info.phone.title') %>">📞</a>
+      </div>
+      <div class="mobile-language-switcher">
+        <% I18n.available_locales.each do |loc| %>
+          <% if loc == I18n.locale %>
+            <span class="lang current"><%= t("app.language.#{loc}") %></span>
+          <% else %>
+            <%= link_to t("app.language.#{loc}"), url_for(params.permit!.to_h.merge(locale: loc)), class: 'lang' %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
 
     <div class="filters-header">

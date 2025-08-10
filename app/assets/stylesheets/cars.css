@@ -34,6 +34,75 @@
   position: relative;
 }
 
+/* Mobile top bar containing quick call and language switcher */
+.mobile-top-bar {
+  display: none;
+  position: relative;
+  /* display: flex; */
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.mobile-quick-call .quick-call-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/* Call to book label */
+.mobile-call-text {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  line-height: 1.1;
+  display: inline-block;
+  max-width: 140px;
+  white-space: normal;
+  word-break: break-word;
+  margin-right: 4px;
+}
+
+@media (max-width: 768px) {
+  .mobile-call-text { font-size: 0.8rem; }
+}
+
+.mobile-quick-call .quick-call-link:hover {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+/* Inline layout when wrapped in mobile-top-bar */
+.mobile-top-bar .mobile-language-switcher {
+  position: static;
+  top: auto;
+  right: auto;
+  display: flex; /* ensure flex when visible */
+  background: rgba(255,255,255,0.85);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .mobile-top-bar {
+    justify-content: flex-end;
+    padding: var(--spacing-sm) 0;
+    display: flex;
+  }
+  .mobile-top-bar .mobile-language-switcher {
+    position: static;
+  }
+}
+
 /* Mobile language switcher shown under navbar on cars index */
 .mobile-language-switcher {
   display: none; /* default hidden (desktop) */
@@ -524,7 +593,7 @@
   .mobile-language-switcher { display: flex; }
   
   .filters-section {
-    padding: var(--spacing-2xl) 0;
+    padding: 0;
   }
 
   .filters-container {
@@ -555,7 +624,7 @@
   
   .car-actions {
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
     align-items: stretch;
   }
   
@@ -599,7 +668,7 @@
   }
   
   .car-specs {
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: var(--spacing-sm);
   }
 }

@@ -16,14 +16,15 @@
     <div class="contact-layout-single">
       <!-- Contact Information -->
       <div class="contact-info-card">
-  <h2><%= t('contact.info.heading') %></h2>
-        
+        <h2><%= t('contact.info.heading') %></h2>
         <div class="contact-methods-grid">
           <div class="contact-method">
             <div class="contact-icon">📞</div>
             <div class="contact-details">
               <h4><%= t('contact.info.phone.title') %></h4>
-              <p><%= t('contact.info.phone.number') %></p>
+              <p>
+                <a href="tel:+38971297645"><%= t('contact.info.phone.number') %></a>
+              </p>
               <small><%= t('contact.info.phone.note') %></small>
             </div>
           </div>
@@ -32,7 +33,7 @@
             <div class="contact-icon">✉️</div>
             <div class="contact-details">
               <h4><%= t('contact.info.email.title') %></h4>
-              <p><%= t('contact.info.email.address') %></p>
+              <p><%= mail_to t('contact.info.email.address'), t('contact.info.email.address') %></p>
               <small><%= t('contact.info.email.note') %></small>
             </div>
           </div>
