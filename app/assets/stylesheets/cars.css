@@ -36,6 +36,7 @@
   align-items: center;
   justify-content: flex-end;
   gap: 8px;
+  z-index: 10;
 }
 
 .mobile-quick-call .quick-call-link {
@@ -51,6 +52,8 @@
   font-size: 1.1rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  position: relative;
+  z-index: 15;
 }
 
 /* Call to book label */
