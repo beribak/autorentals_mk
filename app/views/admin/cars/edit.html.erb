@@ -49,6 +49,60 @@
           </div>
         </div>
 
+        <div class="form-row">
+          <div class="form-group">
+            <%= form.label :passengers, "Патници", class: "form-label" %>
+            <%= form.text_field :passengers, class: "form-input border", placeholder: "на пр., 5" %>
+          </div>
+          
+          <div class="form-group">
+            <%= form.label :transmission, "Трансмисија", class: "form-label" %>
+            <%= form.select :transmission, 
+                  options_for_select([
+                    ['', ''],
+                    [t('cars.transmission_options.automatic'), 'automatic'],
+                    [t('cars.transmission_options.manual'), 'manual'],
+                    [t('cars.transmission_options.cvt'), 'cvt'],
+                    [t('cars.transmission_options.semi_automatic'), 'semi_automatic']
+                  ], @car.transmission), 
+                  {}, 
+                  { class: "form-input border" } %>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <%= form.label :gas, "Тип гориво", class: "form-label" %>
+            <%= form.select :gas, 
+                  options_for_select([
+                    ['', ''],
+                    [t('cars.gas_options.petrol'), 'petrol'],
+                    [t('cars.gas_options.diesel'), 'diesel'],
+                    [t('cars.gas_options.hybrid'), 'hybrid'],
+                    [t('cars.gas_options.electric'), 'electric'],
+                    [t('cars.gas_options.lpg'), 'lpg']
+                  ], @car.gas), 
+                  {}, 
+                  { class: "form-input border" } %>
+          </div>
+          
+          <div class="form-group">
+            <%= form.label :doors, "Врати", class: "form-label" %>
+            <%= form.text_field :doors, class: "form-input border", placeholder: "на пр., 4, 5" %>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <%= form.label :trunk_size, "Големина на багажник", class: "form-label" %>
+            <%= form.text_field :trunk_size, class: "form-input border", placeholder: "на пр., Голем, Среден, Мал" %>
+          </div>
+          
+          <div class="form-group">
+            <!-- Empty div to maintain grid layout -->
+          </div>
+        </div>
+
         <div class="form-row single">
           <div class="form-group">
             <%= form.label :image_url, "URL на слика", class: "form-label" %>

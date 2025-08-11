@@ -25,8 +25,8 @@ module AutorentalsMk
   # config.eager_load_paths << Rails.root.join("extras")
 
   # I18n configuration
-  config.i18n.available_locales = [ :mk, :en ]
-  config.i18n.default_locale = :mk
-  config.i18n.fallbacks = [ :en ]
+  config.i18n.available_locales = [ :en, :mk ]
+  config.i18n.default_locale = :en
+  config.i18n.fallbacks = [ :mk ]
   end
 end

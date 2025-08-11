@@ -35,6 +35,8 @@ class Admin::CarsController < Admin::ApplicationController
     if @car.update(car_params)
       redirect_to admin_cars_path, notice: "Car was successfully updated."
     else
+      @booking = Booking.new
+      @booking.car = @car
       set_booking_data
       render :edit, status: :unprocessable_entity
     end
@@ -123,6 +125,6 @@ class Admin::CarsController < Admin::ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:brand, :model, :year, :price_per_day, :description, :image_url, :available)
+    params.require(:car).permit(:brand, :model, :year, :price_per_day, :description, :image_url, :available, :passengers, :transmission, :gas, :doors, :trunk_size)
   end
 end

@@ -49,6 +49,7 @@ en:
       label: "Language"
   pages:
     home:
+      hero_description: "AutoRentalsMK - Rent a car Skopje offers professional and safe car rental service at the highest level. Whether you are a tourist who wants to explore our beautiful region or a local client who needs a vehicle, we are here to provide you with the highest quality experience."
       hero_tagline: "Book your perfect vehicle in seconds with our streamlined process. No hassle, no waiting."
       browse_tagline: "Browse our collection and find the perfect vehicle for your next adventure. Book online in minutes!"
   home:
@@ -135,6 +136,17 @@ en:
       empty_title: "No vehicles found"
       empty_body: "Try adjusting your filters to find the perfect vehicle for you."
       reset_filters: "Reset filters"
+    transmission_options:
+      automatic: "Automatic"
+      manual: "Manual"
+      cvt: "CVT"
+      semi_automatic: "Semi-automatic"
+    gas_options:
+      petrol: "Petrol"
+      diesel: "Diesel"
+      hybrid: "Hybrid"
+      electric: "Electric"
+      lpg: "LPG"
   contact:
     page_title: "Contact - autorentalsMK"
     header_title: "Contact us"
