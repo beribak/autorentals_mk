@@ -1,0 +1,82 @@
+<% content_for :title, "#{t('articles.ohrid.title')} | #{t('app.brand')}" %>
+
+<article class="article-page">
+  <div class="container">
+    <!-- Hero Section -->
+    <section class="article-hero">
+      <div class="article-hero-content">
+        <h1 class="article-title"><%= t('articles.ohrid.title') %></h1>
+        <p class="article-subtitle"><%= t('articles.ohrid.subtitle') %></p>
+      </div>
+      <div class="article-hero-image">
+        <img src="https://www.carwiz.mk/data/public/2023-03/sveti-jovan-kaneo-ohrid-rent-a-car-carwiz.jpg" alt="Lake Ohrid panoramic view" class="hero-image">
+      </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content">
+      <div class="article-text">
+        <h2><%= t('articles.ohrid.unesco_title') %></h2>
+        <p><%= t('articles.ohrid.unesco_content') %></p>
+
+        <h2><%= t('articles.ohrid.lake_title') %></h2>
+        <p><%= t('articles.ohrid.lake_content') %></p>
+
+        <h2><%= t('articles.ohrid.historical_title') %></h2>
+        <p><%= t('articles.ohrid.historical_content') %></p>
+        <ul>
+          <li><strong><%= t('articles.ohrid.samuel_fortress') %></strong></li>
+          <li><strong><%= t('articles.ohrid.church_kaneo') %></strong></li>
+          <li><strong><%= t('articles.ohrid.ancient_theatre') %></strong></li>
+          <li><strong><%= t('articles.ohrid.house_robevi') %></strong></li>
+        </ul>
+
+        <h2><%= t('articles.ohrid.cultural_title') %></h2>
+        <p><%= t('articles.ohrid.cultural_content') %></p>
+
+        <h2><%= t('articles.ohrid.activities_title') %></h2>
+        <p><%= t('articles.ohrid.activities_content') %></p>
+        <ul>
+          <li><%= t('articles.ohrid.boat_trips') %></li>
+          <li><%= t('articles.ohrid.swimming') %></li>
+          <li><%= t('articles.ohrid.hiking') %></li>
+          <li><%= t('articles.ohrid.bazaar') %></li>
+          <li><%= t('articles.ohrid.museum_water') %></li>
+        </ul>
+
+        <h2><%= t('articles.ohrid.best_time_title') %></h2>
+        <p><%= t('articles.ohrid.best_time_content') %></p>
+
+        <div class="article-cta">
+          <h3><%= t('articles.cta.visit_ohrid') %></h3>
+          <p><%= t('articles.ohrid.cta_content') %></p>
+          <%= link_to t('articles.cta.book_now'), cars_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+
+      <aside class="article-sidebar">
+        <div class="info-box">
+          <h4><%= t('articles.ohrid.facts_title') %></h4>
+          <ul>
+            <li><strong><%= t('articles.ohrid.distance') %></strong></li>
+            <li><strong><%= t('articles.ohrid.population') %></strong></li>
+            <li><strong><%= t('articles.ohrid.best_time') %></strong></li>
+            <li><strong><%= t('articles.ohrid.unesco_status') %></strong></li>
+            <li><strong><%= t('articles.ohrid.lake_depth') %></strong></li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4><%= t('articles.ohrid.getting_there_title') %></h4>
+          <p><%= t('articles.ohrid.getting_there_content') %></p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Back to Homepage -->
+    <section class="article-navigation">
+      <%= link_to t('articles.navigation.back_to_home'), root_path, class: "btn btn-secondary" %>
+      <%= link_to t('articles.navigation.explore_cars'), cars_path, class: "btn btn-primary" %>
+    </section>
+  </div>
+</article>

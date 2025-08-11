@@ -8,10 +8,7 @@
 .cars-header h1 {
   font-size: 3rem;
   margin-bottom: var(--spacing-lg);
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
 }
 
 .cars-header p {
@@ -24,14 +21,11 @@
 /* Filters Section */
 .filters-section {
   padding: var(--spacing-lg) 0;
-  background: linear-gradient(135deg, 
-    var(--bg-tertiary) 0%, 
-    var(--bg-secondary) 50%, 
-    var(--bg-tertiary) 100%
-  );
+  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
   border-bottom: 2px solid var(--accent-primary);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   position: relative;
+  overflow: hidden;
 }
 
 /* Mobile top bar containing quick call and language switcher */
@@ -146,12 +140,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, 
-    rgba(255, 107, 107, 0.03) 0%, 
-    rgba(255, 200, 124, 0.03) 50%, 
-    rgba(126, 87, 194, 0.03) 100%
-  );
-  pointer-events: none;
+  background: radial-gradient(circle at 20% 80%, rgba(67, 0, 255, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(0, 202, 255, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 50% 50%, rgba(0, 255, 222, 0.05) 0%, transparent 70%);
+  z-index: 1;
 }
 
 .filters-form {
@@ -206,7 +198,21 @@
   box-sizing: border-box;
 }
 
-.filter-input:focus {
+/* Date input fields with orange border */
+.filter-input[type="date"] {
+  border: 2px solid #ff6b2c;
+}
+
+.filter-input[type="date"]:focus {
+  outline: none;
+  border-color: #ff6b2c;
+  box-shadow: 0 0 0 2px rgba(255, 107, 44, 0.15), 
+              0 2px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 1);
+}
+
+.filter-input:focus:not([type="date"]) {
   outline: none;
   border-color: var(--accent-primary);
   box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.15), 
@@ -722,10 +728,6 @@ input[type="date"],
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: var(--spacing-sm);
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .filters-subtitle {

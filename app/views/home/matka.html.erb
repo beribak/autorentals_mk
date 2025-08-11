@@ -1,0 +1,135 @@
+<% content_for :title, "#{t('articles.matka.title')} | #{t('app.brand')}" %>
+
+<article class="article-page">
+  <div class="container">
+    <!-- Hero Section -->
+    <section class="article-hero">
+      <div class="article-hero-content">
+        <h1 class="article-title"><%= t('articles.matka.title') %></h1>
+        <p class="article-subtitle"><%= t('articles.matka.subtitle') %></p>
+      </div>
+      <div class="article-hero-image">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/7c/11/40/matka-canyon.jpg?w=1000&h=-1&s=1" alt="Matka Canyon emerald lake and limestone cliffs" class="hero-image">
+      </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content">
+      <div class="article-text">
+        <h2><%= t('articles.matka.natural_title') %></h2>
+        <p><%= t('articles.matka.natural_content') %></p>
+
+        <h2><%= t('articles.matka.canyon_title') %></h2>
+        <p><%= t('articles.matka.canyon_content') %></p>
+
+        <h2><%= t('articles.matka.biodiversity_title') %></h2>
+        <p><%= t('articles.matka.biodiversity_content') %></p>
+        <ul>
+          <li><strong><%= t('articles.matka.flora_species') %></strong></li>
+          <li><strong><%= t('articles.matka.fauna_species') %></strong></li>
+          <li><strong><%= t('articles.matka.caves') %></strong></li>
+          <li><strong><%= t('articles.matka.aquatic') %></strong></li>
+        </ul>
+
+        <h2><%= t('articles.matka.historical_heritage_title') %></h2>
+        <p><%= t('articles.matka.historical_heritage_content') %></p>
+        <ul>
+          <li><strong><%= t('articles.matka.st_andrew') %></strong></li>
+          <li><strong><%= t('articles.matka.holy_salvation') %></strong></li>
+          <li><strong><%= t('articles.matka.st_nicholas') %></strong></li>
+          <li><strong><%= t('articles.matka.st_nedela') %></strong></li>
+        </ul>
+
+        <h2><%= t('articles.matka.adventure_title') %></h2>
+        <h3><%= t('articles.matka.water_activities_title') %></h3>
+        <ul>
+          <li><%= t('articles.matka.boat_tours') %></li>
+          <li><%= t('articles.matka.swimming_areas') %></li>
+          <li><%= t('articles.matka.fishing_lake') %></li>
+        </ul>        <h3><%= t('articles.matka.land_activities_title') %></h3>
+        <ul>
+          <li><%= t('articles.matka.hiking_trails_vary') %></li>
+          <li><%= t('articles.matka.rock_climbing') %></li>
+          <li><%= t('articles.matka.mountain_biking_paths') %></li>
+          <li><%= t('articles.matka.photography') %></li>
+          <li><%= t('articles.matka.birdwatching') %></li>
+        </ul>
+
+        <h2><%= t('articles.matka.cave_title') %></h2>
+        <p><%= t('articles.matka.cave_content') %></p>
+
+        <h2><%= t('articles.matka.dining_title') %></h2>
+        <p><%= t('articles.matka.dining_content') %></p>
+        <ul>
+          <li><%= t('articles.matka.boat_rental') %></li>
+          <li><%= t('articles.matka.equipment_rental') %></li>
+          <li><%= t('articles.matka.guided_tours') %></li>
+          <li><%= t('articles.matka.parking_areas') %></li>
+          <li><%= t('articles.matka.picnic_spots') %></li>
+        </ul>
+
+        <h2><%= t('articles.matka.seasons_title') %></h2>
+        <p><%= t('articles.matka.seasons_content') %></p>
+        <ul>
+          <li><strong><%= t('articles.matka.spring') %></strong></li>
+          <li><strong><%= t('articles.matka.summer') %></strong></li>
+          <li><strong><%= t('articles.matka.autumn') %></strong></li>
+          <li><strong><%= t('articles.matka.winter') %></strong></li>
+        </ul>
+
+        <div class="article-cta">
+          <h3><%= t('articles.cta.visit_matka') %></h3>
+          <p><%= t('articles.matka.cta_content') %></p>
+          <%= link_to t('articles.cta.book_adventure'), cars_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+
+      <aside class="article-sidebar">
+        <div class="info-box">
+          <h4><%= t('articles.matka.practical_title') %></h4>
+          <ul>
+            <li><strong><%= t('destinations.matka.distance') %></strong></li>
+            <li><strong><%= t('articles.matka.canyon_length') %></strong></li>
+            <li><strong><%= t('articles.matka.lake_depth_max') %></strong></li>
+            <li><strong><%= t('articles.matka.entry_fee') %></strong></li>
+            <li><strong><%= t('articles.matka.parking') %></strong></li>
+            <li><strong><%= t('articles.matka.open') %></strong></li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4><%= t('articles.matka.what_bring_title') %></h4>
+          <ul>
+            <li><%= t('articles.matka.walking_shoes') %></li>
+            <li><%= t('articles.matka.camera_photos') %></li>
+            <li><%= t('articles.matka.water_snacks') %></li>
+            <li><%= t('articles.matka.swimwear') %></li>
+            <li><%= t('articles.matka.warm_jacket') %></li>
+            <li><%= t('articles.matka.binoculars') %></li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4><%= t('articles.matka.driving_directions_title') %></h4>
+          <p><%= t('articles.matka.driving_directions_content') %></p>
+        </div>
+
+        <div class="info-box">
+          <h4><%= t('articles.matka.nearby_title') %></h4>
+          <ul>
+            <li><%= t('articles.matka.millennium_cross') %></li>
+            <li><%= t('articles.matka.skopje_center') %></li>
+            <li><%= t('articles.matka.gorno_nerezi') %></li>
+            <li><%= t('articles.matka.hiking_trails_area') %></li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Back to Homepage -->
+    <section class="article-navigation">
+      <%= link_to t('articles.navigation.back_to_home'), root_path, class: "btn btn-secondary" %>
+      <%= link_to t('articles.navigation.explore_cars'), cars_path, class: "btn btn-primary" %>
+    </section>
+  </div>
+</article>

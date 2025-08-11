@@ -1,0 +1,110 @@
+<% content_for :title, "#{t('articles.mavrovo.title')} | #{t('app.brand')}" %>
+
+<article class="article-page">
+  <div class="container">
+    <!-- Hero Section -->
+    <section class="article-hero">
+      <div class="article-hero-content">
+        <h1 class="article-title"><%= t('articles.mavrovo.title') %></h1>
+        <p class="article-subtitle"><%= t('articles.mavrovo.subtitle') %></p>
+      </div>
+      <div class="article-hero-image">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/26/88/4c/photo1jpg.jpg?w=1400&h=800&s=1" alt="Mavrovo Lake and Mountains" class="hero-image">
+      </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="article-content">
+      <div class="article-text">
+        <h2><%= t('articles.mavrovo.park_title') %></h2>
+        <p><%= t('articles.mavrovo.park_content') %></p>
+
+        <h2><%= t('articles.mavrovo.lake_title') %></h2>
+        <p><%= t('articles.mavrovo.lake_content') %></p>
+
+        <h2><%= t('articles.mavrovo.flora_title') %></h2>
+        <p><%= t('articles.mavrovo.flora_content') %></p>
+        <ul>
+          <li><strong><%= t('articles.mavrovo.wildlife') %></strong></li>
+          <li><strong><%= t('articles.mavrovo.flora') %></strong></li>
+          <li><strong><%= t('articles.mavrovo.peaks') %></strong></li>
+          <li><strong><%= t('articles.mavrovo.rivers') %></strong></li>
+        </ul>
+
+        <h2><%= t('articles.mavrovo.year_round_title') %></h2>
+        <h3><%= t('articles.mavrovo.winter_title') %></h3>
+        <p><%= t('articles.mavrovo.winter_content') %></p>
+        <ul>
+          <li><%= t('articles.mavrovo.skiing') %></li>
+          <li><%= t('articles.mavrovo.cross_country') %></li>
+          <li><%= t('articles.mavrovo.snowshoeing') %></li>
+          <li><%= t('articles.mavrovo.ice_fishing') %></li>
+        </ul>
+
+        <h3><%= t('articles.mavrovo.summer_title') %></h3>
+        <p><%= t('articles.mavrovo.summer_content') %></p>
+        <ul>
+          <li><%= t('articles.mavrovo.hiking_trails') %></li>
+          <li><%= t('articles.mavrovo.swimming_lake') %></li>
+          <li><%= t('articles.mavrovo.mountain_biking') %></li>
+          <li><%= t('articles.mavrovo.fishing') %></li>
+          <li><%= t('articles.mavrovo.camping') %></li>
+        </ul>
+
+        <h2><%= t('articles.mavrovo.villages_title') %></h2>
+        <p><%= t('articles.mavrovo.villages_content') %></p>
+        <ul>
+          <li><strong><%= t('articles.mavrovo.galicnik') %></strong></li>
+          <li><strong><%= t('articles.mavrovo.janche') %></strong></li>
+          <li><strong><%= t('articles.mavrovo.rostovo') %></strong></li>
+          <li><strong><%= t('articles.mavrovo.trebishte') %></strong></li>
+        </ul>
+
+        <h2><%= t('articles.mavrovo.heritage_title') %></h2>
+        <p><%= t('articles.mavrovo.heritage_content') %></p>
+
+        <div class="article-cta">
+          <h3><%= t('articles.cta.visit_mavrovo') %></h3>
+          <p><%= t('articles.mavrovo.cta_content') %></p>
+          <%= link_to t('articles.cta.book_mountain'), cars_path, class: "btn btn-primary" %>
+        </div>
+      </div>
+
+      <aside class="article-sidebar">
+        <div class="info-box">
+          <h4><%= t('articles.mavrovo.info_title') %></h4>
+          <ul>
+            <li><strong><%= t('destinations.mavrovo.distance') %></strong></li>
+            <li><strong><%= t('articles.mavrovo.area') %></strong></li>
+            <li><strong><%= t('articles.mavrovo.highest_peak') %></strong></li>
+            <li><strong><%= t('articles.mavrovo.best_skiing') %></strong></li>
+            <li><strong><%= t('articles.mavrovo.best_hiking') %></strong></li>
+            <li><strong><%= t('articles.mavrovo.accommodation') %></strong></li>
+          </ul>
+        </div>
+
+        <div class="info-box">
+          <h4><%= t('articles.mavrovo.driving_tips_title') %></h4>
+          <p><%= t('articles.mavrovo.driving_tips_content') %></p>
+        </div>
+
+        <div class="info-box">
+          <h4><%= t('articles.mavrovo.what_pack_title') %></h4>
+          <ul>
+            <li><%= t('articles.mavrovo.warm_clothing') %></li>
+            <li><%= t('articles.mavrovo.hiking_boots') %></li>
+            <li><%= t('articles.mavrovo.camera') %></li>
+            <li><%= t('articles.mavrovo.sunscreen') %></li>
+            <li><%= t('articles.mavrovo.rain_jacket') %></li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Back to Homepage -->
+    <section class="article-navigation">
+      <%= link_to t('articles.navigation.back_to_home'), root_path, class: "btn btn-secondary" %>
+      <%= link_to t('articles.navigation.explore_cars'), cars_path, class: "btn btn-primary" %>
+    </section>
+  </div>
+</article>

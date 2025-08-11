@@ -1,0 +1,219 @@
+<% content_for :title, "#{t('app.brand')} - #{t('app.meta.title')}" %>
+
+<!-- Filters Section -->
+<section class="filters-section">
+  <div class="container mb-2">
+    <div class="mobile-top-bar">
+      <!-- Mobile Language Switcher (hidden on desktop) -->
+      <div class="mobile-quick-call">
+        <span class="mobile-call-text"><%#= t('cars.index.call_to_book') %></span>
+        <a href="tel:+38971297645" class="quick-call-link" aria-label="<%= t('contact.info.phone.title') %>">📞</a>
+      </div>
+      <div class="mobile-language-switcher">
+        <% I18n.available_locales.each do |loc| %>
+          <% if loc == I18n.locale %>
+            <span class="lang current"><%= t("app.language.#{loc}") %></span>
+          <% else %>
+            <%= link_to t("app.language.#{loc}"), url_for(params.permit!.to_h.merge(locale: loc)), class: 'lang' %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="filters-header">
+      <h2 class="filters-title"><%= t('cars.index.find_perfect') %></h2>
+      <p class="filters-subtitle"><%= t('cars.index.subtitle1') %></p>
+      <p class="filters-subtitle"><%= t('cars.index.subtitle2') %></p>
+    </div>
+
+    <%= form_with url: cars_path, method: :get, class: "filters-form", html: { data: { controller: "filters" } } do |form| %>
+      <div class="filters-container">
+        <!-- Date Availability Filters -->
+        <div class="date-availability-section">
+          <h4 class="filter-section-title"><%= t('cars.index.check_availability') %></h4>
+          <div class="date-filters">
+            <div class="filter-group">
+              <label class="filter-label"><%= t('cars.index.pickup_date') %></label>
+              <%= form.date_field :start_date, 
+                  value: params[:start_date], 
+                  min: Date.current,
+                  class: "filter-input" %>
+            </div>
+            
+            <div class="filter-group">
+              <label class="filter-label"><%= t('cars.index.dropoff_date') %></label>
+              <%= form.date_field :end_date, 
+                  value: params[:end_date], 
+                  min: Date.current + 1.day,
+                  class: "filter-input" %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Collapsible Other Filters -->
+        <div class="other-filters-toggle-wrapper">
+          <button type="button" class="btn btn-secondary btn-filter btn-filter-toggle"
+                  data-filters-target="button"
+                  data-action="filters#toggle"
+                  data-label="<%= t('cars.index.more_filters') %>"
+                  aria-expanded="false" aria-controls="additional-filters-panel">
+            <span data-filters-target="toggleLabel">➕ <%= t('cars.index.more_filters') %></span>
+          </button>
+        </div>
+
+        <div id="additional-filters-panel" class="other-filters-section" data-filters-target="panel" hidden>
+          <h4 class="filter-section-title"><%= t('cars.index.more_filters') %></h4>
+          <div class="other-filters">
+            <div class="filter-group">
+              <label class="filter-label"><%= t('cars.index.brand') %></label>
+              <%= form.text_field :brand, value: params[:brand], placeholder: t('cars.index.brand_placeholder'), class: "filter-input" %>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label"><%= t('cars.index.year_from') %></label>
+              <%= form.number_field :year_from, value: params[:year_from], placeholder: "2020", class: "filter-input" %>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label"><%= t('cars.index.year_to') %></label>
+              <%= form.number_field :year_to, value: params[:year_to], placeholder: "2025", class: "filter-input" %>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label"><%= t('cars.index.max_price') %></label>
+              <%= form.number_field :max_price, value: params[:max_price], placeholder: "500", step: 0.01, class: "filter-input" %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="filters-actions">
+          <%= form.submit t('cars.index.filter_submit'), class: "btn btn-primary btn-filter" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<!-- Destination Cards Section -->
+<section class="destinations-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title"><%= t('destinations.section.title') %></h2>
+      <p class="section-subtitle"><%= t('destinations.section.subtitle') %></p>
+    </div>
+    
+    <div class="destinations-grid">
+      <!-- Ohrid Card -->
+      <div class="destination-card">
+        <div class="destination-image">
+          <img src="https://www.carwiz.mk/data/public/2023-03/sveti-jovan-kaneo-ohrid-rent-a-car-carwiz.jpg" alt="Church of St. John Kaneo overlooking Lake Ohrid crystal clear waters" class="card-image">
+          <div class="destination-badge"><%= t('destinations.ohrid.badge') %></div>
+        </div>
+        <div class="destination-content">
+          <h3 class="destination-title"><%= t('destinations.ohrid.title') %></h3>
+          <p class="destination-description"><%= t('destinations.ohrid.description') %></p>
+          <div class="destination-highlights">
+            <span class="highlight">🏛️ <%= t('destinations.ohrid.highlights.historic') %></span>
+            <span class="highlight">🏊‍♀️ <%= t('destinations.ohrid.highlights.lake') %></span>
+            <span class="highlight">📸 <%= t('destinations.ohrid.highlights.scenic') %></span>
+          </div>
+          <div class="destination-footer">
+            <div class="distance-info">
+              <span class="distance"><%= t('destinations.ohrid.distance') %></span>
+              <span class="drive-time"><%= t('destinations.ohrid.drive_time') %></span>
+            </div>
+            <%= link_to t('destinations.ohrid.read_more'), ohrid_article_path, class: "btn btn-outline" %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mavrovo Card -->
+      <div class="destination-card">
+        <div class="destination-image">
+          <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/26/88/4c/photo1jpg.jpg?w=1400&h=800&s=1" alt="Mavrovo National Park with pristine mountain lake and snow peaks" class="card-image">
+          <div class="destination-badge"><%= t('destinations.mavrovo.badge') %></div>
+        </div>
+        <div class="destination-content">
+          <h3 class="destination-title"><%= t('destinations.mavrovo.title') %></h3>
+          <p class="destination-description"><%= t('destinations.mavrovo.description') %></p>
+          <div class="destination-highlights">
+            <span class="highlight">🎿 <%= t('destinations.mavrovo.highlights.winter') %></span>
+            <span class="highlight">🥾 <%= t('destinations.mavrovo.highlights.hiking') %></span>
+            <span class="highlight">🏔️ <%= t('destinations.mavrovo.highlights.mountains') %></span>
+          </div>
+          <div class="destination-footer">
+            <div class="distance-info">
+              <span class="distance"><%= t('destinations.mavrovo.distance') %></span>
+              <span class="drive-time"><%= t('destinations.mavrovo.drive_time') %></span>
+            </div>
+            <%= link_to t('destinations.mavrovo.read_more'), mavrovo_article_path, class: "btn btn-outline" %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Matka Card -->
+      <div class="destination-card">
+        <div class="destination-image">
+          <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/7c/11/40/matka-canyon.jpg?w=1000&h=-1&s=1" alt="Matka Canyon with emerald waters and limestone cliffs" class="card-image">
+          <div class="destination-badge"><%= t('destinations.matka.badge') %></div>
+        </div>
+        <div class="destination-content">
+          <h3 class="destination-title"><%= t('destinations.matka.title') %></h3>
+          <p class="destination-description"><%= t('destinations.matka.description') %></p>
+          <div class="destination-highlights">
+            <span class="highlight">🚣‍♀️ <%= t('destinations.matka.highlights.kayaking') %></span>
+            <span class="highlight">🕳️ <%= t('destinations.matka.highlights.caves') %></span>
+            <span class="highlight">⛪ <%= t('destinations.matka.highlights.monasteries') %></span>
+          </div>
+          <div class="destination-footer">
+            <div class="distance-info">
+              <span class="distance"><%= t('destinations.matka.distance') %></span>
+              <span class="drive-time"><%= t('destinations.matka.drive_time') %></span>
+            </div>
+            <%= link_to t('destinations.matka.read_more'), matka_article_path, class: "btn btn-outline" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="destinations-cta">
+      <h3><%= t('destinations.section.cta_title') %></h3>
+      <p><%= t('destinations.section.cta_subtitle') %></p>
+      <%= link_to t('destinations.section.browse_cars'), cars_path, class: "btn btn-primary btn-large" %>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Cars Section -->
+<% if @featured_cars&.any? %>
+<section class="featured-cars-section">
+  <div class="container">
+    <div class="section-title">
+      <h2><%= t('home.featured_cars.title', default: 'Истакнати возила') %></h2>
+      <p><%= t('home.featured_cars.desc', default: 'Откријте ги нашите најпопуларни и зафатливи возила достапни за изнајмување.') %></p>
+    </div>
+    
+    <div class="cars-preview-grid">
+      <% @featured_cars.each do |car| %>
+        <div class="car-preview-card">
+          <div class="car-image-container">
+            <img src="<%= car.image_url %>" alt="Rent a car Skopje - <%= car.full_name %>" class="car-image">
+            <div class="car-badge"><%= t('home.featured_cars.badge', default: 'Истакнато') %></div>
+          </div>
+          
+          <div class="car-info">
+            <h3 class="car-title"><%= car.full_name %></h3>
+            <p class="car-description"><%= truncate(car.description, length: 100) %></p>
+            
+            <div class="car-footer">
+              <div class="car-price"><%= car.formatted_price %></div>
+              <%= link_to t('home.featured_cars.view_details', default: 'Погледни детали'), car_path(car), class: "btn btn-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="view-all-cta">
+      <%= link_to t('home.featured_cars.view_all', default: 'Погледни ги сите возила'), cars_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+</section>
+<% end %>

@@ -33,10 +33,7 @@
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: var(--spacing-lg);
-  background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, var(--accent-tertiary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
   animation: fadeInUp 1s ease-out;
 }
 
@@ -129,10 +126,7 @@
 .feature-icon {
   font-size: 3rem;
   margin-bottom: var(--spacing-lg);
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
 }
 
 .feature-card h3 {

@@ -10,11 +10,16 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Car rental routes
-  root "cars#index"
+  root "home#homepage"
   get "cars", to: "cars#index"
   get "cars/:id", to: "cars#show", as: :car
   get "contact", to: "home#contact", as: :contact
   get "home", to: "home#index", as: :home
+
+  # Article routes
+  get "articles/ohrid", to: "home#ohrid", as: :ohrid_article
+  get "articles/mavrovo", to: "home#mavrovo", as: :mavrovo_article
+  get "articles/matka", to: "home#matka", as: :matka_article
 
   # Booking inquiry routes (replaces old booking system)
   resources :booking_inquiries, only: [ :new, :create ] do
