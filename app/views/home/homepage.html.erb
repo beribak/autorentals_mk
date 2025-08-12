@@ -91,6 +91,43 @@
   </div>
 </section>
 
+<!-- Featured Cars Section -->
+<% if @featured_cars&.any? %>
+  <section class="featured-cars-section">
+    <div class="container">
+      <div class="section-title">
+        <h2><%= t('home.featured_cars.title', default: 'Истакнати возила') %></h2>
+        <p><%= t('home.featured_cars.desc', default: 'Откријте ги нашите најпопуларни и зафатливи возила достапни за изнајмување.') %></p>
+      </div>
+      
+      <div class="cars-preview-grid">
+        <% @featured_cars.each do |car| %>
+          <div class="car-preview-card">
+            <div class="car-image-container">
+              <img src="<%= car.image_url %>" alt="Rent a car Skopje - <%= car.full_name %>" class="car-image">
+              <div class="car-badge"><%= t('home.featured_cars.badge', default: 'Истакнато') %></div>
+            </div>
+            
+            <div class="car-info">
+              <h3 class="car-title"><%= car.full_name %></h3>
+              <p class="car-description"><%= truncate(car.description, length: 100) %></p>
+              
+              <div class="car-footer">
+                <div class="car-price"><%= car.formatted_price %></div>
+                <%= link_to t('home.featured_cars.view_details', default: 'Погледни детали'), car_path(car), class: "btn btn-primary" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      
+      <div class="view-all-cta">
+        <%= link_to t('home.featured_cars.view_all', default: 'Погледни ги сите возила'), cars_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </section>
+<% end %>
+
 <!-- Destination Cards Section -->
 <section class="destinations-section">
   <div class="container">
@@ -180,40 +217,3 @@
     </div>
   </div>
 </section>
-
-<!-- Featured Cars Section -->
-<% if @featured_cars&.any? %>
-<section class="featured-cars-section">
-  <div class="container">
-    <div class="section-title">
-      <h2><%= t('home.featured_cars.title', default: 'Истакнати возила') %></h2>
-      <p><%= t('home.featured_cars.desc', default: 'Откријте ги нашите најпопуларни и зафатливи возила достапни за изнајмување.') %></p>
-    </div>
-    
-    <div class="cars-preview-grid">
-      <% @featured_cars.each do |car| %>
-        <div class="car-preview-card">
-          <div class="car-image-container">
-            <img src="<%= car.image_url %>" alt="Rent a car Skopje - <%= car.full_name %>" class="car-image">
-            <div class="car-badge"><%= t('home.featured_cars.badge', default: 'Истакнато') %></div>
-          </div>
-          
-          <div class="car-info">
-            <h3 class="car-title"><%= car.full_name %></h3>
-            <p class="car-description"><%= truncate(car.description, length: 100) %></p>
-            
-            <div class="car-footer">
-              <div class="car-price"><%= car.formatted_price %></div>
-              <%= link_to t('home.featured_cars.view_details', default: 'Погледни детали'), car_path(car), class: "btn btn-primary" %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    
-    <div class="view-all-cta">
-      <%= link_to t('home.featured_cars.view_all', default: 'Погледни ги сите возила'), cars_path, class: "btn btn-secondary" %>
-    </div>
-  </div>
-</section>
-<% end %>

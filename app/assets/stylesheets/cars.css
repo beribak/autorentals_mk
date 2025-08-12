@@ -384,7 +384,8 @@
 }
 
 .car-specs {
-  display: flex;
+  display: none;
+  /* display: flex; */
   flex-wrap: wrap;
   gap: var(--spacing-md);
   margin-bottom: var(--spacing-lg);

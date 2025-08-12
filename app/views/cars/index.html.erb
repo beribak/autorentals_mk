@@ -3,7 +3,7 @@
 <!-- Filters Section -->
 <section class="filters-section">
   <div class="container mb-2">
-  <div class="mobile-top-bar">
+    <div class="mobile-top-bar">
       <!-- Mobile Language Switcher (hidden on desktop) -->
       <div class="mobile-quick-call">
         <span class="mobile-call-text"><%#= t('cars.index.call_to_book') %></span>
@@ -20,13 +20,9 @@
       </div>
     </div>
 
-    <div class="filters-header">
-      <h2 class="filters-title"><%= t('cars.index.find_perfect') %></h2>
-      <p class="filters-subtitle"><%= t('cars.index.subtitle1') %></p>
-      <p class="filters-subtitle"><%= t('cars.index.subtitle2') %></p>
-    </div>
+   
 
-  <%= form_with url: cars_path, method: :get, data: { turbo_frame: "cars-list" }, class: "filters-form", html: { data: { controller: "filters" } } do |form| %>
+    <%= form_with url: cars_path, method: :get, data: { turbo_frame: "cars-list" }, class: "filters-form", html: { data: { controller: "filters" } } do |form| %>
       <div class="filters-container">
         <!-- Date Availability Filters -->
         <div class="date-availability-section">
