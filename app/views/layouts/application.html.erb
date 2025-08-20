@@ -40,6 +40,7 @@
           <%= link_to t('app.nav.cars'), cars_path(locale: I18n.locale), class: "nav-link #{'active' if current_page?(cars_path)}" %>
           <%= link_to t('app.nav.about'), home_path(locale: I18n.locale), class: "nav-link #{'active' if current_page?(home_path)}" %>
           <%= link_to t('app.nav.contact'), contact_path(locale: I18n.locale), class: "nav-link #{'active' if current_page?(contact_path)}" %>
+          <%= link_to t('app.nav.partners', default: 'Partners'), partners_path(locale: I18n.locale), class: "nav-link #{'active' if current_page?(partners_path)}" %>
         </div>
         
         <div class="nav-cta">

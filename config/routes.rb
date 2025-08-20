@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "cars/:id", to: "cars#show", as: :car
   get "contact", to: "home#contact", as: :contact
   get "home", to: "home#index", as: :home
+  get "partners", to: "home#partners", as: :partners
 
   # Article routes
   get "articles/ohrid", to: "home#ohrid", as: :ohrid_article

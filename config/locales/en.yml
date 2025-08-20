@@ -514,3 +514,7 @@ en:
       skopje_center: "Skopje city center"
       gorno_nerezi: "Gorno Nerezi village"
       hiking_trails_area: "Various hiking trails in the area"
+  partners:
+    title: "Our Partners"
+    description: "Meet the companies collaborating with us to bring you the best services and experiences."
+    logo_alt: "%{name} Logo"
