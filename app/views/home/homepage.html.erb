@@ -103,20 +103,57 @@
       <div class="cars-preview-grid">
         <% @featured_cars.each do |car| %>
           <div class="car-preview-card">
-            <div class="car-image-container">
-              <img src="<%= car.image_url %>" alt="Rent a car Skopje - <%= car.full_name %>" class="car-image">
-              <div class="car-badge"><%= t('home.featured_cars.badge', default: 'Истакнато') %></div>
-            </div>
-            
-            <div class="car-info">
-              <h3 class="car-title"><%= car.full_name %></h3>
-              <p class="car-description"><%= truncate(car.description, length: 100) %></p>
+            <%= link_to car_path(car), class: "car-card-link", data: { turbo_frame: "_top" } do %>
+              <div class="car-image-container">
+                <img src="<%= car.image_url %>" alt="Rent a car Skopje - <%= car.full_name %>" class="car-image">
+                <div class="car-badge"><%= t('home.featured_cars.badge', default: 'Истакнато') %></div>
+              </div>
+              
+              <div class="car-info">
+                <h3 class="car-title"><%= car.full_name %></h3>
+                <p class="car-description"><%= truncate(car.description, length: 100) %></p>
+              
+              <!-- Car Specifications -->
+              <% if car.passengers.present? || car.transmission.present? || car.gas.present? || car.doors.present? || car.trunk_size.present? %>
+                <div class="car-new-specs">
+                  <% if car.passengers.present? %>
+                    <div class="car-new-spec">
+                      <span class="car-new-spec-icon">�</span>
+                      <span><%= car.passengers %> passengers</span>
+                    </div>
+                  <% end %>
+                  <% if car.transmission.present? %>
+                    <div class="car-new-spec">
+                      <span class="car-new-spec-icon">⚙️</span>
+                      <span><%= t("cars.transmission_options.#{car.transmission}", default: car.transmission.titleize) %></span>
+                    </div>
+                  <% end %>
+                  <% if car.gas.present? %>
+                    <div class="car-new-spec">
+                      <span class="car-new-spec-icon">⛽</span>
+                      <span><%= t("cars.gas_options.#{car.gas}", default: car.gas.titleize) %></span>
+                    </div>
+                  <% end %>
+                  <% if car.doors.present? %>
+                    <div class="car-new-spec">
+                      <span class="car-new-spec-icon">�</span>
+                      <span><%= car.doors %> doors</span>
+                    </div>
+                  <% end %>
+                  <% if car.trunk_size.present? %>
+                    <div class="car-new-spec">
+                      <span class="car-new-spec-icon">🧳</span>
+                      <span><%= car.trunk_size %> trunk</span>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
               
               <div class="car-footer">
                 <div class="car-price"><%= car.formatted_price %></div>
-                <%= link_to t('home.featured_cars.view_details', default: 'Погледни детали'), car_path(car), class: "btn btn-primary" %>
               </div>
-            </div>
+              </div>
+            <% end %>
           </div>
         <% end %>
       </div>

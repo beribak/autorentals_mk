@@ -87,6 +87,56 @@
                 <div class="spec-value"><%= t('cars.show.cleaning_detailed') %></div>
               </div>
             </div>
+            
+            <% if @car.passengers.present? %>
+            <div class="spec-item">
+              <span class="spec-icon">�</span>
+              <div class="spec-info">
+                <div class="spec-label"><%= t('cars.show.passengers') %></div>
+                <div class="spec-value"><%= @car.passengers %></div>
+              </div>
+            </div>
+            <% end %>
+            
+            <% if @car.transmission.present? %>
+            <div class="spec-item">
+              <span class="spec-icon">⚙️</span>
+              <div class="spec-info">
+                <div class="spec-label"><%= t('cars.show.transmission') %></div>
+                <div class="spec-value"><%= t("cars.transmission_options.#{@car.transmission}", default: @car.transmission.titleize) %></div>
+              </div>
+            </div>
+            <% end %>
+            
+            <% if @car.gas.present? %>
+            <div class="spec-item">
+              <span class="spec-icon">⛽</span>
+              <div class="spec-info">
+                <div class="spec-label"><%= t('cars.show.fuel_type') %></div>
+                <div class="spec-value"><%= t("cars.gas_options.#{@car.gas}", default: @car.gas.titleize) %></div>
+              </div>
+            </div>
+            <% end %>
+            
+            <% if @car.doors.present? %>
+            <div class="spec-item">
+              <span class="spec-icon">�</span>
+              <div class="spec-info">
+                <div class="spec-label"><%= t('cars.show.doors') %></div>
+                <div class="spec-value"><%= @car.doors %></div>
+              </div>
+            </div>
+            <% end %>
+            
+            <% if @car.trunk_size.present? %>
+            <div class="spec-item">
+              <span class="spec-icon">🧳</span>
+              <div class="spec-info">
+                <div class="spec-label"><%= t('cars.show.trunk_size') %></div>
+                <div class="spec-value"><%= @car.trunk_size %></div>
+              </div>
+            </div>
+            <% end %>
           </div>
         </div>
         

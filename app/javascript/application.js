@@ -40,3 +40,27 @@ const attachDatePickerAutoOpen = () => {
 
 document.addEventListener('turbo:load', attachDatePickerAutoOpen);
 document.addEventListener('turbo:frame-load', attachDatePickerAutoOpen);
+
+// Prevent inquiry button clicks from triggering the card link
+const preventCardLinkOnButtonClick = () => {
+	document.querySelectorAll('.car-book-btn').forEach(button => {
+		if (button.dataset.clickHandlerBound) return;
+		button.dataset.clickHandlerBound = 'true';
+
+		button.addEventListener('click', (e) => {
+			e.stopPropagation();
+		});
+	});
+
+	document.querySelectorAll('.car-action-buttons').forEach(buttonContainer => {
+		if (buttonContainer.dataset.clickHandlerBound) return;
+		buttonContainer.dataset.clickHandlerBound = 'true';
+
+		buttonContainer.addEventListener('click', (e) => {
+			e.stopPropagation();
+		});
+	});
+};
+
+document.addEventListener('turbo:load', preventCardLinkOnButtonClick);
+document.addEventListener('turbo:frame-load', preventCardLinkOnButtonClick);

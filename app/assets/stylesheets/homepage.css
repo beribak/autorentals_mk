@@ -159,6 +159,19 @@
   border: 1px solid var(--border-color);
   transition: all var(--transition-normal);
   position: relative;
+  cursor: pointer;
+}
+
+.car-preview-card .car-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.car-preview-card .car-card-link:hover {
+  text-decoration: none;
+  color: inherit;
 }
 
 .car-preview-card::before {

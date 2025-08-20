@@ -283,12 +283,25 @@
 }
 
 .car-card {
-  background: var(--bg-secondary);
+  /* background: var(--bg-secondary); */
   border-radius: var(--radius-xl);
   overflow: hidden;
   border: 1px solid var(--border-color);
   transition: all var(--transition-normal);
   position: relative;
+  cursor: pointer;
+}
+
+.car-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.car-card-link:hover {
+  text-decoration: none;
+  color: inherit;
 }
 
 .car-card::before {
@@ -364,7 +377,7 @@
 }
 
 .car-details {
-  padding: var(--spacing-lg);
+  padding: var(--spacing-lg) var(--spacing-lg) 0 var(--spacing-lg);
 }
 
 .car-brand {
@@ -407,6 +420,34 @@
   color: var(--accent-primary);
 }
 
+/* New Car Specifications */
+.car-new-specs {
+  display: flex;
+  /* flex-direction: column; */
+  gap: var(--spacing-sm);
+  margin-bottom: 0;
+  padding: 0;
+  /* background: var(--bg-tertiary); */
+  /* border-radius: var(--radius-md); */
+  /* border: 1px solid var(--border-color); */
+}
+
+.car-new-spec {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.car-new-spec-icon {
+  font-size: 1.1rem;
+  width: 20px;
+  text-align: center;
+  color: var(--accent-primary);
+}
+
 .car-description-preview {
   color: var(--text-secondary);
   font-size: 0.9rem;
@@ -420,9 +461,13 @@
 }
 
 .car-actions {
+  padding: var(--spacing-md);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .car-price-display {
@@ -443,31 +488,28 @@
   color: var(--text-muted);
 }
 
-.car-view-btn {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  font-size: 0.9rem;
-}
-
 /* Enhanced Car Action Buttons */
 .car-action-buttons {
   display: flex;
+  padding: 15px;
   gap: var(--spacing-sm);
   margin-top: var(--spacing-md);
+  position: relative;
+  z-index: 11;
 }
 
-.car-view-btn, .car-book-btn {
+.car-book-btn {
   flex: 1;
   text-align: center;
   font-size: 0.7rem;
   font-weight: 600;
   padding: var(--spacing-sm) var(--spacing-md);
-}
-
-.car-book-btn {
   background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   border: none;
   position: relative;
   overflow: hidden;
+  pointer-events: auto;
+  z-index: 12;
 }
 
 .car-book-btn::before {
@@ -483,18 +525,6 @@
 
 .car-book-btn:hover::before {
   left: 100%;
-}
-
-.car-view-btn {
-  background: var(--bg-tertiary);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
-}
-
-.car-view-btn:hover {
-  background: var(--accent-primary);
-  color: white;
-  border-color: var(--accent-primary);
 }
 
 /* Empty State */
@@ -641,11 +671,6 @@
     align-items: stretch;
   }
   
-  .car-view-btn {
-    width: 100%;
-    justify-content: center;
-  }
-  
   .date-filters {
     grid-template-columns: 1fr;
   }
@@ -695,12 +720,25 @@ input[type="date"],
   }
   
   .car-details {
-    padding: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-md) 0 var(--spacing-md);
   }
   
   .car-specs {
     /* flex-direction: column; */
     gap: var(--spacing-sm);
+  }
+  
+  .car-new-specs {
+    padding: var(--spacing-sm);
+    gap: var(--spacing-xs);
+  }
+  
+  .car-new-spec {
+    font-size: 0.85rem;
+  }
+  
+  .car-new-spec-icon {
+    font-size: 1rem;
   }
 }
 
