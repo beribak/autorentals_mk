@@ -25,6 +25,13 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="<%= t('app.meta.title') %>" />
+    <meta property="og:description" content="Welcome to AutoRentalsMK, your trusted car rental service in Macedonia." />
+    <meta property="og:image" content="https://example.com/path-to-your-image.jpg" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:type" content="website" />
   </head>
 
   <body class="light-theme">
