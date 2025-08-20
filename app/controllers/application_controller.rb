@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   before_action :set_locale
+  before_action :set_default_format
   helper_method :switch_locale_params
 
   private
@@ -21,5 +22,9 @@ class ApplicationController < ActionController::Base
 
   def default_url_options
     { locale: (I18n.locale unless I18n.locale == I18n.default_locale) }.compact
+  end
+
+  def set_default_format
+    request.format = :html if request.format.to_s == '*/*'
   end
 end
