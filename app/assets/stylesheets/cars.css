@@ -286,6 +286,7 @@
   /* background: var(--bg-secondary); */
   border-radius: var(--radius-xl);
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--border-color);
   transition: all var(--transition-normal);
   position: relative;
@@ -630,6 +631,16 @@
 @media (max-width: 768px) {
   .cars-header h1 {
     font-size: 2.5rem;
+  }
+
+  .car-action-buttons {
+    padding: 5px;
+  }
+
+  .car-price-display {
+    padding: var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
   }
 
   /* Show mobile language switcher only on mobile */
