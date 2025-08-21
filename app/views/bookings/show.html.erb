@@ -95,6 +95,45 @@
           </div>
         </div>
 
+        <div class="booking-info-section">
+          <h3>Плаќање</h3>
+          <div class="info-row">
+            <span class="label">Начин на плаќање:</span>
+            <span class="value">
+              <% if @booking.payment_method == "pay_now" %>
+                Онлајн плаќање (Stripe)
+              <% else %>
+                Плаќање при подигање
+              <% end %>
+            </span>
+          </div>
+          <div class="info-row">
+            <span class="label">Статус на плаќањето:</span>
+            <span class="value">
+              <div class="payment-status-badge payment-status-<%= @booking.payment_status %>">
+                <% case @booking.payment_status %>
+                <% when "payment_paid" %>
+                  ✅ Платено
+                <% when "payment_pending" %>
+                  ⏳ Во очекување
+                <% when "payment_failed" %>
+                  ❌ Неуспешно
+                <% when "payment_cancelled" %>
+                  🚫 Откажано
+                <% else %>
+                  ⏳ Во очекување
+                <% end %>
+              </div>
+            </span>
+          </div>
+          <% if @booking.stripe_payment_intent_id.present? %>
+            <div class="info-row">
+              <span class="label">Референца за плаќање:</span>
+              <span class="value payment-reference"><%= @booking.stripe_payment_intent_id %></span>
+            </div>
+          <% end %>
+        </div>
+
         <div class="booking-status">
           <div class="status-badge status-<%= @booking.status %>">
             <%= @booking.status.humanize %>

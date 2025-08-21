@@ -32,12 +32,15 @@ Rails.application.routes.draw do
   # Nested route for creating inquiries from cars
   resources :cars, only: [] do
     resources :booking_inquiries, only: [ :new, :create ], path: "inquiry"
+    resources :bookings, only: [ :new, :create ]
   end
 
   # Keep booking routes for existing bookings (view only)
   resources :bookings, only: [ :index, :show ] do
     member do
       patch :cancel
+      get :payment_success
+      get :payment_cancel
     end
   end
 

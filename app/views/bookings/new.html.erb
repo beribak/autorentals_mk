@@ -1,50 +1,66 @@
-<% content_for :title, "#{t('bookings.new.title', car: @car.full_name)} - #{t('app.brand')}" %>
+<% content_for :title, "#{t('bookings.new.title', default: 'Book Car')}#{" - #{@car.full_name}" if @car} - #{t('app.brand')}" %>
 
 <section class="booking-header">
   <div class="container">
-    <div class="back-nav">
-      <%= link_to car_path(@car), class: "back-link" do %>
-        <span class="back-icon">←</span>
-  <%= t('booking_inquiries.new.back_to_car') %>
-      <% end %>
-    </div>
+    <% if @car %>
+      <div class="back-nav">
+        <%= link_to car_path(@car), class: "back-link" do %>
+          <span class="back-icon">←</span>
+          <%= t('booking_inquiries.new.back_to_car') %>
+        <% end %>
+      </div>
+    <% end %>
     
-  <h1><%= t('bookings.new.heading') %></h1>
-  <p><%= t('bookings.new.subheading_html', car: @car.full_name).html_safe %></p>
+    <h1><%= t('bookings.new.heading', default: 'Book Your Car') %></h1>
+    <p><%= t('bookings.new.intro', default: 'Complete your booking details below') %></p>
   </div>
 </section>
 
 <section class="booking-content">
   <div class="container">
     <div class="booking-layout">
-      <!-- Car Summary -->
-      <div class="car-summary-card">
-        <div class="car-summary-image">
-          <img src="<%= @car.image_url %>" alt="Rent a car Skopje - <%= @car.full_name %>" class="summary-car-image">
-        </div>
-        <div class="car-summary-details">
-          <h3><%= @car.full_name %></h3>
-          <div class="summary-price">
-            <span class="price-amount">€<%= @car.price_per_day %></span>
-            <span class="price-unit"><%= t('booking_inquiries.new.price_per_day') %></span>
+      <!-- Car Summary (if car is selected) -->
+      <% if @car %>
+        <div class="car-summary-card">
+          <div class="car-summary-image">
+            <img src="<%= @car.image_url %>" alt="Rent a car Skopje - <%= @car.full_name %>" class="summary-car-image">
           </div>
-          <div class="car-features">
-            <div class="feature"><%= t('booking_inquiries.new.car_fully_insured') %></div>
-            <div class="feature"><%= t('booking_inquiries.new.car_well_maintained') %></div>
-            <div class="feature"><%= t('booking_inquiries.new.car_available') %></div>
+          <div class="car-summary-details">
+            <h3><%= @car.full_name %></h3>
+            <div class="summary-price">
+              <span class="price-amount">€<%= @car.price_per_day %></span>
+              <span class="price-unit"><%= t('booking_inquiries.new.price_per_day') %></span>
+            </div>
+            <div class="car-features">
+              <div class="feature"><%= t('booking_inquiries.new.car_fully_insured') %></div>
+              <div class="feature"><%= t('booking_inquiries.new.car_well_maintained') %></div>
+              <div class="feature"><%= t('booking_inquiries.new.car_available') %></div>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
 
       <!-- Booking Form -->
       <div class="booking-form-card">
-        <!-- Error Messages -->
-        <% if @booking.errors.any? || (@customer && @customer.errors.any?) %>
+        <% if flash[:alert] %>
           <div class="error-messages">
-            <h4><%= t('bookings.new.correct_errors') %></h4>
+            <h4>Грешка</h4>
+            <p><%= flash[:alert] %></p>
+          </div>
+        <% end %>
+
+        <% total_errors = 0 %>
+        <% total_errors += @booking.errors.count if @booking %>
+        <% total_errors += @customer.errors.count if @customer %>
+
+        <% if total_errors > 0 %>
+          <div class="error-messages">
+            <h4><%= pluralize(total_errors, "грешка") %> го спречи зачувувањето на резервацијата:</h4>
             <ul>
-              <% @booking.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
+              <% if @booking && @booking.errors.any? %>
+                <% @booking.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
               <% end %>
               <% if @customer && @customer.errors.any? %>
                 <% @customer.errors.full_messages.each do |message| %>
@@ -55,48 +71,41 @@
           </div>
         <% end %>
 
-        <%= form_with model: [@car, @booking], class: "booking-form" do |form| %>
+        <%= form_with model: [@car, @booking], url: car_bookings_path(@car), class: "booking-form", data: { turbo: false } do |form| %>
           <div class="form-section">
             <h3><%= t('booking_inquiries.new.dates_heading') %></h3>
             <div class="date-inputs">
               <div class="date-group">
                 <%= form.label :start_date, t('cars.index.pickup_date'), class: "form-label" %>
                 <%= form.date_field :start_date, 
-                    class: "form-input", 
+                    class: "form-input border", 
                     min: Date.current,
                     value: @booking.start_date,
-                    data: { booking_target: "startDate", action: "change->booking#calculatePrice" } %>
+                    required: true %>
               </div>
               <div class="date-group">
                 <%= form.label :end_date, t('cars.index.dropoff_date'), class: "form-label" %>
                 <%= form.date_field :end_date, 
-                    class: "form-input", 
+                    class: "form-input border", 
                     min: Date.current + 1.day,
                     value: @booking.end_date,
-                    data: { booking_target: "endDate", action: "change->booking#calculatePrice" } %>
+                    required: true %>
               </div>
-            </div>
-            
-            <div class="availability-status" data-booking-target="availabilityStatus">
-              <!-- Availability status will be shown here -->
             </div>
           </div>
 
           <div class="form-section">
             <h3><%= t('booking_inquiries.new.location_heading') %></h3>
-            <div class="location-inputs">
-              <div class="input-group">
-                <%= form.label :pickup_location, t('bookings.new.pickup_location'), class: "form-label" %>
-                <%= form.text_field :pickup_location, 
-                    placeholder: t('bookings.new.pickup_location_placeholder'), 
-                    class: "form-input" %>
-              </div>
-              <div class="input-group">
-                <%= form.label :dropoff_location, t('bookings.new.dropoff_location'), class: "form-label" %>
-                <%= form.text_field :dropoff_location, 
-                    placeholder: t('bookings.new.dropoff_location_placeholder'), 
-                    class: "form-input" %>
-              </div>
+            <div class="input-group">
+              <%= form.label :pickup_location, t('booking_inquiries.new.pickup_location'), class: "form-label" %>
+              <%= form.select :pickup_location, 
+                  [
+                    [t('booking_inquiries.new.choose_location'), ""],
+                    [t('booking_inquiries.new.location_option_center'), t('booking_inquiries.new.location_option_center')],
+                    [t('booking_inquiries.new.location_option_airport'), t('booking_inquiries.new.location_option_airport')]
+                  ],
+                  { selected: @booking.pickup_location }, 
+                  { class: "form-input border", required: true } %>
             </div>
           </div>
 
@@ -107,87 +116,96 @@
                 <div class="name-row">
                   <div class="input-group">
                     <%= customer_form.label :first_name, t('booking_inquiries.new.first_name'), class: "form-label" %>
-                    <%= customer_form.text_field :first_name, class: "form-input" %>
+                    <%= customer_form.text_field :first_name, class: "form-input border", required: true %>
                   </div>
                   <div class="input-group">
                     <%= customer_form.label :last_name, t('booking_inquiries.new.last_name'), class: "form-label" %>
-                    <%= customer_form.text_field :last_name, class: "form-input" %>
+                    <%= customer_form.text_field :last_name, class: "form-input border", required: true %>
                   </div>
                 </div>
                 
                 <div class="contact-row">
                   <div class="input-group">
                     <%= customer_form.label :email, t('booking_inquiries.new.email'), class: "form-label" %>
-                    <%= customer_form.email_field :email, class: "form-input" %>
+                    <%= customer_form.email_field :email, class: "form-input border", required: true %>
                   </div>
                   <div class="input-group">
                     <%= customer_form.label :phone, t('booking_inquiries.new.phone'), class: "form-label" %>
-                    <%= customer_form.telephone_field :phone, class: "form-input" %>
+                    <%= customer_form.telephone_field :phone, class: "form-input border", required: true %>
                   </div>
-                </div>
-
-                <div class="input-group">
-                  <%= customer_form.label :address, t('bookings.new.address'), class: "form-label" %>
-                  <%= customer_form.text_area :address, rows: 2, class: "form-input" %>
-                </div>
-
-                <div class="address-row">
-                  <div class="input-group">
-                    <%= customer_form.label :city, t('bookings.new.city'), class: "form-label" %>
-                    <%= customer_form.text_field :city, class: "form-input" %>
-                  </div>
-                  <div class="input-group">
-                    <%= customer_form.label :state, t('bookings.new.state'), class: "form-label" %>
-                    <%= customer_form.text_field :state, class: "form-input" %>
-                  </div>
-                  <div class="input-group">
-                    <%= customer_form.label :zip_code, t('bookings.new.zip_code'), class: "form-label" %>
-                    <%= customer_form.text_field :zip_code, class: "form-input" %>
-                  </div>
-                </div>
-
-                <div class="input-group">
-                  <%= customer_form.label :country, t('bookings.new.country'), class: "form-label" %>
-                  <%= customer_form.text_field :country, value: t('bookings.new.country_default'), class: "form-input" %>
                 </div>
               </div>
             <% end %>
           </div>
 
           <div class="form-section">
-            <h3><%= t('booking_inquiries.new.additional_info_heading') %></h3>
-            <div class="input-group">
-              <%= form.label :special_requests, t('bookings.new.special_requests'), class: "form-label" %>
-              <%= form.text_area :special_requests, 
-                  rows: 3, 
-                  placeholder: t('bookings.new.special_requests_placeholder'), 
-                  class: "form-input" %>
+            <h3>Payment Method</h3>
+            <div class="payment-methods">
+              <div class="payment-option">
+                <%= form.radio_button :payment_method, "pay_now", 
+                    id: "payment_pay_now", 
+                    class: "payment-radio", 
+                    checked: @booking.payment_method == "pay_now" %>
+                <%= form.label :payment_method, "Pay Now (Online)", 
+                    for: "payment_pay_now", 
+                    class: "payment-label" %>
+                <p class="payment-description">Secure payment with Stripe. Complete your booking instantly.</p>
+              </div>
+              
+              <div class="payment-option">
+                <%= form.radio_button :payment_method, "pay_on_pickup", 
+                    id: "payment_pay_on_pickup", 
+                    class: "payment-radio", 
+                    checked: @booking.payment_method == "pay_on_pickup" || @booking.payment_method.blank? %>
+                <%= form.label :payment_method, "Pay on Pickup", 
+                    for: "payment_pay_on_pickup", 
+                    class: "payment-label" %>
+                <p class="payment-description">Pay when you collect your vehicle. Cash or card accepted.</p>
+              </div>
             </div>
           </div>
 
-          <!-- Price Summary -->
-          <div class="price-summary" data-booking-target="priceSummary" style="display: none;">
-            <div class="summary-row">
-              <span><%= t('bookings.new.daily_rate') %>:</span>
-              <span data-booking-target="dailyRate">€<%= @car.price_per_day %></span>
-            </div>
-            <div class="summary-row">
-              <span><%= t('bookings.new.duration') %>:</span>
-              <span data-booking-target="duration">0 дена</span>
-            </div>
-            <div class="summary-row total">
-              <span><%= t('bookings.new.total') %>:</span>
-              <span data-booking-target="totalPrice">€0.00</span>
+          <div class="form-section">
+            <h3><%= t('booking_inquiries.new.additional_info_heading') %></h3>
+            <div class="input-group">
+              <%= form.label :special_requests, t('booking_inquiries.new.message_optional'), class: "form-label" %>
+              <%= form.text_area :special_requests, 
+                  rows: 4, 
+                  placeholder: t('booking_inquiries.new.message_placeholder'), 
+                  class: "form-input border" %>
             </div>
           </div>
 
           <!-- Submit Button -->
           <div class="form-actions">
-            <%= form.submit t('bookings.new.book_now'), 
+            <%= form.submit t('bookings.new.book_now', default: 'Book Now'), 
                 class: "btn btn-primary btn-large" %>
-            <p class="form-note"><%= t('bookings.new.review_note') %></p>
+            <p class="form-note"><%= t('bookings.new.note_response', default: 'We will contact you within 2 hours to confirm your booking.') %></p>
           </div>
         <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Information Section -->
+<section class="info-section" style="background: var(--bg-secondary); padding: var(--spacing-2xl) 0;">
+  <div class="container">
+    <div class="info-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-xl);">
+      <div class="info-card" style="text-align: center; padding: var(--spacing-xl); background: var(--bg-primary); border-radius: var(--radius-lg);">
+        <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">⚡</div>
+            <h4><%= t('booking_inquiries.new.info_cards.fast_response_title') %></h4>
+            <p><%= t('booking_inquiries.new.info_cards.fast_response_body') %></p>
+      </div>
+      <div class="info-card" style="text-align: center; padding: var(--spacing-xl); background: var(--bg-primary); border-radius: var(--radius-lg);">
+        <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">💰</div>
+            <h4><%= t('booking_inquiries.new.info_cards.best_prices_title') %></h4>
+            <p><%= t('booking_inquiries.new.info_cards.best_prices_body') %></p>
+      </div>
+      <div class="info-card" style="text-align: center; padding: var(--spacing-xl); background: var(--bg-primary); border-radius: var(--radius-lg);">
+        <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">🛡️</div>
+            <h4><%= t('booking_inquiries.new.info_cards.safety_title') %></h4>
+            <p><%= t('booking_inquiries.new.info_cards.safety_body') %></p>
       </div>
     </div>
   </div>

@@ -149,7 +149,7 @@
         <!-- Actions -->
         <div class="car-actions-section">
           <% if @car.available? %>
-            <%= link_to new_car_booking_inquiry_path(@car), class: "book-now-btn" do %>
+            <%= link_to new_car_booking_path(@car), class: "book-now-btn" do %>
               <%= t('cars.show.send_inquiry') %> - €<%= @car.price_per_day %>/<%= t('cars.show.per_day') %>
             <% end %>
           <% else %>

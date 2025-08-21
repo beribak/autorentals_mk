@@ -12,6 +12,15 @@ class Booking < ApplicationRecord
     refunded: 5
   }
 
+  # Enum for payment status
+  enum :payment_status, {
+    payment_pending: 0,
+    payment_paid: 1,
+    payment_failed: 2,
+    payment_cancelled: 3,
+    payment_refunded: 4
+  }
+
   # Validations
   validates :start_date, :end_date, presence: true
   validates :pickup_location, presence: true
@@ -23,7 +32,7 @@ class Booking < ApplicationRecord
 
   # Scopes
   scope :active, -> { where(status: [ :pending, :confirmed, :in_progress ]) }
-  scope :for_date_range, ->(start_date, end_date) { where("start_date <= ? AND end_date >= ?", end_date, start_date) }
+  scope :for_date_range, ->(start_date, end_date) { where("start_date < ? AND end_date > ?", end_date, start_date) }
 
   # Callbacks
   before_validation :calculate_total_price

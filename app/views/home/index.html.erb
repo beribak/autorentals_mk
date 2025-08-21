@@ -139,10 +139,10 @@
 
             <div class="car-action-buttons">
               <% if @date_filtered %>
-                <%= link_to t('cars.index.send_inquiry'), new_car_booking_inquiry_path(car, start_date: @filter_start_date, end_date: @filter_end_date), 
+                <%= link_to t('cars.index.send_inquiry'), new_car_booking_path(car, start_date: @filter_start_date, end_date: @filter_end_date), 
                     class: "btn btn-primary car-book-btn", data: { turbo_frame: "_top" } %>
               <% else %>
-                <%= link_to t('cars.index.send_inquiry'), new_car_booking_inquiry_path(car), 
+                <%= link_to t('cars.index.send_inquiry'), new_car_booking_path(car), 
                     class: "btn btn-primary car-book-btn", data: { turbo_frame: "_top" } %>
               <% end %>
             </div>

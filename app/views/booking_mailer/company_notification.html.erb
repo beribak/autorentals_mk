@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нова резервација - AutoRentalsMK</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+      }
+      .container {
+        background-color: white;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #e9ecef;
+        background-color: #007bff;
+        color: white;
+        margin: -30px -30px 30px -30px;
+        padding: 30px;
+        border-radius: 8px 8px 0 0;
+      }
+      .notification-icon {
+        font-size: 48px;
+        margin-bottom: 10px;
+      }
+      .booking-number {
+        background-color: rgba(255,255,255,0.2);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 6px;
+        display: inline-block;
+        font-weight: bold;
+        margin-top: 15px;
+      }
+      .section {
+        margin: 25px 0;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 6px;
+      }
+      .section h3 {
+        margin-top: 0;
+        color: #007bff;
+        border-bottom: 1px solid #dee2e6;
+        padding-bottom: 10px;
+      }
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid #e9ecef;
+      }
+      .info-row:last-child {
+        border-bottom: none;
+      }
+      .label {
+        font-weight: bold;
+        color: #6c757d;
+      }
+      .value {
+        color: #212529;
+      }
+      .vehicle-summary {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        background-color: white;
+        border-radius: 6px;
+        margin-top: 10px;
+      }
+      .vehicle-image {
+        width: 80px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+      .vehicle-details h4 {
+        margin: 0 0 5px 0;
+        color: #212529;
+      }
+      .vehicle-price {
+        color: #007bff;
+        font-weight: bold;
+      }
+      .price-breakdown {
+        background-color: #e8f5e8;
+        padding: 20px;
+        border-radius: 6px;
+        margin: 20px 0;
+        border-left: 4px solid #28a745;
+      }
+      .breakdown-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 5px 0;
+      }
+      .breakdown-row.total {
+        border-top: 2px solid #28a745;
+        padding-top: 10px;
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 1.1em;
+        color: #28a745;
+      }
+      .urgent-info {
+        background-color: #fff3cd;
+        border: 1px solid #ffeaa7;
+        padding: 20px;
+        border-radius: 6px;
+        margin: 20px 0;
+        text-align: center;
+      }
+      .urgent-info h4 {
+        color: #856404;
+        margin-top: 0;
+      }
+      .action-buttons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      .action-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-weight: bold;
+      }
+      .action-btn.primary {
+        background-color: #28a745;
+      }
+      .action-btn.secondary {
+        background-color: #6c757d;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #e9ecef;
+        color: #6c757d;
+        font-size: 14px;
+      }
+      .status-badge {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        background-color: #ffc107;
+        color: #212529;
+      }
+      .timestamp {
+        background-color: #e9ecef;
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #6c757d;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="notification-icon">🚗</div>
+        <h1>Нова резервација!</h1>
+        <p>Клиент прави резервација на возило</p>
+        <div class="booking-number">Резервација #<%= @booking.id %></div>
+      </div>
+
+      <div class="timestamp">
+        Креирано на: <%= @booking.created_at.strftime("%d %B, %Y во %H:%M") %>
+      </div>
+
+      <div class="section">
+        <h3>📋 Детали за резервацијата</h3>
+        <div class="info-row">
+          <span class="label">Датум на подигање:</span>
+          <span class="value"><%= @booking.start_date.strftime("%d %B, %Y") %></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Датум на враќање:</span>
+          <span class="value"><%= @booking.end_date.strftime("%d %B, %Y") %></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Времетраење:</span>
+          <span class="value"><%= @booking.duration_in_days %> ден<%= @booking.duration_in_days > 1 ? 'а' : '' %></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Локација за подигање:</span>
+          <span class="value"><%= @booking.pickup_location %></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Статус:</span>
+          <span class="value">
+            <span class="status-badge">На чекање</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>🚗 Возило</h3>
+        <div class="vehicle-summary">
+          <img src="<%= @booking.car.image_url %>" alt="<%= @booking.car.full_name %>" class="vehicle-image">
+          <div class="vehicle-details">
+            <h4><%= @booking.car.full_name %></h4>
+            <div class="vehicle-price">€<%= @booking.car.price_per_day %>/ден</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>👤 Информации за клиентот</h3>
+        <div class="info-row">
+          <span class="label">Име и презиме:</span>
+          <span class="value"><%= @booking.customer_name %></span>
+        </div>
+        <div class="info-row">
+          <span class="label">Е-пошта:</span>
+          <span class="value">
+            <a href="mailto:<%= @booking.customer.email %>"><%= @booking.customer.email %></a>
+          </span>
+        </div>
+        <div class="info-row">
+          <span class="label">Телефон:</span>
+          <span class="value">
+            <a href="tel:<%= @booking.customer.phone %>"><%= @booking.customer.phone %></a>
+          </span>
+        </div>
+      </div>
+
+      <% if @booking.special_requests.present? %>
+        <div class="section">
+          <h3>📝 Специјални барања</h3>
+          <p style="background-color: white; padding: 15px; border-radius: 4px; margin: 10px 0; font-style: italic;">
+            "<%= @booking.special_requests %>"
+          </p>
+        </div>
+      <% end %>
+
+      <div class="price-breakdown">
+        <h4 style="margin-top: 0; color: #28a745;">💰 Финансиски преглед</h4>
+        <div class="breakdown-row">
+          <span>Дневна стапка:</span>
+          <span>€<%= @booking.car.price_per_day %></span>
+        </div>
+        <div class="breakdown-row">
+          <span>Времетраење:</span>
+          <span><%= @booking.duration_in_days %> ден<%= @booking.duration_in_days > 1 ? 'а' : '' %></span>
+        </div>
+        <div class="breakdown-row total">
+          <span>Вкупен износ:</span>
+          <span>€<%= @booking.total_price %></span>
+        </div>
+      </div>
+
+      <div class="urgent-info">
+        <h4>⚠️ Потребни се итни активности!</h4>
+        <p>Новата резервација бара внимание. Ве молиме контактирајте го клиентот во најкраток можен рок за потврда на деталите.</p>
+      </div>
+
+      <div class="action-buttons">
+        <a href="tel:<%= @booking.customer.phone %>" class="action-btn primary">
+          📞 Повикај клиент
+        </a>
+        <a href="mailto:<%= @booking.customer.email %>" class="action-btn">
+          ✉️ Испрати е-пошта
+        </a>
+        <a href="<%= Rails.application.routes.url_helpers.admin_cars_url %>" class="action-btn secondary">
+          🔧 Админ панел
+        </a>
+      </div>
+
+      <div class="footer">
+        <p><strong>AutoRentalsMK - Систем за резервации</strong></p>
+        <p>Автоматски генерирана порака од системот за резервации</p>
+        <p>Датум: <%= Date.current.strftime("%d %B, %Y") %></p>
+      </div>
+    </div>
+  </body>
+</html>
