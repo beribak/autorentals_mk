@@ -2,6 +2,9 @@ class Booking < ApplicationRecord
   belongs_to :customer
   belongs_to :car
 
+  # Payment method attribute
+  attribute :payment_method, :string
+
   # Enum for booking status
   enum :status, {
     pending: 0,
@@ -12,6 +15,9 @@ class Booking < ApplicationRecord
     refunded: 5
   }
 
+  # Payment method attribute (explicitly declared)
+  attribute :payment_method, :string
+
   # Enum for payment status
   attribute :payment_status, :string
   enum :payment_status, {
@@ -21,7 +27,7 @@ class Booking < ApplicationRecord
     payment_cancelled: "payment_cancelled",
     payment_refunded: "payment_refunded"
   }
-  
+
 
   # Validations
   validates :start_date, :end_date, presence: true
