@@ -21,6 +21,7 @@ class Booking < ApplicationRecord
     payment_cancelled: "payment_cancelled",
     payment_refunded: "payment_refunded"
   }
+  
 
   # Validations
   validates :start_date, :end_date, presence: true
