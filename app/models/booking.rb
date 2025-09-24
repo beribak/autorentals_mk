@@ -13,12 +13,13 @@ class Booking < ApplicationRecord
   }
 
   # Enum for payment status
+  attribute :payment_status, :string
   enum :payment_status, {
-    payment_pending: 0,
-    payment_paid: 1,
-    payment_failed: 2,
-    payment_cancelled: 3,
-    payment_refunded: 4
+    payment_pending: "payment_pending",
+    payment_paid: "payment_paid",
+    payment_failed: "payment_failed",
+    payment_cancelled: "payment_cancelled",
+    payment_refunded: "payment_refunded"
   }
 
   # Validations
