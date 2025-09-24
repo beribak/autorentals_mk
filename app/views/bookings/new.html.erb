@@ -138,7 +138,7 @@
             <% end %>
           </div>
 
-          <div class="form-section">
+          <div class="form-section" style="display: none;">
             <h3>Payment Method</h3>
             <div class="payment-methods">
               <div class="payment-option">
@@ -166,6 +166,13 @@
           </div>
 
           <div class="form-section">
+            <h3><%= t('bookings.new.payment_info_heading', default: 'Payment Information') %></h3>
+            <div class="payment-info">
+              <p class="payment-notice"><%= t('bookings.new.payment_notice', default: 'Payment will be made upon pickup of the vehicle. We accept both cash and card payments.') %></p>
+            </div>
+          </div>
+
+          <div class="form-section">
             <h3><%= t('booking_inquiries.new.additional_info_heading') %></h3>
             <div class="input-group">
               <%= form.label :special_requests, t('booking_inquiries.new.message_optional'), class: "form-label" %>
@@ -178,9 +185,9 @@
 
           <!-- Submit Button -->
           <div class="form-actions">
-            <%= form.submit t('bookings.new.book_now', default: 'Book Now'), 
+            <%= form.submit t('bookings.new.book_now'), 
                 class: "btn btn-primary btn-large" %>
-            <p class="form-note"><%= t('bookings.new.note_response', default: 'We will contact you within 2 hours to confirm your booking.') %></p>
+            <p class="form-note"><%= t('bookings.new.note_response') %></p>
           </div>
         <% end %>
       </div>

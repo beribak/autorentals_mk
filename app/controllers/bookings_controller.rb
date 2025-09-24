@@ -220,7 +220,7 @@ class BookingsController < ApplicationController
 
       # Log the redirect URL for debugging
       Rails.logger.info "Redirecting to Stripe checkout: #{session.url}"
-      
+
       # Redirect to Stripe checkout
       redirect_to session.url, allow_other_host: true
     rescue Stripe::StripeError => e

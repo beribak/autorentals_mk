@@ -23,7 +23,6 @@ class Booking < ApplicationRecord
 
   # Validations
   validates :start_date, :end_date, presence: true
-  validates :pickup_location, presence: true
   validate :end_date_after_start_date
   validate :start_date_not_in_past
   validate :car_available_for_dates, on: :create

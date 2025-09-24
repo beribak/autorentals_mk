@@ -400,13 +400,17 @@
   padding: var(--spacing-lg) var(--spacing-2xl);
   font-size: 1.1rem;
   font-weight: 600;
-  min-width: 200px;
+  min-width: 280px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   pointer-events: auto !important;
   cursor: pointer !important;
   position: relative;
   z-index: 10;
+  white-space: normal;
+  word-wrap: break-word;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .btn-large:disabled {

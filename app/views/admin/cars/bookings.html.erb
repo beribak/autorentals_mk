@@ -1,0 +1,647 @@
+<% content_for :title, "Резервации за #{@car.full_name} - EliteRentals Контролна табла" %>
+
+<div class="container">
+  <div class="dashboard-header">
+    <div class="header-content">
+      <div class="header-left">
+        <h1 class="dashboard-title">Резервации за <%= @car.full_name %></h1>
+        <p class="dashboard-subtitle">Управувајте со сите резервации за овој автомобил</p>
+      </div>
+      <div class="header-actions">
+        <%= link_to "Назад кон уредување", edit_admin_car_path(@car), class: "btn btn-secondary" %>
+        <%= link_to "Погледни автомобил", car_path(@car), class: "btn btn-ghost", target: "_blank" %>
+      </div>
+    </div>
+  </div>
+
+  <% if notice %>
+    <div class="flash-notice">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <!-- Car Info Card -->
+  <div class="car-info-card">
+    <div class="car-image">
+      <%= image_tag @car.image_url, alt: @car.full_name, class: "car-thumb" if @car.image_url.present? %>
+    </div>
+    <div class="car-details">
+      <h3><%= @car.full_name %></h3>
+      <p class="car-meta">
+        <span class="price">€<%= @car.price_per_day %>/ден</span>
+        <span class="status-badge <%= @car.available? ? 'available' : 'unavailable' %>">
+          <%= @car.available? ? 'Достапен' : 'Недостапен' %>
+        </span>
+      </p>
+      <p class="car-specs">
+        <%= @car.passengers %> патници • <%= @car.transmission&.humanize %> • <%= @car.gas&.humanize %>
+      </p>
+    </div>
+  </div>
+
+  <!-- Stats Section -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number"><%= @all_bookings.count %></div>
+      <p class="stat-label">Вкупно резервации</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number"><%= @confirmed_bookings.count %></div>
+      <p class="stat-label">Потврдени</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">€<%= number_with_delimiter(@total_revenue.to_i) %></div>
+      <p class="stat-label">Вкупен приход</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number"><%= @average_duration %></div>
+      <p class="stat-label">Просечно траење (дени)</p>
+    </div>
+  </div>
+
+  <!-- Filter Tabs -->
+  <div class="filter-tabs" data-controller="tabs">
+    <button class="tab-button active" data-action="click->tabs#switchTab" data-target="all-bookings">
+      Сите (<%= @all_bookings.count %>)
+    </button>
+    <button class="tab-button" data-action="click->tabs#switchTab" data-target="future-bookings">
+      Идни (<%= @future_bookings.count %>)
+    </button>
+    <button class="tab-button" data-action="click->tabs#switchTab" data-target="confirmed-bookings">
+      Потврдени (<%= @confirmed_bookings.count %>)
+    </button>
+    <button class="tab-button" data-action="click->tabs#switchTab" data-target="past-bookings">
+      Минати (<%= @past_bookings.count %>)
+    </button>
+    <% if @pending_bookings.any? %>
+      <button class="tab-button" data-action="click->tabs#switchTab" data-target="pending-bookings">
+        Во очекување (<%= @pending_bookings.count %>)
+      </button>
+    <% end %>
+  </div>
+
+  <!-- All Bookings Tab -->
+  <div id="all-bookings" class="tab-content active">
+    <div class="bookings-section">
+      <h3>Сите резервации</h3>
+      <% if @all_bookings.any? %>
+        <div class="bookings-table-container">
+          <table class="bookings-table">
+            <thead>
+              <tr>
+                <th>Клиент</th>
+                <th>Датуми</th>
+                <th>Времетраење</th>
+                <th>Локација</th>
+                <th>Цена</th>
+                <th>Статус</th>
+                <th>Акции</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @all_bookings.each do |booking| %>
+                <tr class="booking-row <%= 'past-booking' if booking.start_date < Date.current %>">
+                  <td>
+                    <div class="customer-info">
+                      <strong><%= booking.customer.full_name %></strong>
+                      <div class="customer-contact">
+                        <small><%= booking.customer.email %></small>
+                        <small><%= booking.customer.phone %></small>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="booking-dates">
+                      <strong><%= booking.start_date.strftime("%d.%m.%Y") %></strong>
+                      <span>до</span>
+                      <strong><%= booking.end_date.strftime("%d.%m.%Y") %></strong>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="duration"><%= booking.duration_in_days %> дена</span>
+                  </td>
+                  <td>
+                    <span class="location"><%= truncate(booking.pickup_location, length: 30) %></span>
+                  </td>
+                  <td>
+                    <strong class="price">€<%= booking.total_price %></strong>
+                  </td>
+                  <td>
+                    <span class="status-badge status-<%= booking.status %>">
+                      <% case booking.status %>
+                      <% when 'pending' %>
+                        Во очекување
+                      <% when 'confirmed' %>
+                        Потврдено
+                      <% when 'in_progress' %>
+                        Во тек
+                      <% when 'completed' %>
+                        Завршено
+                      <% when 'cancelled' %>
+                        Откажано
+                      <% when 'refunded' %>
+                        Рефундирано
+                      <% else %>
+                        <%= booking.status.humanize %>
+                      <% end %>
+                    </span>
+                  </td>
+                  <td>
+                    <div class="action-buttons">
+                      <%= link_to destroy_booking_admin_car_path(@car, booking_id: booking.id), 
+                          method: :delete,
+                          class: "btn btn-delete btn-sm",
+                          data: { 
+                            confirm: "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
+                            turbo_method: :delete
+                          } do %>
+                        Избриши
+                      <% end %>
+                    </div>
+                  </td>
+                </tr>
+                <% if booking.special_requests.present? %>
+                  <tr class="booking-notes-row">
+                    <td colspan="7">
+                      <div class="booking-notes">
+                        <strong>Забелешки:</strong> <%= booking.special_requests %>
+                      </div>
+                    </td>
+                  </tr>
+                <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        <div class="empty-state">
+          <h3>Нема резервации</h3>
+          <p>Овој автомобил нема резервации.</p>
+          <%= link_to "Создај резервација", edit_admin_car_path(@car), class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Future Bookings Tab -->
+  <div id="future-bookings" class="tab-content">
+    <div class="bookings-section">
+      <h3>Идни резервации</h3>
+      <% if @future_bookings.any? %>
+        <div class="bookings-grid">
+          <% @future_bookings.each do |booking| %>
+            <div class="booking-card">
+              <div class="booking-header">
+                <h4><%= booking.customer.full_name %></h4>
+                <span class="status-badge status-<%= booking.status %>">
+                  <% case booking.status %>
+                  <% when 'pending' %>
+                    Во очекување
+                  <% when 'confirmed' %>
+                    Потврдено
+                  <% when 'in_progress' %>
+                    Во тек
+                  <% else %>
+                    <%= booking.status.humanize %>
+                  <% end %>
+                </span>
+              </div>
+              
+              <div class="booking-content">
+                <div class="booking-dates">
+                  <strong><%= booking.start_date.strftime("%d.%m.%Y") %> - <%= booking.end_date.strftime("%d.%m.%Y") %></strong>
+                  <span class="duration"><%= booking.duration_in_days %> дена • €<%= booking.total_price %></span>
+                </div>
+                
+                <div class="booking-details">
+                  <p><%= booking.pickup_location %></p>
+                  <p><%= booking.customer.email %> • <%= booking.customer.phone %></p>
+                  <% if booking.special_requests.present? %>
+                    <p class="notes"><%= truncate(booking.special_requests, length: 80) %></p>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="booking-actions">
+                <%= link_to destroy_booking_admin_car_path(@car, booking_id: booking.id), 
+                    method: :delete,
+                    class: "btn btn-delete btn-sm",
+                    data: { 
+                      confirm: "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
+                      turbo_method: :delete
+                    } do %>
+                  Избриши
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="empty-state">
+          <h3>Нема идни резервации</h3>
+          <p>Овој автомобил нема резервации за иднина.</p>
+          <%= link_to "Создај резервација", edit_admin_car_path(@car), class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Confirmed Bookings Tab -->
+  <div id="confirmed-bookings" class="tab-content">
+    <div class="bookings-section">
+      <h3>Потврдени резервации</h3>
+      <% if @confirmed_bookings.any? %>
+        <div class="bookings-grid">
+          <% @confirmed_bookings.each do |booking| %>
+            <div class="booking-card confirmed">
+              <div class="booking-header">
+                <h4><%= booking.customer.full_name %></h4>
+                <span class="status-badge status-confirmed">Потврдено</span>
+              </div>
+              
+              <div class="booking-content">
+                <div class="booking-dates">
+                  <strong><%= booking.start_date.strftime("%d.%m.%Y") %> - <%= booking.end_date.strftime("%d.%m.%Y") %></strong>
+                  <span class="duration"><%= booking.duration_in_days %> дена • €<%= booking.total_price %></span>
+                </div>
+                
+                <div class="booking-details">
+                  <p><%= booking.pickup_location %></p>
+                  <p><%= booking.customer.email %> • <%= booking.customer.phone %></p>
+                  <% if booking.special_requests.present? %>
+                    <p class="notes"><%= truncate(booking.special_requests, length: 80) %></p>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="booking-actions">
+                <%= link_to destroy_booking_admin_car_path(@car, booking_id: booking.id), 
+                    method: :delete,
+                    class: "btn btn-delete btn-sm",
+                    data: { 
+                      confirm: "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
+                      turbo_method: :delete
+                    } do %>
+                  Избриши
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="empty-state">
+          <h3>Нема потврдени резервации</h3>
+          <p>Овој автомобил нема потврдени резервации.</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Past Bookings Tab -->
+  <div id="past-bookings" class="tab-content">
+    <div class="bookings-section">
+      <h3>Минати резервации</h3>
+      <% if @past_bookings.any? %>
+        <div class="bookings-grid">
+          <% @past_bookings.each do |booking| %>
+            <div class="booking-card past">
+              <div class="booking-header">
+                <h4><%= booking.customer.full_name %></h4>
+                <span class="status-badge status-<%= booking.status %>">
+                  <% case booking.status %>
+                  <% when 'completed' %>
+                    Завршено
+                  <% when 'cancelled' %>
+                    Откажано
+                  <% when 'refunded' %>
+                    Рефундирано
+                  <% else %>
+                    <%= booking.status.humanize %>
+                  <% end %>
+                </span>
+              </div>
+              
+              <div class="booking-content">
+                <div class="booking-dates">
+                  <strong><%= booking.start_date.strftime("%d.%m.%Y") %> - <%= booking.end_date.strftime("%d.%m.%Y") %></strong>
+                  <span class="duration"><%= booking.duration_in_days %> дена • €<%= booking.total_price %></span>
+                </div>
+                
+                <div class="booking-details">
+                  <p><%= booking.pickup_location %></p>
+                  <p><%= booking.customer.email %> • <%= booking.customer.phone %></p>
+                  <% if booking.special_requests.present? %>
+                    <p class="notes"><%= truncate(booking.special_requests, length: 80) %></p>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="booking-actions">
+                <%= link_to destroy_booking_admin_car_path(@car, booking_id: booking.id), 
+                    method: :delete,
+                    class: "btn btn-delete btn-sm",
+                    data: { 
+                      confirm: "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
+                      turbo_method: :delete
+                    } do %>
+                  Избриши
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="empty-state">
+          <h3>Нема минати резервации</h3>
+          <p>Овој автомобил нема минати резервации.</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Pending Bookings Tab -->
+  <% if @pending_bookings.any? %>
+    <div id="pending-bookings" class="tab-content">
+      <div class="bookings-section">
+        <h3>Резервации во очекување</h3>
+        <div class="bookings-grid">
+          <% @pending_bookings.each do |booking| %>
+            <div class="booking-card pending">
+              <div class="booking-header">
+                <h4><%= booking.customer.full_name %></h4>
+                <span class="status-badge status-pending">Во очекување</span>
+              </div>
+              
+              <div class="booking-content">
+                <div class="booking-dates">
+                  <strong><%= booking.start_date.strftime("%d.%m.%Y") %> - <%= booking.end_date.strftime("%d.%m.%Y") %></strong>
+                  <span class="duration"><%= booking.duration_in_days %> дена • €<%= booking.total_price %></span>
+                </div>
+                
+                <div class="booking-details">
+                  <p><%= booking.pickup_location %></p>
+                  <p><%= booking.customer.email %> • <%= booking.customer.phone %></p>
+                  <% if booking.special_requests.present? %>
+                    <p class="notes"><%= truncate(booking.special_requests, length: 80) %></p>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="booking-actions">
+                <%= link_to destroy_booking_admin_car_path(@car, booking_id: booking.id), 
+                    method: :delete,
+                    class: "btn btn-delete btn-sm",
+                    data: { 
+                      confirm: "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
+                      turbo_method: :delete
+                    } do %>
+                  Избриши
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<style>
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 2rem;
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .car-info-card {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    align-items: center;
+  }
+
+  .car-image .car-thumb {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .car-details h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    color: var(--color-text-primary);
+  }
+
+  .car-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .car-meta .price {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--color-primary);
+  }
+
+  .car-specs {
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .filter-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #f0f0f0;
+  }
+
+  .tab-button {
+    padding: 0.75rem 1.5rem;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .tab-button:hover {
+    background: #f8f9fa;
+  }
+
+  .tab-button.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+    background: #f8f9fa;
+  }
+
+  .tab-content {
+    display: none;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  .bookings-table-container {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .bookings-table th {
+    background: var(--color-bg-secondary);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .bookings-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .booking-row.past-booking {
+    opacity: 0.7;
+  }
+
+  .booking-notes-row {
+    background: #f8f9fa;
+  }
+
+  .booking-notes {
+    padding: 0.5rem;
+    font-style: italic;
+  }
+
+  .customer-info strong {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .customer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .customer-contact small {
+    color: var(--color-text-secondary);
+  }
+
+  .bookings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .booking-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+  }
+
+  .booking-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .booking-card.confirmed {
+    border-left: 4px solid var(--color-success);
+  }
+
+  .booking-card.past {
+    border-left: 4px solid var(--color-text-secondary);
+  }
+
+  .booking-card.pending {
+    border-left: 4px solid var(--color-warning);
+  }
+
+  .booking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .booking-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+
+  .booking-dates {
+    margin-bottom: 1rem;
+  }
+
+  .booking-dates strong {
+    font-size: 1rem;
+  }
+
+  .booking-dates .duration {
+    display: block;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+  }
+
+  .booking-details p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+  }
+
+  .booking-details .notes {
+    font-style: italic;
+    color: var(--color-text-tertiary);
+  }
+
+  .booking-actions {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+  }
+</style>
+
+<script>
+  // Simple tabs controller
+  document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.tab-button');
+    const contents = document.querySelectorAll('.tab-content');
+    
+    buttons.forEach(button => {
+      button.addEventListener('click', function() {
+        const target = this.dataset.target;
+        
+        // Remove active class from all buttons and contents
+        buttons.forEach(b => b.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked button and corresponding content
+        this.classList.add('active');
+        document.getElementById(target).classList.add('active');
+      });
+    });
+  });
+</script>

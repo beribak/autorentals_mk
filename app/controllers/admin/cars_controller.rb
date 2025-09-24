@@ -1,5 +1,5 @@
 class Admin::CarsController < Admin::ApplicationController
-  before_action :set_car, only: [ :show, :edit, :update, :destroy, :toggle_availability, :create_booking, :destroy_booking ]
+  before_action :set_car, only: [ :show, :edit, :update, :destroy, :toggle_availability, :create_booking, :destroy_booking, :bookings ]
 
   def index
     @cars = Car.all.order(:brand, :model)
@@ -108,6 +108,28 @@ class Admin::CarsController < Admin::ApplicationController
 
     @booking.destroy
     redirect_to edit_admin_car_path(@car), notice: "Резервацијата на #{customer_name} е успешно избришана."
+  end
+
+  # Show all bookings for a specific car
+  def bookings
+    @all_bookings = @car.bookings.includes(:customer).order(:start_date)
+    @pending_bookings = @all_bookings.where(status: :pending)
+    @confirmed_bookings = @all_bookings.where(status: :confirmed)
+    @completed_bookings = @all_bookings.where(status: :completed)
+    @cancelled_bookings = @all_bookings.where(status: :cancelled)
+    @future_bookings = @all_bookings.where("start_date >= ?", Date.current)
+    @past_bookings = @all_bookings.where("start_date < ?", Date.current)
+
+    # Calculate stats
+    @total_revenue = @confirmed_bookings.sum(&:total_price)
+
+    # Calculate average duration manually since duration_in_days is a method
+    if @all_bookings.any?
+      total_duration = @all_bookings.sum { |booking| (booking.end_date - booking.start_date).to_i + 1 }
+      @average_duration = (total_duration.to_f / @all_bookings.count).round(1)
+    else
+      @average_duration = 0
+    end
   end
 
   private

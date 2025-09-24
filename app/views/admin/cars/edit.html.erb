@@ -3,9 +3,25 @@
 
 <div class="container">
   <div class="dashboard-header">
-    <h1 class="dashboard-title">Уреди автомобил</h1>
-    <p class="dashboard-subtitle">Ажурирај ги деталите за <%= @car.full_name %></p>
+    <div class="dashboard-header-content">
+      <div class="dashboard-text">
+        <h1 class="dashboard-title">Уреди автомобил</h1>
+        <p class="dashboard-subtitle">Ажурирај ги деталите за <%= @car.full_name %></p>
+      </div>
+      <div class="dashboard-actions">
+        <button type="button" class="btn btn-primary" onclick="openCalendarModal()">
+          Календар
+        </button>
+        <%= link_to "Резервации", bookings_admin_car_path(@car), class: "btn btn-secondary" %>
+      </div>
+    </div>
   </div>
+
+  <% if notice %>
+    <div class="flash-notice success">
+      <%= notice %>
+    </div>
+  <% end %>
 
   <!-- Main Layout: Car Form and Booking Form Side by Side -->
   <div class="admin-layout">
@@ -194,19 +210,19 @@
           <div class="form-row">
             <div class="form-group">
               <%= form.label :start_date, "Почетен датум", class: "form-label" %>
-              <%= form.date_field :start_date, class: "form-input border", min: Date.current, required: true %>
+              <%= form.date_field :start_date, class: "form-input border", required: true %>
             </div>
             
             <div class="form-group">
               <%= form.label :end_date, "Краен датум", class: "form-label" %>
-              <%= form.date_field :end_date, class: "form-input border", min: Date.current, required: true %>
+              <%= form.date_field :end_date, class: "form-input border", required: true %>
             </div>
           </div>
 
           <div class="form-row single">
             <div class="form-group">
               <%= form.label :pickup_location, "Локација за преземање", class: "form-label" %>
-              <%= form.text_field :pickup_location, class: "form-input border", placeholder: "Адреса или локација за преземање", required: true %>
+              <%= form.text_field :pickup_location, class: "form-input border", placeholder: "Адреса или локација за преземање" %>
             </div>
           </div>
 
@@ -226,112 +242,178 @@
         </div>
 
         <div class="form-actions">
-          <%= form.submit "Креирај резервација", class: "btn btn-primary", data: { confirm: "Дали сте сигурни дека сакате да креирате оваа резервација?" } %>
+          <%= form.submit "Креирај резервација", class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>
   </div>
 
-  <!-- Calendar View for Future Bookings -->
-  <div class="form-container calendar-section" 
-       data-controller="calendar" 
-       data-calendar-booked-dates-value="<%= 
-         booked_dates = Set.new
-         @future_bookings.each do |booking|
-           (booking.start_date..booking.end_date).each do |date|
-             booked_dates.add(date.strftime('%Y-%m-%d'))
-           end
-         end
-         booked_dates.to_a.to_json 
-       %>"
-       data-calendar-month-names-value='["Јануари", "Февруари", "Март", "Април", "Мај", "Јуни", "Јули", "Август", "Септември", "Октомври", "Ноември", "Декември"]'
-       data-calendar-weekday-names-value='["Нед", "Пон", "Вто", "Сре", "Чет", "Пет", "Саб"]'>
-    <h2 class="form-title">Календар за достапност</h2>
-    
-    <div class="calendar-navigation">
-      <button type="button" class="calendar-nav-button" data-action="click->calendar#changeMonth" data-direction="-1">‹</button>
-      <div class="calendar-month-range" data-calendar-target="monthRange"></div>
-      <button type="button" class="calendar-nav-button" data-action="click->calendar#changeMonth" data-direction="1">›</button>
-    </div>
-    
-    <div class="calendars-container" data-calendar-target="calendarsContainer">
-      <!-- Calendars will be populated by Stimulus controller -->
-    </div>
-    
-    <div class="calendar-legend">
-      <div class="legend-item">
-        <span class="legend-box available"></span>
-        <span>Достапно</span>
+
+
+  <!-- Calendar Modal -->
+  <div id="calendarModal" class="calendar-modal" style="display: none;">
+    <div class="calendar-modal-overlay" onclick="closeCalendarModal()"></div>
+    <div class="calendar-modal-content">
+      <div class="calendar-modal-header">
+        <h3>Календар за достапност - <%= @car.full_name %></h3>
+        <button type="button" class="calendar-close-btn" onclick="closeCalendarModal()">&times;</button>
       </div>
-      <div class="legend-item">
-        <span class="legend-box booked"></span>
-        <span>Резервирано</span>
+      <div class="calendar-modal-body">
+        <div class="calendar-section" 
+             data-controller="calendar" 
+             data-calendar-booked-dates-value="<%= 
+               booked_dates = Set.new
+               @future_bookings.each do |booking|
+                 (booking.start_date..booking.end_date).each do |date|
+                   booked_dates.add(date.strftime('%Y-%m-%d'))
+                 end
+               end
+               booked_dates.to_a.to_json 
+             %>"
+             data-calendar-month-names-value='["Јануари", "Февруари", "Март", "Април", "Мај", "Јуни", "Јули", "Август", "Септември", "Октомври", "Ноември", "Декември"]'
+             data-calendar-weekday-names-value='["Нед", "Пон", "Вто", "Сре", "Чет", "Пет", "Саб"]'>
+          
+          <div class="calendar-navigation">
+            <button type="button" class="calendar-nav-button" data-action="click->calendar#changeMonth" data-direction="-1">‹</button>
+            <div class="calendar-month-range" data-calendar-target="monthRange"></div>
+            <button type="button" class="calendar-nav-button" data-action="click->calendar#changeMonth" data-direction="1">›</button>
+          </div>
+          
+          <div class="calendars-container" data-calendar-target="calendarsContainer">
+            <!-- Calendars will be populated by Stimulus controller -->
+          </div>
+          
+          <div class="calendar-legend">
+            <div class="legend-item">
+              <span class="legend-box available"></span>
+              <span>Достапно</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-box booked"></span>
+              <span>Резервирано</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-box today"></span>
+              <span>Денес</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="legend-item">
-        <span class="legend-box today"></span>
-        <span>Денес</span>
+      <div class="calendar-modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeCalendarModal()">Затвори</button>
       </div>
     </div>
   </div>
 
-  <!-- Existing Bookings -->
-  <% if @existing_bookings.any? %>
-    <div class="form-container bookings-section">
-      <h2 class="form-title">Постоечки резервации</h2>
-      
-      <div class="bookings-grid">
-        <% @existing_bookings.each do |booking| %>
-          <div class="booking-card-compact">
-            <div class="booking-header-compact">
-              <h4><%= booking.customer.full_name %></h4>
-              <div class="booking-header-actions">
-                <span class="status-badge status-<%= booking.status %>">
-                  <% case booking.status %>
-                  <% when 'pending' %>
-                    Во очекување
-                  <% when 'confirmed' %>
-                    Потврдено
-                  <% when 'in_progress' %>
-                    Во тек
-                  <% when 'completed' %>
-                    Завршено
-                  <% when 'cancelled' %>
-                    Откажано
-                  <% when 'refunded' %>
-                    Рефундирано
-                  <% else %>
-                    <%= booking.status.humanize %>
-                  <% end %>
-                </span>
-                <%= link_to destroy_booking_admin_car_path(@car, booking_id: booking.id), 
-                    method: :delete,
-                    class: "btn btn-delete btn-sm",
-                    data: { 
-                      confirm: "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
-                      turbo_method: :delete
-                    } do %>
-                  Избриши
-                <% end %>
-              </div>
-            </div>
-            
-            <div class="booking-content">
-              <div class="booking-dates">
-                <strong><%= booking.start_date.strftime("%m/%d") %> - <%= booking.end_date.strftime("%m/%d/%Y") %></strong>
-                <span class="duration"><%= booking.duration_in_days %> дена • €<%= booking.total_price %></span>
-              </div>
-              
-              <div class="booking-details-compact">
-                <p><%= booking.pickup_location %></p>
-                <p><%= booking.customer.email %> • <%= booking.customer.phone %></p>
-                <% if booking.special_requests.present? %>
-                  <p class="notes"><%= truncate(booking.special_requests, length: 60) %></p>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
+  <style>
+    .dashboard-header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .dashboard-text {
+      flex: 1;
+    }
+
+    .dashboard-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .calendar-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000;
+    }
+
+    .calendar-modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .calendar-modal-content {
+      position: relative;
+      margin: 2rem auto;
+      width: 90%;
+      max-width: 1200px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .calendar-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .calendar-modal-header h3 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: var(--color-text-primary);
+    }
+
+    .calendar-close-btn {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--color-text-secondary);
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .calendar-close-btn:hover {
+      color: var(--color-text-primary);
+    }
+
+    .calendar-modal-body {
+      padding: 1.5rem;
+    }
+
+    .calendar-modal-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid #e0e0e0;
+      text-align: right;
+    }
+  </style>
+
+  <script>
+    function openCalendarModal() {
+      document.getElementById('calendarModal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCalendarModal() {
+      document.getElementById('calendarModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeCalendarModal();
+      }
+    });
+  </script>
+
+
 </div>

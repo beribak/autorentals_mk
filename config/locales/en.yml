@@ -290,7 +290,11 @@ en:
       total: "Total:"
       submit: "Book now"
       review_note: "You'll review booking details before final confirmation"
-      errors_heading: "Please fix the following errors:" 
+      errors_heading: "Please fix the following errors:"
+      payment_info_heading: "Payment Information"
+      payment_notice: "Payment will be made upon pickup of the vehicle. We accept both cash and card payments."
+      book_now: "Book Now"
+      note_response: "We will contact you within 2 hours to confirm your booking."
     booking_inquiries:
       new:
         intro: "Send us a booking inquiry and we'll contact you shortly"
