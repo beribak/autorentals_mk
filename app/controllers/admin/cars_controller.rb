@@ -94,6 +94,8 @@ class Admin::CarsController < Admin::ApplicationController
     @booking.status = :confirmed  # Admin bookings are automatically confirmed
 
     if @booking.save
+      # Send email notifications to both customer and company
+      send_booking_emails
       redirect_to edit_admin_car_path(@car), notice: "Booking successfully created for #{@customer.full_name}."
     else
       set_booking_data
@@ -144,6 +146,19 @@ class Admin::CarsController < Admin::ApplicationController
                           .where("start_date >= ?", Date.current)
                           .where(status: [ :pending, :confirmed, :in_progress ])
                           .order(:start_date)
+  end
+
+  def send_booking_emails
+    begin
+      # Send confirmation email to customer
+      BookingMailer.customer_confirmation(@booking).deliver_now
+
+      # Send notification email to company
+      BookingMailer.company_notification(@booking).deliver_now
+    rescue => e
+      Rails.logger.error "Failed to send booking emails: #{e.message}"
+      # Don't fail the booking if emails fail
+    end
   end
 
   def car_params
