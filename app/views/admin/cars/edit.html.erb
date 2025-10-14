@@ -9,7 +9,8 @@
         <p class="dashboard-subtitle">Ажурирај ги деталите за <%= @car.full_name %></p>
       </div>
       <div class="dashboard-actions">
-        <button type="button" class="btn btn-primary" onclick="openCalendarModal()">
+        <%= link_to "← Назад кон контролна табла", admin_cars_path, class: "btn btn-ghost" %>
+        <button type="button" class="btn btn-secondary" onclick="openCalendarModal()">
           Календар
         </button>
         <%= link_to "Резервации", bookings_admin_car_path(@car), class: "btn btn-secondary" %>
@@ -172,7 +173,8 @@
         </div>
       <% end %>
 
-      <%= form_with model: @booking, url: create_booking_admin_car_path(@car), local: true do |form| %>
+      <%= form_with model: @booking, url: create_booking_admin_car_path(@car), local: true, 
+          data: { controller: "booking", booking_price_per_day_value: @car.price_per_day } do |form| %>
         <!-- Customer Information -->
         <div class="form-section">
           <h3 class="form-section-title">Информации за клиентот</h3>
@@ -210,12 +212,14 @@
           <div class="form-row">
             <div class="form-group">
               <%= form.label :start_date, "Почетен датум", class: "form-label" %>
-              <%= form.date_field :start_date, class: "form-input border", required: true %>
+              <%= form.date_field :start_date, class: "form-input border", required: true, 
+                  data: { action: "change->booking#calculateAdminPrice" } %>
             </div>
             
             <div class="form-group">
               <%= form.label :end_date, "Краен датум", class: "form-label" %>
-              <%= form.date_field :end_date, class: "form-input border", required: true %>
+              <%= form.date_field :end_date, class: "form-input border", required: true,
+                  data: { action: "change->booking#calculateAdminPrice" } %>
             </div>
           </div>
 
@@ -230,6 +234,24 @@
             <div class="form-group">
               <%= form.label :special_requests, "Забелешки (Опционално)", class: "form-label" %>
               <%= form.text_area :special_requests, class: "form-input form-textarea border", rows: 2, placeholder: "Било какви посебни барања или забелешки..." %>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <%= form.label :total_price, "Вкупна цена (€)", class: "form-label" %>
+              <%= form.number_field :total_price, class: "form-input border", step: 0.01, min: 0, 
+                  placeholder: "Автоматски ќе се пресмета", readonly: true,
+                  data: { booking_target: "totalPrice" } %>
+              <small class="form-help">Автоматски се пресметува врз основа на датумите</small>
+            </div>
+            
+            <div class="form-group">
+              <%= form.label :actual_price, "Реална цена (€)", class: "form-label" %>
+              <%= form.number_field :actual_price, class: "form-input border", step: 0.01, min: 0, 
+                  placeholder: "Внеси реална цена",
+                  data: { booking_target: "actualPrice" } %>
+              <small class="form-help">Реалната цена што ќе се наплати на клиентот</small>
             </div>
           </div>
 

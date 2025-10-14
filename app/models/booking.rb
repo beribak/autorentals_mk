@@ -69,6 +69,9 @@ class Booking < ApplicationRecord
   def start_date_not_in_past
     return unless start_date
 
+    # Allow past dates when updating existing bookings (for admin edits)
+    return if persisted?
+
     errors.add(:start_date, "cannot be in the past") if start_date < Date.current
   end
 

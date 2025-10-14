@@ -1,0 +1,77 @@
+<% content_for :title, "Статистики - AutoRentalsMK Контролна табла" %>
+
+<div class="container">
+  <div class="dashboard-header">
+    <div class="header-content">
+      <div class="header-left">
+        <h1 class="dashboard-title">Статистики за изнајмување</h1>
+        <p class="dashboard-subtitle">Преглед на перформансите за последните 12 месеци</p>
+      </div>
+      <div class="header-actions">
+        <%= link_to "← Назад кон контролна табла", admin_cars_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+
+  <% if notice %>
+    <div class="flash-notice">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <!-- Summary Stats -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number">€<%= number_with_delimiter(@total_revenue_12_months.to_i) %></div>
+      <p class="stat-label">Вкупен приход (12 месеци)</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">€<%= number_with_delimiter(@average_monthly_revenue.to_i) %></div>
+      <p class="stat-label">Просечен месечен приход</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number"><%= @total_rentals_12_months %></div>
+      <p class="stat-label">Вкупно изнајмувања (12 месеци)</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number"><%= @most_popular_car&.full_name || "Н/А" %></div>
+      <p class="stat-label">Најпопуларно возило</p>
+    </div>
+  </div>
+
+  <!-- Charts Section -->
+  <div class="charts-section">
+    <!-- Revenue Chart -->
+    <div class="chart-container">
+      <div class="chart-header">
+        <h3>Месечен приход</h3>
+        <p>Приход по месеци за последните 12 месеци</p>
+      </div>
+      <div id="revenue-chart" 
+           data-controller="statistics-chart"
+           data-statistics-chart-type-value="revenue"
+           data-statistics-chart-months-value="<%= @months.to_json %>"
+           data-statistics-chart-data-value="<%= @revenue_data.to_json %>"
+           data-statistics-chart-title-value="Месечен приход (€)">
+      </div>
+    </div>
+
+    <!-- Rentals Chart -->
+    <div class="chart-container">
+      <div class="chart-header">
+        <h3>Број на изнајмени возила</h3>
+        <p>Број на различни возила изнајмени по месеци</p>
+      </div>
+      <div id="rentals-chart"
+           data-controller="statistics-chart"
+           data-statistics-chart-type-value="rentals"
+           data-statistics-chart-months-value="<%= @months.to_json %>"
+           data-statistics-chart-data-value="<%= @rentals_data.to_json %>"
+           data-statistics-chart-title-value="Број на изнајмени возила">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Include ApexCharts CDN -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>

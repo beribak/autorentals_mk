@@ -66,7 +66,7 @@ class Admin::CarsController < Admin::ApplicationController
       customer_phone: params[:booking_customer_phone]
     }
 
-    booking_params = params.require(:booking).permit(:start_date, :end_date, :pickup_location, :special_requests)
+    booking_params = params.require(:booking).permit(:start_date, :end_date, :pickup_location, :special_requests, :actual_price)
 
     # Find or create customer
     @customer = Customer.find_by(email: customer_params[:customer_email])
@@ -109,7 +109,7 @@ class Admin::CarsController < Admin::ApplicationController
     customer_name = @booking.customer.full_name
 
     @booking.destroy
-    redirect_to edit_admin_car_path(@car), notice: "Резервацијата на #{customer_name} е успешно избришана."
+    redirect_to bookings_admin_car_path(@car), notice: "Резервацијата на #{customer_name} е успешно избришана."
   end
 
   # Show all bookings for a specific car
@@ -132,6 +132,49 @@ class Admin::CarsController < Admin::ApplicationController
     else
       @average_duration = 0
     end
+  end
+
+  # Statistics page
+  def statistics
+    # Get data for the last 12 months
+    @months = []
+    @revenue_data = []
+    @rentals_data = []
+
+    12.times do |i|
+      month_date = i.months.ago.beginning_of_month
+      month_name = month_date.strftime("%B %Y")
+
+      # Get bookings for this month (based on start_date)
+      month_bookings = Booking.joins(:car)
+                              .where(start_date: month_date..month_date.end_of_month)
+                              .where(status: [ :confirmed, :completed ])
+
+      # Calculate revenue for this month
+      month_revenue = month_bookings.sum do |booking|
+        booking.actual_price || booking.total_price || 0
+      end
+
+      # Count unique cars rented this month
+      cars_rented = month_bookings.distinct.count(:car_id)
+
+      @months.unshift(month_name)
+      @revenue_data.unshift(month_revenue.to_f)
+      @rentals_data.unshift(cars_rented)
+    end
+
+    # Additional stats
+    @total_revenue_12_months = @revenue_data.sum
+    @total_rentals_12_months = Booking.joins(:car)
+                                     .where(start_date: 12.months.ago..Date.current)
+                                     .where(status: [ :confirmed, :completed ])
+                                     .count
+    @average_monthly_revenue = @total_revenue_12_months / 12
+    @most_popular_car = Car.joins(:bookings)
+                           .where(bookings: { status: [ :confirmed, :completed ] })
+                           .group("cars.id")
+                           .order("COUNT(bookings.id) DESC")
+                           .first
   end
 
   private

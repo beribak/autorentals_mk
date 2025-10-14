@@ -1,0 +1,518 @@
+<% content_for :title, "Уреди резервација ##{@booking.id} - AutoRentalsMK" %>
+
+<section class="booking-edit-header">
+  <div class="container">
+    <div class="header-content">
+      <div class="header-left">
+        <h1>Уреди резервација</h1>
+        <p>Резервација #<%= @booking.id %> за <%= @car.full_name %></p>
+      </div>
+      <div class="header-actions">
+        <%= link_to "← Назад кон резервации", bookings_admin_car_path(@car), class: "btn btn-secondary" %>
+        <%= link_to "Погледни автомобил", car_path(@car), class: "btn btn-ghost", target: "_blank" %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="booking-edit-form">
+  <div class="container">
+    <% if notice %>
+      <div class="flash-notice success">
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <!-- Car Info Card -->
+    <div class="car-info-card">
+      <div class="car-image">
+        <%= image_tag @car.image_url, alt: @car.full_name, class: "car-thumb" if @car.image_url.present? %>
+      </div>
+      <div class="car-details">
+        <h3><%= @car.full_name %></h3>
+        <p class="car-meta">
+          <span class="price">€<%= @car.price_per_day %>/ден</span>
+          <span class="status-badge <%= @car.available? ? 'available' : 'unavailable' %>">
+            <%= @car.available? ? 'Достапен' : 'Недостапен' %>
+          </span>
+        </p>
+        <p class="car-specs">
+          <%= @car.passengers %> патници • <%= @car.transmission&.humanize %> • <%= @car.gas&.humanize %>
+        </p>
+      </div>
+    </div>
+
+    <!-- Edit Form -->
+    <div class="form-container">
+      <% if @booking.errors.any? %>
+        <div class="error-messages">
+          <h4><%= pluralize(@booking.errors.count, "грешка") %> го спречи зачувувањето на резервацијата:</h4>
+          <ul>
+            <% @booking.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% if @customer.errors.any? %>
+        <div class="error-messages">
+          <h4><%= pluralize(@customer.errors.count, "грешка") %> го спречи зачувувањето на клиентот:</h4>
+          <ul>
+            <% @customer.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form_with model: @booking, local: true, 
+          data: { controller: "booking", booking_price_per_day_value: @car.price_per_day } do |form| %>
+        
+        <!-- Customer Information -->
+        <div class="form-section">
+          <h3 class="form-section-title">Информации за клиентот</h3>
+          
+          <%= fields_for :customer, @customer do |customer_form| %>
+            <div class="form-row">
+              <div class="form-group">
+                <%= customer_form.label :first_name, "Име", class: "form-label" %>
+                <%= customer_form.text_field :first_name, class: "form-input border", placeholder: "Име", required: true %>
+              </div>
+              
+              <div class="form-group">
+                <%= customer_form.label :last_name, "Презиме", class: "form-label" %>
+                <%= customer_form.text_field :last_name, class: "form-input border", placeholder: "Презиме", required: true %>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <%= customer_form.label :email, "Е-маил", class: "form-label" %>
+                <%= customer_form.email_field :email, class: "form-input border", placeholder: "klient@example.com", required: true %>
+              </div>
+              
+              <div class="form-group">
+                <%= customer_form.label :phone, "Телефон", class: "form-label" %>
+                <%= customer_form.telephone_field :phone, class: "form-input border", placeholder: "+389 XX XXX XXX", required: true %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <!-- Booking Details -->
+        <div class="form-section">
+          <h3 class="form-section-title">Детали за резервацијата</h3>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <%= form.label :start_date, "Почетен датум", class: "form-label" %>
+              <%= form.date_field :start_date, class: "form-input border", 
+                  data: { action: "change->booking#calculateAdminPrice" } %>
+            </div>
+            
+            <div class="form-group">
+              <%= form.label :end_date, "Краен датум", class: "form-label" %>
+              <%= form.date_field :end_date, class: "form-input border", required: true,
+                  data: { action: "change->booking#calculateAdminPrice" } %>
+            </div>
+          </div>
+
+          <div class="form-row single">
+            <div class="form-group">
+              <%= form.label :pickup_location, "Локација за преземање", class: "form-label" %>
+              <%= form.text_field :pickup_location, class: "form-input border", placeholder: "Адреса или локација за преземање" %>
+            </div>
+          </div>
+
+          <div class="form-row single">
+            <div class="form-group">
+              <%= form.label :special_requests, "Забелешки (Опционално)", class: "form-label" %>
+              <%= form.text_area :special_requests, class: "form-input form-textarea border", rows: 2, placeholder: "Било какви посебни барања или забелешки..." %>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <%= form.label :total_price, "Вкупна цена (€)", class: "form-label" %>
+              <%= form.number_field :total_price, class: "form-input border", step: 0.01, min: 0, 
+                  placeholder: "Автоматски ќе се пресмета", readonly: true,
+                  data: { booking_target: "totalPrice" } %>
+              <small class="form-help">Автоматски се пресметува врз основа на датумите</small>
+            </div>
+            
+            <div class="form-group">
+              <%= form.label :actual_price, "Реална цена (€)", class: "form-label" %>
+              <%= form.number_field :actual_price, class: "form-input border", step: 0.01, min: 0, 
+                  placeholder: "Внеси реална цена",
+                  data: { booking_target: "actualPrice" } %>
+              <small class="form-help">Реалната цена што ќе се наплати на клиентот</small>
+            </div>
+          </div>
+
+          <div class="booking-summary">
+            <h4>Резиме</h4>
+            <p><strong>Автомобил:</strong> <%= @car.full_name %></p>
+            <p><strong>Цена по ден:</strong> €<%= @car.price_per_day %></p>
+            <p><strong>Статус:</strong> 
+              <span class="status-badge status-<%= @booking.status %>">
+                <% case @booking.status %>
+                <% when 'pending' %>
+                  Во очекување
+                <% when 'confirmed' %>
+                  Потврдено
+                <% when 'in_progress' %>
+                  Во тек
+                <% when 'completed' %>
+                  Завршено
+                <% when 'cancelled' %>
+                  Откажано
+                <% when 'refunded' %>
+                  Рефундирано
+                <% else %>
+                  <%= @booking.status.humanize %>
+                <% end %>
+              </span>
+            </p>
+            <p><strong>Плаќање:</strong> 
+              <span class="payment-status-badge payment-status-<%= @booking.payment_status %>">
+                <% case @booking.payment_status %>
+                <% when "payment_paid" %>
+                  ✅ Платено
+                <% when "payment_pending" %>
+                  ⏳ Во очекување
+                <% when "payment_failed" %>
+                  ❌ Неуспешно
+                <% when "payment_cancelled" %>
+                  🚫 Откажано
+                <% else %>
+                  ⏳ Во очекување
+                <% end %>
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <%= link_to "Откажи", bookings_admin_car_path(@car), class: "btn btn-secondary" %>
+          <%= form.submit "Ажурирај резервација", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<style>
+  .booking-edit-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: white;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .header-left h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .header-left p {
+    margin: 0;
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .car-info-card {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+    align-items: center;
+  }
+
+  .car-image .car-thumb {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .car-details h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    color: var(--color-text-primary);
+  }
+
+  .car-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .car-meta .price {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--color-primary);
+  }
+
+  .car-specs {
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  .form-container {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .form-section {
+    margin-bottom: 2rem;
+  }
+
+  .form-section-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-bg-secondary);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-row.single {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .form-input {
+    padding: 0.75rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(66, 139, 202, 0.1);
+  }
+
+  .form-input.border {
+    border: 2px solid #e0e0e0;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .form-help {
+    font-size: 0.85rem;
+    color: var(--color-text-tertiary);
+    margin-top: 0.25rem;
+  }
+
+  .booking-summary {
+    background: var(--color-bg-secondary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+  }
+
+  .booking-summary h4 {
+    margin: 0 0 1rem 0;
+    color: var(--color-text-primary);
+  }
+
+  .booking-summary p {
+    margin: 0.5rem 0;
+    color: var(--color-text-secondary);
+  }
+
+  .status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .status-badge.status-pending {
+    background: #fff3cd;
+    color: #856404;
+  }
+
+  .status-badge.status-confirmed {
+    background: #d4edda;
+    color: #155724;
+  }
+
+  .status-badge.status-in_progress {
+    background: #cce5ff;
+    color: #0056b3;
+  }
+
+  .status-badge.status-completed {
+    background: #d1ecf1;
+    color: #0c5460;
+  }
+
+  .status-badge.status-cancelled {
+    background: #f8d7da;
+    color: #721c24;
+  }
+
+  .status-badge.status-refunded {
+    background: #e2e3e5;
+    color: #383d41;
+  }
+
+  .status-badge.available {
+    background: #d4edda;
+    color: #155724;
+  }
+
+  .status-badge.unavailable {
+    background: #f8d7da;
+    color: #721c24;
+  }
+
+  .payment-status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .payment-status-badge.payment-status-payment_paid {
+    background: #d4edda;
+    color: #155724;
+  }
+
+  .payment-status-badge.payment-status-payment_pending {
+    background: #fff3cd;
+    color: #856404;
+  }
+
+  .payment-status-badge.payment-status-payment_failed {
+    background: #f8d7da;
+    color: #721c24;
+  }
+
+  .payment-status-badge.payment-status-payment_cancelled {
+    background: #e2e3e5;
+    color: #383d41;
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .error-messages {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .error-messages h4 {
+    color: #721c24;
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+  }
+
+  .error-messages ul {
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+
+  .error-messages li {
+    color: #721c24;
+    margin-bottom: 0.25rem;
+  }
+
+  .flash-notice {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  .flash-notice.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+
+  @media (max-width: 768px) {
+    .header-content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .header-actions {
+      width: 100%;
+      justify-content: flex-start;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .car-info-card {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .form-actions {
+      flex-direction: column;
+    }
+  }
+</style>

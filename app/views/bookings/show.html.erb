@@ -198,7 +198,8 @@
     <!-- Actions -->
     <div class="booking-actions">
       <%= link_to "Погледни ги сите резервации", bookings_path, class: "btn btn-secondary" %>
-      <%= link_to "Прелистај повеќе возила", cars_path, class: "btn btn-primary" %>
+      <%= link_to "Уреди резервација", edit_booking_path(@booking), class: "btn btn-primary" %>
+      <%= link_to "Прелистај повеќе возила", cars_path, class: "btn btn-ghost" %>
       <% if @booking.can_be_cancelled? %>
         <%= link_to "Откажи резервација", cancel_booking_path(@booking), 
             method: :patch, 

@@ -148,12 +148,20 @@
                   </td>
                   <td>
                     <div class="action-buttons">
+                      <%= link_to booking_path(booking), 
+                          class: "btn btn-primary btn-sm",
+                          target: "_blank" do %>
+                        Погледни
+                      <% end %>
+                      <%= link_to edit_booking_path(booking), 
+                          class: "btn btn-secondary btn-sm" do %>
+                        Уреди
+                      <% end %>
                       <%= link_to destroy_booking_admin_car_path(@car, booking_id: booking.id), 
-                          method: :delete,
                           class: "btn btn-delete btn-sm",
                           data: { 
-                            confirm: "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
-                            turbo_method: :delete
+                            "turbo-confirm": "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
+                            "turbo-method": "delete"
                           } do %>
                         Избриши
                       <% end %>
@@ -223,12 +231,20 @@
               </div>
 
               <div class="booking-actions">
+                <%= link_to booking_path(booking), 
+                    class: "btn btn-primary btn-sm",
+                    target: "_blank" do %>
+                  Погледни
+                <% end %>
+                <%= link_to edit_booking_path(booking), 
+                    class: "btn btn-secondary btn-sm" do %>
+                  Уреди
+                <% end %>
                 <%= link_to destroy_booking_admin_car_path(@car, booking_id: booking.id), 
-                    method: :delete,
                     class: "btn btn-delete btn-sm",
                     data: { 
-                      confirm: "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
-                      turbo_method: :delete
+                      "turbo-confirm": "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
+                      "turbo-method": "delete"
                     } do %>
                   Избриши
                 <% end %>
@@ -275,12 +291,20 @@
               </div>
 
               <div class="booking-actions">
+                <%= link_to booking_path(booking), 
+                    class: "btn btn-primary btn-sm",
+                    target: "_blank" do %>
+                  Погледни
+                <% end %>
+                <%= link_to edit_booking_path(booking), 
+                    class: "btn btn-secondary btn-sm" do %>
+                  Уреди
+                <% end %>
                 <%= link_to destroy_booking_admin_car_path(@car, booking_id: booking.id), 
-                    method: :delete,
                     class: "btn btn-delete btn-sm",
                     data: { 
-                      confirm: "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
-                      turbo_method: :delete
+                      "turbo-confirm": "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
+                      "turbo-method": "delete"
                     } do %>
                   Избриши
                 <% end %>
@@ -337,12 +361,20 @@
               </div>
 
               <div class="booking-actions">
+                <%= link_to booking_path(booking), 
+                    class: "btn btn-primary btn-sm",
+                    target: "_blank" do %>
+                  Погледни
+                <% end %>
+                <%= link_to edit_booking_path(booking), 
+                    class: "btn btn-secondary btn-sm" do %>
+                  Уреди
+                <% end %>
                 <%= link_to destroy_booking_admin_car_path(@car, booking_id: booking.id), 
-                    method: :delete,
                     class: "btn btn-delete btn-sm",
                     data: { 
-                      confirm: "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
-                      turbo_method: :delete
+                      "turbo-confirm": "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
+                      "turbo-method": "delete"
                     } do %>
                   Избриши
                 <% end %>
@@ -388,12 +420,20 @@
               </div>
 
               <div class="booking-actions">
+                <%= link_to booking_path(booking), 
+                    class: "btn btn-primary btn-sm",
+                    target: "_blank" do %>
+                  Погледни
+                <% end %>
+                <%= link_to edit_booking_path(booking), 
+                    class: "btn btn-secondary btn-sm" do %>
+                  Уреди
+                <% end %>
                 <%= link_to destroy_booking_admin_car_path(@car, booking_id: booking.id), 
-                    method: :delete,
                     class: "btn btn-delete btn-sm",
                     data: { 
-                      confirm: "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
-                      turbo_method: :delete
+                      "turbo-confirm": "Дали сте сигурни дека сакате да ја избришете резервацијата на #{booking.customer.full_name}? Оваа акција не може да се врати.",
+                      "turbo-method": "delete"
                     } do %>
                   Избриши
                 <% end %>
@@ -621,6 +661,13 @@
     margin-top: 1rem;
     padding-top: 1rem;
     border-top: 1px solid #f0f0f0;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 0.5rem;
   }
 </style>
 

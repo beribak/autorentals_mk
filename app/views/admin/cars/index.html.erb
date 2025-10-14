@@ -36,7 +36,10 @@
   <div class="dashboard-actions">
     <div class="flex-between">
       <h3>Управување со флотата возила</h3>
-      <%= link_to "Додај ново возило", new_admin_car_path, class: "btn btn-primary" %>
+      <div class="action-buttons-group">
+        <%= link_to "Статистики", statistics_admin_cars_path, class: "btn btn-secondary" %>
+        <%= link_to "Додај ново возило", new_admin_car_path, class: "btn btn-primary" %>
+      </div>
     </div>
   </div>
 

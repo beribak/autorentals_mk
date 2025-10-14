@@ -1,21 +1,29 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["startDate", "endDate", "availabilityStatus", "priceSummary", "duration", "totalPrice", "dailyRate", "submitButton"]
+  static targets = ["startDate", "endDate", "availabilityStatus", "priceSummary", "duration", "totalPrice", "dailyRate", "submitButton", "actualPrice"]
+  static values = { pricePerDay: Number }
 
   connect() {
-    this.carId = this.element.dataset.carId || window.location.pathname.split('/')[2]
-    this.pricePerDay = parseFloat(this.dailyRateTarget.textContent.replace('€', ''))
+    // For admin forms, use the data value, otherwise get from page
+    if (this.hasPricePerDayValue) {
+      this.pricePerDay = this.pricePerDayValue
+    } else {
+      this.carId = this.element.dataset.carId || window.location.pathname.split('/')[2]
+      this.pricePerDay = parseFloat(this.dailyRateTarget.textContent.replace('€', ''))
+    }
     
     // Check if dates are pre-filled and calculate price immediately
     setTimeout(() => {
-      const startDate = this.startDateTarget.value
-      const endDate = this.endDateTarget.value
-      
-      if (startDate && endDate) {
-        this.calculatePrice()
-        // Also show price summary immediately for pre-filled dates
-        this.calculatePriceOnly(startDate, endDate)
+      if (this.hasStartDateTarget && this.hasEndDateTarget) {
+        const startDate = this.startDateTarget.value
+        const endDate = this.endDateTarget.value
+        
+        if (startDate && endDate) {
+          this.calculatePrice()
+          // Also show price summary immediately for pre-filled dates
+          this.calculatePriceOnly(startDate, endDate)
+        }
       }
     }, 100)
   }
@@ -138,6 +146,35 @@ export default class extends Controller {
     if (allFieldsFilled && startDate && endDate) {
       // If all fields are filled and we have dates, enable the button
       this.enableSubmitButton()
+    }
+  }
+
+  // Method specifically for admin forms to calculate price based on dates
+  calculateAdminPrice() {
+    if (!this.hasTotalPriceTarget) return
+    
+    const startDateInput = this.element.querySelector('[name="booking[start_date]"]')
+    const endDateInput = this.element.querySelector('[name="booking[end_date]"]')
+    
+    if (!startDateInput || !endDateInput) return
+    
+    const startDate = startDateInput.value
+    const endDate = endDateInput.value
+
+    if (startDate && endDate) {
+      const start = new Date(startDate)
+      const end = new Date(endDate)
+      const duration = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1
+      const totalPrice = this.pricePerDay * duration
+      
+      if (duration > 0) {
+        this.totalPriceTarget.value = totalPrice.toFixed(2)
+        
+        // Auto-fill actual price if it's empty
+        if (this.hasActualPriceTarget && !this.actualPriceTarget.value) {
+          this.actualPriceTarget.value = totalPrice.toFixed(2)
+        }
+      }
     }
   }
 

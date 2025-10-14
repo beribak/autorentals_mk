@@ -57,11 +57,24 @@ class BookingsController < ApplicationController
   end
 
   def edit
+    @customer = @booking.customer
+    @car = @booking.car
   end
 
   def update
+    @customer = @booking.customer
+    @car = @booking.car
+
+    # Update customer information if provided
+    if params[:customer].present?
+      unless @customer.update(customer_params)
+        render :edit, status: :unprocessable_entity
+        return
+      end
+    end
+
     if @booking.update(booking_params)
-      redirect_to @booking, notice: "Booking was successfully updated."
+      redirect_to edit_booking_path(@booking), notice: "Booking was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -147,7 +160,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :pickup_location, :special_requests, :payment_method)
+    params.require(:booking).permit(:start_date, :end_date, :pickup_location, :special_requests, :payment_method, :actual_price)
   end
 
   def customer_params

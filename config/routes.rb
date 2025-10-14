@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   end
 
   # Keep booking routes for existing bookings (view only)
-  resources :bookings, only: [ :index, :show ] do
+  resources :bookings, only: [ :index, :show, :edit, :update ] do
     member do
       patch :cancel
       get :payment_success
@@ -55,6 +55,9 @@ Rails.application.routes.draw do
         post :create_booking
         delete "bookings/:booking_id", action: :destroy_booking, as: :destroy_booking
         get :bookings
+      end
+      collection do
+        get :statistics
       end
     end
     root "cars#index"
