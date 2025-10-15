@@ -167,7 +167,13 @@ class BookingsController < ApplicationController
   end
 
   def customer_params
-    params.require(:customer).permit(:first_name, :last_name, :email, :phone)
+    customer_data = params.require(:customer).permit(:first_name, :last_name, :email, :phone)
+    
+    # Convert empty strings to nil for optional fields
+    customer_data[:email] = nil if customer_data[:email].blank?
+    customer_data[:phone] = nil if customer_data[:phone].blank?
+    
+    customer_data
   end
 
   def find_or_create_customer
@@ -175,12 +181,17 @@ class BookingsController < ApplicationController
     return nil unless params[:customer].present?
 
     begin
-      # Try to find existing customer by email
-      customer = Customer.find_by(email: customer_params[:email])
+      customer_data = customer_params
+      
+      # Only try to find existing customer if email is provided
+      customer = nil
+      if customer_data[:email].present?
+        customer = Customer.find_by(email: customer_data[:email])
+      end
 
       if customer
         # Update customer info if found
-        if customer.update(customer_params)
+        if customer.update(customer_data)
           customer
         else
           # Return customer with errors if update failed
@@ -188,7 +199,7 @@ class BookingsController < ApplicationController
         end
       else
         # Create new customer
-        customer = Customer.new(customer_params)
+        customer = Customer.new(customer_data)
         customer.save
         customer
       end

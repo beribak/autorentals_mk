@@ -62,14 +62,18 @@ class Admin::CarsController < Admin::ApplicationController
     customer_params = {
       customer_first_name: params[:booking_customer_first_name],
       customer_last_name: params[:booking_customer_last_name],
-      customer_email: params[:booking_customer_email],
-      customer_phone: params[:booking_customer_phone]
+      customer_email: params[:booking_customer_email].present? ? params[:booking_customer_email] : nil,
+      customer_phone: params[:booking_customer_phone].present? ? params[:booking_customer_phone] : nil
     }
 
     booking_params = params.require(:booking).permit(:start_date, :end_date, :pickup_location, :special_requests, :actual_price)
 
-    # Find or create customer
-    @customer = Customer.find_by(email: customer_params[:customer_email])
+    # Find or create customer - only search by email if it's provided
+    @customer = nil
+    if customer_params[:customer_email].present?
+      @customer = Customer.find_by(email: customer_params[:customer_email])
+    end
+    
     if @customer.nil?
       @customer = Customer.new(
         first_name: customer_params[:customer_first_name],

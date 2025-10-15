@@ -105,7 +105,7 @@
                     [t('booking_inquiries.new.location_option_airport'), t('booking_inquiries.new.location_option_airport')]
                   ],
                   { selected: @booking.pickup_location }, 
-                  { class: "form-input border", required: true } %>
+                  { class: "form-input border" } %>
             </div>
           </div>
 
@@ -127,11 +127,11 @@
                 <div class="contact-row">
                   <div class="input-group">
                     <%= customer_form.label :email, t('booking_inquiries.new.email'), class: "form-label" %>
-                    <%= customer_form.email_field :email, class: "form-input border", required: true %>
+                    <%= customer_form.email_field :email, class: "form-input border" %>
                   </div>
                   <div class="input-group">
                     <%= customer_form.label :phone, t('booking_inquiries.new.phone'), class: "form-label" %>
-                    <%= customer_form.telephone_field :phone, class: "form-input border", required: true %>
+                    <%= customer_form.telephone_field :phone, class: "form-input border" %>
                   </div>
                 </div>
               </div>
