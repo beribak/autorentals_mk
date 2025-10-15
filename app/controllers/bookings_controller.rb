@@ -73,6 +73,9 @@ class BookingsController < ApplicationController
       end
     end
 
+    # Allow past dates for booking updates (typically done by admins)
+    @booking.allow_past_dates!
+    
     if @booking.update(booking_params)
       redirect_to edit_booking_path(@booking), notice: "Booking was successfully updated."
     else

@@ -92,6 +92,7 @@ class Admin::CarsController < Admin::ApplicationController
     @booking = @customer.bookings.new(booking_params)
     @booking.car = @car
     @booking.status = :confirmed  # Admin bookings are automatically confirmed
+    @booking.allow_past_dates!  # Allow admin to book past dates
 
     if @booking.save
       # Send email notifications to both customer and company

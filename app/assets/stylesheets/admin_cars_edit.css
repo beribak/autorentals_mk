@@ -264,6 +264,13 @@
   font-weight: 600;
 }
 
+.calendar-day.past-booked {
+  background: #6c757d;
+  color: white;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
 /* Special styling for today when it's also booked */
 .calendar-day.booked.today {
   background: linear-gradient(45deg, #ff6b35 50%, #dc3545 50%);
@@ -300,6 +307,11 @@
 
 .legend-box.booked {
   background: #dc3545;
+}
+
+.legend-box.past-booked {
+  background: #6c757d;
+  opacity: 0.8;
 }
 
 .legend-box.today {

@@ -285,7 +285,7 @@
              data-controller="calendar" 
              data-calendar-booked-dates-value="<%= 
                booked_dates = Set.new
-               @future_bookings.each do |booking|
+               @existing_bookings.where(status: [:pending, :confirmed, :in_progress, :completed]).each do |booking|
                  (booking.start_date..booking.end_date).each do |date|
                    booked_dates.add(date.strftime('%Y-%m-%d'))
                  end
@@ -313,6 +313,10 @@
             <div class="legend-item">
               <span class="legend-box booked"></span>
               <span>Резервирано</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-box past-booked"></span>
+              <span>Минати резервации</span>
             </div>
             <div class="legend-item">
               <span class="legend-box today"></span>

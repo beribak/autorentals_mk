@@ -135,14 +135,23 @@ export default class extends Controller {
     
     // Check if it's today
     const today = new Date();
-    if (date.toDateString() === today.toDateString()) {
+    const isToday = date.toDateString() === today.toDateString();
+    if (isToday) {
       dayDiv.classList.add('today');
     }
     
     // Check if day is booked
-    const dateStr = date.toISOString().split('T')[0];
+    const dateStr = date.getFullYear() + '-' + 
+                   String(date.getMonth() + 1).padStart(2, '0') + '-' + 
+                   String(date.getDate()).padStart(2, '0');
     if (this.bookedDatesSet.has(dateStr) && !isOtherMonth) {
-      dayDiv.classList.add('booked');
+      // Determine if it's a past booking
+      const isPastDate = date < today;
+      if (isPastDate && !isToday) {
+        dayDiv.classList.add('past-booked');
+      } else {
+        dayDiv.classList.add('booked');
+      }
     }
     
     container.appendChild(dayDiv);

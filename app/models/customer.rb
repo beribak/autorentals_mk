@@ -3,9 +3,9 @@ class Customer < ApplicationRecord
   has_many :cars, through: :bookings
 
   # Validations
-  validates :first_name, :last_name, :email, :phone, presence: true
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
-  validates :phone, format: { with: /\A[\+]?[\d\s\-\(\)]{7,20}\z/ }
+  validates :first_name, :last_name, presence: true
+  # validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, uniqueness: true
+  # validates :phone, format: { with: /\A[\+]?[\d\s\-\(\)]{7,20}\z/ }
 
   # Clean phone number before validation
   before_validation :clean_phone_number

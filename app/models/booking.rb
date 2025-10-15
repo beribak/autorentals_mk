@@ -58,6 +58,10 @@ class Booking < ApplicationRecord
     "#{customer.first_name} #{customer.last_name}"
   end
 
+  def allow_past_dates!
+    @allow_past_dates = true
+  end
+
   private
 
   def end_date_after_start_date
@@ -71,6 +75,9 @@ class Booking < ApplicationRecord
 
     # Allow past dates when updating existing bookings (for admin edits)
     return if persisted?
+
+    # Allow past dates if this is an admin action (we'll set a flag)
+    return if @allow_past_dates
 
     errors.add(:start_date, "cannot be in the past") if start_date < Date.current
   end
