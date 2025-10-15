@@ -61,8 +61,19 @@
           </div>
           
           <div class="form-group">
+            <%= form.label :registration_plate_number, "Регистарска таблица", class: "form-label" %>
+            <%= form.text_field :registration_plate_number, class: "form-input border", placeholder: "на пр., SK 1234 AB" %>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
             <%= form.label :price_per_day, "Цена по ден (€)", class: "form-label" %>
             <%= form.number_field :price_per_day, class: "form-input border", placeholder: "на пр., 299", step: 0.01, min: 0 %>
+          </div>
+          
+          <div class="form-group">
+            <!-- Empty div to maintain grid layout -->
           </div>
         </div>
 
@@ -239,19 +250,11 @@
 
           <div class="form-row">
             <div class="form-group">
-              <%= form.label :total_price, "Вкупна цена (€)", class: "form-label" %>
-              <%= form.number_field :total_price, class: "form-input border", step: 0.01, min: 0, 
-                  placeholder: "Автоматски ќе се пресмета", readonly: true,
-                  data: { booking_target: "totalPrice" } %>
-              <small class="form-help">Автоматски се пресметува врз основа на датумите</small>
-            </div>
-            
-            <div class="form-group">
-              <%= form.label :actual_price, "Реална цена (€)", class: "form-label" %>
+              <%= form.label :actual_price, "Вкупна цена (€)", class: "form-label" %>
               <%= form.number_field :actual_price, class: "form-input border", step: 0.01, min: 0, 
-                  placeholder: "Внеси реална цена",
+                  placeholder: "Внеси цена",
                   data: { booking_target: "actualPrice" } %>
-              <small class="form-help">Реалната цена што ќе се наплати на клиентот</small>
+              <small class="form-help">Цената се пресметува автоматски врз база на дневната цена ако не е внесена</small>
             </div>
           </div>
 

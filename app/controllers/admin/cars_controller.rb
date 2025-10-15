@@ -73,7 +73,7 @@ class Admin::CarsController < Admin::ApplicationController
     if customer_params[:customer_email].present?
       @customer = Customer.find_by(email: customer_params[:customer_email])
     end
-    
+
     if @customer.nil?
       @customer = Customer.new(
         first_name: customer_params[:customer_first_name],
@@ -210,6 +210,6 @@ class Admin::CarsController < Admin::ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:brand, :model, :year, :price_per_day, :description, :image_url, :available, :passengers, :transmission, :gas, :doors, :trunk_size)
+    params.require(:car).permit(:brand, :model, :year, :price_per_day, :description, :image_url, :available, :passengers, :transmission, :gas, :doors, :trunk_size, :registration_plate_number)
   end
 end

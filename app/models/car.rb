@@ -8,6 +8,7 @@ class Car < ApplicationRecord
   validates :price_per_day, presence: true, numericality: { greater_than: 0 }
   validates :description, presence: true
   validates :image_url, presence: true
+  validates :registration_plate_number, presence: true
 
   scope :available, -> { where(available: true) }
   scope :by_brand, ->(brand) { where("brand ILIKE ?", "%#{brand}%") }

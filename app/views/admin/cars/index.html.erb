@@ -52,6 +52,7 @@
           <th>Марка</th>
           <th>Модел</th>
           <th>Година</th>
+          <th>Регистарска таблица</th>
           <th>Цена/Ден</th>
           <th>Статус</th>
           <th>Акции</th>
@@ -66,6 +67,7 @@
             <td><strong><%= car.brand %></strong></td>
             <td><%= car.model %></td>
             <td><%= car.year %></td>
+            <td><%= car.registration_plate_number.present? ? car.registration_plate_number : '-' %></td>
             <td><strong>€<%= number_with_delimiter(car.price_per_day.to_i) %></strong></td>
             <td>
               <div class="status-availability-container">

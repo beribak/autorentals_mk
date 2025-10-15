@@ -168,11 +168,11 @@ class BookingsController < ApplicationController
 
   def customer_params
     customer_data = params.require(:customer).permit(:first_name, :last_name, :email, :phone)
-    
+
     # Convert empty strings to nil for optional fields
     customer_data[:email] = nil if customer_data[:email].blank?
     customer_data[:phone] = nil if customer_data[:phone].blank?
-    
+
     customer_data
   end
 
@@ -182,7 +182,7 @@ class BookingsController < ApplicationController
 
     begin
       customer_data = customer_params
-      
+
       # Only try to find existing customer if email is provided
       customer = nil
       if customer_data[:email].present?

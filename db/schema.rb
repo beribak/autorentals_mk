@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_13_231234) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_15_165806) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -49,6 +49,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_13_231234) do
     t.string "gas"
     t.string "doors"
     t.string "trunk_size"
+    t.string "registration_plate_number"
   end
 
   create_table "customers", force: :cascade do |t|
