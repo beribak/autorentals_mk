@@ -21,9 +21,9 @@
     </div>
 
     <div class="filters-header">
-      <h2 class="filters-title"><%= t('cars.index.find_perfect') %></h2>
+      <h1 class="filters-title"><%= t('cars.index.find_perfect') %></h1>
       <p class="filters-subtitle"><%= t('cars.index.subtitle1') %></p>
-      <p class="filters-subtitle"><%= t('cars.index.subtitle2') %></p>
+      <p class="filters-subtitle"><%#= t('cars.index.subtitle2') %></p>
     </div>
 
     <%= form_with url: cars_path, method: :get, class: "filters-form", html: { data: { controller: "filters" } } do |form| %>
@@ -105,7 +105,7 @@
           <div class="car-card" data-cars-target="card">
             <%= link_to car_path(car), class: "car-card-link", data: { turbo_frame: "_top" } do %>
               <div class="car-image-wrapper">
-                <img src="<%= car.image_url %>" alt="Rent a car Skopje - <%= car.full_name %>" class="car-image">
+                <img src="<%= car.image_url %>" alt="Rent a car Skopje - Autorentals.mk - <%= car.full_name %>" class="car-image">
                 <div class="car-status-badge <%= car.available? ? 'available' : 'unavailable' %>">
                   <%= car.available? ? t('cars.show.available') : t('cars.show.unavailable') %>
                 </div>
@@ -199,7 +199,7 @@
       <!-- Ohrid Card -->
       <div class="destination-card">
         <div class="destination-image">
-          <img src="https://www.carwiz.mk/data/public/2023-03/sveti-jovan-kaneo-ohrid-rent-a-car-carwiz.jpg" alt="Church of St. John Kaneo overlooking Lake Ohrid crystal clear waters" class="card-image">
+          <img src="https://www.carwiz.mk/data/public/2023-03/sveti-jovan-kaneo-ohrid-rent-a-car-carwiz.jpg" alt="Rent a car Skopje - Autorentals.mk Church of St. John Kaneo overlooking Lake Ohrid crystal clear waters" class="card-image">
           <div class="destination-badge"><%= t('destinations.ohrid.badge') %></div>
         </div>
         <div class="destination-content">
@@ -223,7 +223,7 @@
       <!-- Mavrovo Card -->
       <div class="destination-card">
         <div class="destination-image">
-          <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/26/88/4c/photo1jpg.jpg?w=1400&h=800&s=1" alt="Mavrovo National Park with pristine mountain lake and snow peaks" class="card-image">
+          <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/26/88/4c/photo1jpg.jpg?w=1400&h=800&s=1" alt="Rent a car Skopje - Autorentals.mk Mavrovo National Park with pristine mountain lake and snow peaks" class="card-image">
           <div class="destination-badge"><%= t('destinations.mavrovo.badge') %></div>
         </div>
         <div class="destination-content">
@@ -247,7 +247,7 @@
       <!-- Matka Card -->
       <div class="destination-card">
         <div class="destination-image">
-          <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/7c/11/40/matka-canyon.jpg?w=1000&h=-1&s=1" alt="Matka Canyon with emerald waters and limestone cliffs" class="card-image">
+          <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/7c/11/40/matka-canyon.jpg?w=1000&h=-1&s=1" alt="Rent a car Skopje - Autorentals.mk Matka Canyon with emerald waters and limestone cliffs" class="card-image">
           <div class="destination-badge"><%= t('destinations.matka.badge') %></div>
         </div>
         <div class="destination-content">
@@ -273,6 +273,55 @@
       <h3><%= t('destinations.section.cta_title') %></h3>
       <p><%= t('destinations.section.cta_subtitle') %></p>
       <%= link_to t('destinations.section.browse_cars'), cars_path, class: "btn btn-primary btn-large" %>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+  <div class="container">
+    <h2 class="section-title">Rent a Car Skopje FAQs</h2>
+    
+    <div class="faq-content">
+      <div class="faq-item">
+        <h3>Do I need an international driving permit to rent a car in Skopje?</h3>
+        <p>If your license is not from the EU or UK or not written in Latin characters, many rental car companies in North Macedonia require an international driving permit together with your home license. Even when not strictly required, it is often recommended for tourists.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What documents are required at the rental counter?</h3>
+        <p>You normally need a valid driving license, a passport or ID card, and a payment card in the driver's name; in some cases, rental agents may also ask for your flight details or local contact information.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I book a one-way rental from Skopje to another city?</h3>
+        <p>Yes, one-way rentals are allowed on many routes within North Macedonia, with a one-way fee paid at pickup; international one-way rentals are possible only on certain routes and must be checked in advance.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Is it safe to drive a rental car in Skopje city center?</h3>
+        <p>Yes, driving is generally safe if you respect local laws, pay attention to other drivers, and avoid peak rush hours; parking can be limited in central areas, so using hotel or private parking is a smart choice.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What happens if the rental vehicle breaks down?</h3>
+        <p>Most serious rental companies in North Macedonia provide 24/7 roadside assistance and, if needed, car replacement within a defined time frame, so you can continue your trip with minimal delay.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can young drivers rent a car in Skopje?</h3>
+        <p>Policies vary, but many rental companies require drivers to be at least 21 and to have held a valid driving license for one or two years; some may charge a young driver fee for renters under a certain age.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Are winter tires and equipment provided when needed?</h3>
+        <p>In winter months, rental cars in North Macedonia are commonly equipped with suitable tires and sometimes additional gear as required by local law; confirm this with the rental agent when you finalize your rental plan.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can I drive my rented car outside North Macedonia?</h3>
+        <p>Cross-border travel depends on the rental agreement; some companies allow it with prior notice and extra fees, while others may restrict certain countries, so always ask before you cross any border.</p>
+      </div>
     </div>
   </div>
 </section>

@@ -30,8 +30,8 @@
 en:
   app:
     meta:
-      title: "AutoRentalsMK - Premium car rentals"
-      description: "Rent a car Skopje - AutoRentalsMK offers premium vehicle rental service in Skopje for every taste."
+      title: "Rent a Car Skopje at Autorentals.mk & get premium cars cheap!"
+      description: "Rent a car Skopje at Autorentals.mk with prices starting from €40 per day up to €200 for the most luxurious ones 🚗."
     nav:
       home: "Home"
       cars: "Cars"
@@ -117,7 +117,7 @@ en:
     index:
       title: "Our vehicles"
       find_perfect: "Find your perfect vehicle"
-      subtitle1: "From modern compacts to high luxury vehicles."
+      subtitle1: "Rent a car Skopje at AutoRentals.mk and get the most affordable vehicle without compromising comfort or security."
       subtitle2: "AutoRentalsMK rent a car Skopje offers the best selection for your needs."
       call_to_book: "Call us to book now"
       check_availability: "Check availability"

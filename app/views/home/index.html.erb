@@ -4,8 +4,8 @@
 <section class="hero-section">
   <div class="container">
     <div class="hero-content">
-  <h3 class="hero-title"><%= t('app.brand') %> - Rent a Car Skopje</h3>
-  <p class="hero-subtitle"><%= t('pages.home.hero_description', default: 'AutoRentalsMK  - Rent a car Skopje нуди професионална и сигурна услуга за rent a car на највисоко ниво. Без разлика дали сте турист кој сака да го истражи нашиот прекрасен регион или локален клиент на кој му е потребно возило, ние сме тука да ви обезбедиме најквалитетно искуство.') %></p>
+  <h3 class="hero-title"><%= t('app.brand') %> - </h3>
+  <p class="hero-subtitle"><%= t('pages.home.hero_description', default: 'AutoRentalsMK - нуди професионална и сигурна услуга за rent a car на највисоко ниво. Без разлика дали сте турист кој сака да го истражи нашиот прекрасен регион или локален клиент на кој му е потребно возило, ние сме тука да ви обезбедиме најквалитетно искуство.') %></p>
       <div class="hero-cta">
   <%= link_to t('home.browse_cars', default: 'Прелистај возила'), cars_path, class: "btn btn-primary" %>
   <a href="#features" class="btn btn-secondary"><%= t('home.learn_more', default: 'Дознај повеќе') %></a>
@@ -76,7 +76,7 @@
         <div class="car-card" data-cars-target="card">
           <%= link_to car_path(car), class: "car-card-link", data: { turbo_frame: "_top" } do %>
             <div class="car-image-wrapper">
-              <img src="<%= car.image_url %>" alt="Rent a car Skopje - <%= car.full_name %>" class="car-image">
+              <img src="<%= car.image_url %>" alt=" - <%= car.full_name %>" class="car-image">
               <div class="car-status-badge <%= car.available? ? 'available' : 'unavailable' %>">
                 <%= car.available? ? t('cars.show.available') : t('cars.show.unavailable') %>
               </div>
