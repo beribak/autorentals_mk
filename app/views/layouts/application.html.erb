@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title><%= content_for(:title) || t("app.meta.title") %></title>
-  <meta name="description" content="<%= t('app.meta.description') %>">
+    <title><%= t("app.meta.title") %></title>
+   <meta name="description" content="<%= t('app.meta.description') %>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -40,21 +40,22 @@
   <body class="light-theme">
     <nav class="navbar" data-controller="navigation">
       <div class="nav-container">
-        <%= link_to root_path(locale: I18n.locale), class: "nav-logo" do %>
+        <%= link_to root_path, class: "nav-logo" do %>
           <%= image_tag "autorentals_logo.jpg", alt: t("app.meta.title"), class: "logo-image" %>
           <span class="logo-text"><%= t("app.brand") %></span>
         <% end %>
         
         <div class="nav-menu" data-navigation-target="menu">
-          <%= link_to t('app.nav.home'), root_path(locale: I18n.locale), class: "nav-link #{'active' if current_page?(root_path)}" %>
-          <%= link_to t('app.nav.cars'), cars_path(locale: I18n.locale), class: "nav-link #{'active' if current_page?(cars_path)}" %>
-          <%= link_to t('app.nav.about'), home_path(locale: I18n.locale), class: "nav-link #{'active' if current_page?(home_path)}" %>
-          <%= link_to t('app.nav.contact'), contact_path(locale: I18n.locale), class: "nav-link #{'active' if current_page?(contact_path)}" %>
-          <%= link_to t('app.nav.partners', default: 'Partners'), partners_path(locale: I18n.locale), class: "nav-link #{'active' if current_page?(partners_path)}" %>
+          <%= link_to t('app.nav.home'), root_path, class: "nav-link #{'active' if current_page?(root_path)}" %>
+          <%= link_to t('app.nav.cars'), cars_path, class: "nav-link #{'active' if current_page?(cars_path)}" %>
+          <%#= link_to t('app.nav.long_term_rentals', default: 'Long-Term Rentals'), long_term_rentals_path, class: "nav-link #{'active' if current_page?(long_term_rentals_path)}" %>
+          <%= link_to t('app.nav.about'), home_path, class: "nav-link #{'active' if current_page?(home_path)}" %>
+          <%= link_to t('app.nav.contact'), contact_path, class: "nav-link #{'active' if current_page?(contact_path)}" %>
+          <%= link_to t('app.nav.partners', default: 'Partners'), partners_path, class: "nav-link #{'active' if current_page?(partners_path)}" %>
         </div>
         
         <div class="nav-cta">
-          <%= link_to t('app.nav.book_now'), cars_path(locale: I18n.locale), class: "btn btn-primary" %>
+          <%= link_to t('app.nav.book_now'), cars_path, class: "btn btn-primary" %>
           <div class="language-switcher">
             <% I18n.available_locales.each do |loc| %>
               <% if loc == I18n.locale %>
@@ -88,10 +89,10 @@
           <div class="footer-section">
             <h4><%= t('app.footer.quick_links') %></h4>
             <ul>
-              <li><%= link_to t('app.nav.home'), root_path(locale: I18n.locale) %></li>
-              <li><%= link_to t('app.nav.cars'), cars_path(locale: I18n.locale) %></li>
-              <li><%= link_to t('app.nav.book_now'), cars_path(locale: I18n.locale) %></li>
-              <li><%= link_to t('app.nav.contact'), contact_path(locale: I18n.locale) %></li>
+              <li><%= link_to t('app.nav.home'), root_path %></li>
+              <li><%= link_to t('app.nav.cars'), cars_path %></li>
+              <li><%= link_to t('app.nav.book_now'), cars_path %></li>
+              <li><%= link_to t('app.nav.contact'), contact_path %></li>
             </ul>
           </div>
           <div class="footer-section">
@@ -108,7 +109,7 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2025 AutoRentalsMK. <%= t('app.footer.rights') %></p>
+          <p>&copy; 2025 AutoRentalsMK. <%= t('app.footer.rights') %> | <%= link_to 'Privacy Policy', privacy_policy_path, style: 'color: inherit; text-decoration: underline;' %></p>
         </div>
       </div>
     </footer>

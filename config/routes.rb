@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get "contact", to: "home#contact", as: :contact
   get "home", to: "home#index", as: :home
   get "partners", to: "home#partners", as: :partners
+  get "long-term-rentals", to: "home#long_term_rentals", as: :long_term_rentals
+  get "privacy-policy", to: "home#privacy_policy", as: :privacy_policy
 
   # Article routes
   get "articles/ohrid", to: "home#ohrid", as: :ohrid_article

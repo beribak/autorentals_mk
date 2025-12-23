@@ -38,6 +38,7 @@ en:
       about: "About"
       contact: "Contact"
       book_now: "Book now"
+      long_term_rentals: "Long-Term Rentals"
     footer:
       quick_links: "Quick links"
       contact_info: "Contact information"
@@ -50,9 +51,41 @@ en:
       label: "Language"
   pages:
     home:
-      hero_description: "AutoRentalsMK - Rent a car Skopje offers professional and safe car rental service at the highest level. Whether you are a tourist who wants to explore our beautiful region or a local client who needs a vehicle, we are here to provide you with the highest quality experience."
+      hero_description: "AutoRentalsMK offers professional and safe car rental service at the highest level. Whether you are a tourist who wants to explore our beautiful region or a local client who needs a vehicle, we are here to provide you with the highest quality experience."
       hero_tagline: "Book your perfect vehicle in seconds with our streamlined process. No hassle, no waiting."
       browse_tagline: "Browse our collection and find the perfect vehicle for your next adventure. Book online in minutes!"
+    long_term_rentals:
+      banner:
+        title: "Long-Term Car Rentals"
+        subtitle: "Flexible rental solutions for extended stays. Save more when you rent longer."
+      faq:
+        title: "Frequently Asked Questions"
+        description: "Everything you need to know about our long-term rental services."
+        q1:
+          question: "What is considered a long-term rental?"
+          answer: "A long-term rental typically means renting a vehicle for 30 days or more. We offer flexible rental periods ranging from one month up to a year or longer, depending on your needs."
+        q2:
+          question: "What are the benefits of long-term rentals?"
+          answer: "Long-term rentals offer significant savings compared to daily rates, with discounts increasing the longer you rent. You also enjoy the flexibility of having a reliable vehicle without the commitment of ownership, and all our rentals include comprehensive insurance coverage."
+        q3:
+          question: "What documents do I need for a long-term rental?"
+          answer: "You will need a valid driver's license, a passport or national ID, and a credit card for the security deposit. International customers may also need an International Driving Permit (IDP) depending on their country of origin."
+        q4:
+          question: "Are there mileage restrictions?"
+          answer: "Our long-term rental packages include generous mileage allowances. We offer both limited and unlimited mileage options depending on your needs. Contact us to discuss the best option for your situation."
+        q5:
+          question: "What is included in the rental price?"
+          answer: "All our long-term rentals include comprehensive insurance coverage, 24/7 roadside assistance, regular maintenance, and vehicle replacement in case of breakdown. Fuel and additional drivers may be available upon request."
+        q6:
+          question: "Can I extend or shorten my rental period?"
+          answer: "Yes, we offer flexible rental terms. You can extend your rental period with advance notice. Early returns are also possible, though please note that early termination fees may apply depending on the terms of your agreement."
+        q7:
+          question: "How do I get started with a long-term rental?"
+          answer: "Getting started is easy! Contact us via phone, email, or our contact form to discuss your requirements. Our team will help you choose the perfect vehicle and create a customized rental package that fits your needs and budget."
+      cta:
+        title: "Ready to get started?"
+        description: "Contact us today to discuss your long-term rental needs and get a personalized quote."
+        button: "Get a Quote"
   home:
     browse_cars: "Browse cars"
     learn_more: "Learn more"
@@ -86,6 +119,32 @@ en:
     cta:
       heading: "Ready to hit the road?"
       start_browsing: "Start browsing"
+    faq:
+      title: "Rent a Car in Skopje FAQs"
+      q1:
+        question: "Do I need an international driving permit to rent a car in Skopje?"
+        answer: "If your license is not from the EU or UK or not written in Latin characters, many rental car companies in North Macedonia require an international driving permit together with your home license. Even when not strictly required, it is often recommended for tourists."
+      q2:
+        question: "What documents are required at the rental counter?"
+        answer: "You normally need a valid driving license, a passport or ID card, and a payment card in the driver's name; in some cases, rental agents may also ask for your flight details or local contact information."
+      q3:
+        question: "Can I book a one-way rental from Skopje to another city?"
+        answer: "Yes, one-way rentals are allowed on many routes within North Macedonia, with a one-way fee paid at pickup; international one-way rentals are possible only on certain routes and must be checked in advance."
+      q4:
+        question: "Is it safe to drive a rental car in Skopje city center?"
+        answer: "Yes, driving is generally safe if you respect local laws, pay attention to other drivers, and avoid peak rush hours; parking can be limited in central areas, so using hotel or private parking is a smart choice."
+      q5:
+        question: "What happens if the rental vehicle breaks down?"
+        answer: "Most serious rental companies in North Macedonia provide 24/7 roadside assistance and, if needed, car replacement within a defined time frame, so you can continue your trip with minimal delay."
+      q6:
+        question: "Can young drivers rent a car in Skopje?"
+        answer: "Policies vary, but many rental companies require drivers to be at least 21 and to have held a valid driving license for one or two years; some may charge a young driver fee for renters under a certain age."
+      q7:
+        question: "Are winter tires and equipment provided when needed?"
+        answer: "In winter months, rental cars in North Macedonia are commonly equipped with suitable tires and sometimes additional gear as required by local law; confirm this with the rental agent when you finalize your rental plan."
+      q8:
+        question: "Can I drive my rented car outside North Macedonia?"
+        answer: "Cross-border travel depends on the rental agreement; some companies allow it with prior notice and extra fees, while others may restrict certain countries, so always ask before you cross any border."
   cars:
     show:
       back: "Back to cars"
@@ -117,7 +176,7 @@ en:
     index:
       title: "Our vehicles"
       find_perfect: "Find your perfect vehicle"
-      subtitle1: "Rent a car Skopje at AutoRentals.mk and get the most affordable vehicle without compromising comfort or security."
+      subtitle1: "Rent a car in Skopje at AutoRentals.mk and get the most affordable vehicle without compromising comfort or security."
       subtitle2: "AutoRentalsMK rent a car Skopje offers the best selection for your needs."
       call_to_book: "Call us to book now"
       check_availability: "Check availability"

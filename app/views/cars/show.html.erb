@@ -35,7 +35,7 @@
           <h3 class="specs-title"><%= t('cars.show.specs') %></h3>
           <div class="specs-grid">
             <div class="spec-item">
-              <span class="spec-icon">📅</span>
+              <i class="fa-solid fa-calendar-days spec-icon"></i>
               <div class="spec-info">
                 <div class="spec-label"><%= t('cars.show.year') %></div>
                 <div class="spec-value"><%= @car.year %></div>
@@ -43,7 +43,7 @@
             </div>
             
             <div class="spec-item">
-              <span class="spec-icon">🏷️</span>
+              <i class="fa-solid fa-tag spec-icon"></i>
               <div class="spec-info">
                 <div class="spec-label"><%= t('cars.show.brand') %></div>
                 <div class="spec-value"><%= @car.brand %></div>
@@ -51,7 +51,7 @@
             </div>
             
             <div class="spec-item">
-              <span class="spec-icon">⚡</span>
+              <i class="fa-solid fa-bolt spec-icon"></i>
               <div class="spec-info">
                 <div class="spec-label"><%= t('cars.show.status') %></div>
                 <div class="spec-value">
@@ -65,7 +65,7 @@
             </div>
             
             <div class="spec-item">
-              <span class="spec-icon">🛡️</span>
+              <i class="fa-solid fa-shield spec-icon"></i>
               <div class="spec-info">
                 <div class="spec-label"><%= t('cars.show.insurance') %></div>
                 <div class="spec-value"><%= t('cars.show.insurance_full') %></div>
@@ -73,7 +73,7 @@
             </div>
             
             <div class="spec-item">
-              <span class="spec-icon">🔧</span>
+              <i class="fa-solid fa-wrench spec-icon"></i>
               <div class="spec-info">
                 <div class="spec-label"><%= t('cars.show.maintenance') %></div>
                 <div class="spec-value"><%= t('cars.show.maintenance_professional') %></div>
@@ -81,7 +81,7 @@
             </div>
             
             <div class="spec-item">
-              <span class="spec-icon">🧽</span>
+              <i class="fa-solid fa-spray-can-sparkles spec-icon"></i>
               <div class="spec-info">
                 <div class="spec-label"><%= t('cars.show.cleaning') %></div>
                 <div class="spec-value"><%= t('cars.show.cleaning_detailed') %></div>
@@ -90,7 +90,7 @@
             
             <% if @car.passengers.present? %>
             <div class="spec-item">
-              <span class="spec-icon">�</span>
+              <i class="fa-solid fa-user spec-icon"></i>
               <div class="spec-info">
                 <div class="spec-label"><%= t('cars.show.passengers') %></div>
                 <div class="spec-value"><%= @car.passengers %></div>
@@ -100,7 +100,7 @@
             
             <% if @car.transmission.present? %>
             <div class="spec-item">
-              <span class="spec-icon">⚙️</span>
+              <i class="fa-solid fa-gears spec-icon"></i>
               <div class="spec-info">
                 <div class="spec-label"><%= t('cars.show.transmission') %></div>
                 <div class="spec-value"><%= t("cars.transmission_options.#{@car.transmission}", default: @car.transmission.titleize) %></div>
@@ -110,7 +110,7 @@
             
             <% if @car.gas.present? %>
             <div class="spec-item">
-              <span class="spec-icon">⛽</span>
+              <i class="fa-solid fa-gas-pump spec-icon"></i>
               <div class="spec-info">
                 <div class="spec-label"><%= t('cars.show.fuel_type') %></div>
                 <div class="spec-value"><%= t("cars.gas_options.#{@car.gas}", default: @car.gas.titleize) %></div>
@@ -120,7 +120,7 @@
             
             <% if @car.doors.present? %>
             <div class="spec-item">
-              <span class="spec-icon">�</span>
+              <i class="fa-solid fa-door-closed spec-icon"></i>
               <div class="spec-info">
                 <div class="spec-label"><%= t('cars.show.doors') %></div>
                 <div class="spec-value"><%= @car.doors %></div>
@@ -130,7 +130,7 @@
             
             <% if @car.trunk_size.present? %>
             <div class="spec-item">
-              <span class="spec-icon">🧳</span>
+              <i class="fa-solid fa-suitcase spec-icon"></i>
               <div class="spec-info">
                 <div class="spec-label"><%= t('cars.show.trunk_size') %></div>
                 <div class="spec-value"><%= @car.trunk_size %></div>

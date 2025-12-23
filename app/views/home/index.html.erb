@@ -4,7 +4,7 @@
 <section class="hero-section">
   <div class="container">
     <div class="hero-content">
-  <h3 class="hero-title"><%= t('app.brand') %> - </h3>
+  <h3 class="hero-title"><%= t('app.brand') %></h3>
   <p class="hero-subtitle"><%= t('pages.home.hero_description', default: 'AutoRentalsMK - нуди професионална и сигурна услуга за rent a car на највисоко ниво. Без разлика дали сте турист кој сака да го истражи нашиот прекрасен регион или локален клиент на кој му е потребно возило, ние сме тука да ви обезбедиме најквалитетно искуство.') %></p>
       <div class="hero-cta">
   <%= link_to t('home.browse_cars', default: 'Прелистај возила'), cars_path, class: "btn btn-primary" %>
@@ -81,51 +81,53 @@
                 <%= car.available? ? t('cars.show.available') : t('cars.show.unavailable') %>
               </div>
               <div class="car-year-badge"><%= car.year %></div>
+              <div class="car-name-overlay">
+                <div class="car-brand"><%= car.brand %></div>
+                <h3 class="car-name"><%= car.model %></h3>
+              </div>
             </div>
             
             <div class="car-details">
-              <div class="car-brand"><%= car.brand %></div>
-              <h3 class="car-name"><%= car.model %></h3>
               
               <!-- Car Specifications -->
               <div class="car-new-specs w-100">
                 <div class="w-50">
+                  <% if car.passengers.present? %>
                   <div class="car-new-spec">
-                    <span class="car-new-spec-icon">�</span>
-                    <% if car.passengers.present? %>
-                      <span><%= car.passengers %> passengers</span>
-                    <% end %>
+                    <i class="fa-solid fa-user car-new-spec-icon"></i>
+                    <span><%= car.passengers %> passengers</span>
                   </div>
+                  <% end %>
 
+                  <% if car.transmission.present? %>
                   <div class="car-new-spec">
-                    <span class="car-new-spec-icon">⚙️</span>
-                    <% if car.transmission.present? %>
-                        <span><%= t("cars.transmission_options.#{car.transmission}", default: car.transmission.titleize) %></span>
-                    <% end %>
+                    <i class="fa-solid fa-gears car-new-spec-icon"></i>
+                    <span><%= t("cars.transmission_options.#{car.transmission}", default: car.transmission.titleize) %></span>
                   </div>
+                  <% end %>
                 
+                  <% if car.gas.present? %>
                   <div class="car-new-spec">
-                    <span class="car-new-spec-icon">⛽</span>
-                    <% if car.gas.present? %>
-                      <span><%= t("cars.gas_options.#{car.gas}", default: car.gas.titleize) %></span>
-                    <% end %>
+                    <i class="fa-solid fa-gas-pump car-new-spec-icon"></i>
+                    <span><%= t("cars.gas_options.#{car.gas}", default: car.gas.titleize) %></span>
                   </div>
+                  <% end %>
                 </div>
                 
                 <div class="w-50">
+                  <% if car.doors.present? %>
                   <div class="car-new-spec">
-                    <span class="car-new-spec-icon">�</span>
-                    <% if car.doors.present? %>
-                        <span><%= car.doors %> doors</span>
-                    <% end %>
+                    <i class="fa-solid fa-door-closed car-new-spec-icon"></i>
+                    <span><%= car.doors %> doors</span>
                   </div>
+                  <% end %>
                   
+                  <% if car.trunk_size.present? %>
                   <div class="car-new-spec">
-                    <span class="car-new-spec-icon">🧳</span>
-                    <% if car.trunk_size.present? %>
-                        <span><%= car.trunk_size %> trunk</span>
-                    <% end %>
+                    <i class="fa-solid fa-suitcase car-new-spec-icon"></i>
+                    <span><%= car.trunk_size %> trunk</span>
                   </div>
+                  <% end %>
                 </div>
               </div>
             </div>
