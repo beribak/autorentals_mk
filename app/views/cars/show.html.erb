@@ -12,12 +12,23 @@
     <div class="car-show-container">
       <!-- Car Image Section -->
       <div class="car-image-section">
-        <img src="<%= @car.image_url %>" alt="Rent a car Skopje - <%= @car.full_name %>" class="car-main-image">
+        <div>
+          <img src="<%= @car.image_url %>" alt="Rent a car Skopje - <%= @car.full_name %>" class="car-main-image">
+          <!-- Description Section -->
+          <div class="car-description-column">
+            <div class="car-description-section">
+              <h3 class="description-title"><%= t('cars.show.about') %></h3>
+              <p class="car-description-full"><%= @car.description %></p>
+            </div>
+          </div>
+        </div>
+
         <div class="car-image-overlay">
           <div class="status-badge"><%= t('cars.show.available') %></div>
           <div class="year-badge"><%= @car.year %></div>
         </div>
       </div>
+      
       
       <!-- Car Information Section -->
       <div class="car-info-section">
@@ -28,6 +39,19 @@
         <div class="car-price-section">
           <div class="price-display">€<%= @car.price_per_day %></div>
           <div class="price-unit"><%= t('cars.show.per_day') %></div>
+        </div>
+        
+        <!-- Quick Action Button -->
+        <div class="quick-action-section">
+          <% if @car.available? %>
+            <%= link_to new_car_booking_path(@car), class: "book-now-btn-top" do %>
+              <%= t('cars.show.send_inquiry') %> - €<%= @car.price_per_day %>/<%= t('cars.show.per_day') %>
+            <% end %>
+          <% else %>
+            <button class="book-now-btn-top" disabled style="opacity: 0.5; cursor: not-allowed;">
+              <%= t('cars.show.currently_unavailable') %>
+            </button>
+          <% end %>
         </div>
         
         <!-- Specifications -->
@@ -138,12 +162,6 @@
             </div>
             <% end %>
           </div>
-        </div>
-        
-        <!-- Description -->
-        <div class="car-description-section">
-          <h3 class="description-title"><%= t('cars.show.about') %></h3>
-          <p class="car-description-full"><%= @car.description %></p>
         </div>
         
         <!-- Actions -->

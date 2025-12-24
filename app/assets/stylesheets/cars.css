@@ -663,6 +663,8 @@
 
   .car-action-buttons {
     padding: 5px;
+    margin-top: 0;
+    margin-bottom: var(--spacing-lg);
   }
 
   .car-price-display {
