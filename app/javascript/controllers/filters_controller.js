@@ -28,14 +28,14 @@ export default class extends Controller {
     this.panelTarget.removeAttribute('hidden');
     this.buttonTarget.setAttribute('aria-expanded', 'true');
     this.element.classList.add('filters-expanded');
-    if (this.hasToggleLabelTarget) this.toggleLabelTarget.textContent = '➖ ' + this.moreFiltersLabel();
+    if (this.hasToggleLabelTarget) this.toggleLabelTarget.innerHTML = '<i class="fa-solid fa-minus"></i> ' + this.moreFiltersLabel();
   }
 
   hide() {
     this.panelTarget.setAttribute('hidden', '');
     this.buttonTarget.setAttribute('aria-expanded', 'false');
     this.element.classList.remove('filters-expanded');
-    if (this.hasToggleLabelTarget) this.toggleLabelTarget.textContent = '➕ ' + this.moreFiltersLabel();
+    if (this.hasToggleLabelTarget) this.toggleLabelTarget.innerHTML = '<i class="fa-solid fa-plus"></i> ' + this.moreFiltersLabel();
   }
 
   moreFiltersLabel() {

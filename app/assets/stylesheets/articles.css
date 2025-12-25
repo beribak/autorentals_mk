@@ -1,6 +1,6 @@
 /* Destinations Section on Homepage */
 .destinations-section {
-  padding: var(--spacing-3xl) 0;
+  padding: var(--spacing-xl) 0;
   background-color: white;
   /* background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%); */
 }

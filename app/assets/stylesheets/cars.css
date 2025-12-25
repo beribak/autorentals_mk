@@ -245,6 +245,10 @@
   border: 1px solid transparent;
   text-transform: uppercase;
   letter-spacing: 0.3px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
 }
 
 .btn-filter.btn-primary {

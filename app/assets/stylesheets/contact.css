@@ -211,7 +211,8 @@ textarea.form-input {
 }
 
 .faq-item {
-  padding: var(--spacing-xl);
+  padding: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
@@ -225,7 +226,7 @@ textarea.form-input {
 
 .faq-item h4 {
   font-size: 1.1rem;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
   color: var(--text-primary);
   line-height: 1.4;
 }

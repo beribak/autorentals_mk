@@ -63,12 +63,11 @@
                       data-action="filters#toggle"
                       data-label="<%= t('cars.index.more_filters') %>"
                       aria-expanded="false" aria-controls="additional-filters-panel">
-                <span data-filters-target="toggleLabel">➕ <%= t('cars.index.more_filters') %></span>
+                <span data-filters-target="toggleLabel"><i class="fa-solid fa-plus"></i> <%= t('cars.index.more_filters') %></span>
               </button>
             </div>
 
             <div id="additional-filters-panel" class="other-filters-section" data-filters-target="panel" hidden>
-              <h4 class="filter-section-title"><%= t('cars.index.more_filters') %></h4>
               <div class="other-filters">
                 <div class="filter-group">
                   <label class="filter-label"><%= t('cars.index.brand') %></label>
@@ -221,9 +220,11 @@
         <div class="destination-image">
           <img src="https://www.carwiz.mk/data/public/2023-03/sveti-jovan-kaneo-ohrid-rent-a-car-carwiz.jpg" alt="Rent a car Skopje - Autorentals.mk Church of St. John Kaneo overlooking Lake Ohrid crystal clear waters" class="card-image">
           <div class="destination-badge"><%= t('destinations.ohrid.badge') %></div>
+          <div class="car-name-overlay">
+            <h3 class="car-name"><%= t('destinations.ohrid.title') %></h3>
+          </div>
         </div>
         <div class="destination-content">
-          <h3 class="destination-title"><%= t('destinations.ohrid.title') %></h3>
           <p class="destination-description"><%= t('destinations.ohrid.description') %></p>
           <div class="destination-highlights">
             <span class="highlight">🏛️ <%= t('destinations.ohrid.highlights.historic') %></span>
@@ -245,9 +246,11 @@
         <div class="destination-image">
           <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/26/88/4c/photo1jpg.jpg?w=1400&h=800&s=1" alt="Rent a car Skopje - Autorentals.mk Mavrovo National Park with pristine mountain lake and snow peaks" class="card-image">
           <div class="destination-badge"><%= t('destinations.mavrovo.badge') %></div>
+          <div class="car-name-overlay">
+            <h3 class="car-name"><%= t('destinations.mavrovo.title') %></h3>
+          </div>
         </div>
         <div class="destination-content">
-          <h3 class="destination-title"><%= t('destinations.mavrovo.title') %></h3>
           <p class="destination-description"><%= t('destinations.mavrovo.description') %></p>
           <div class="destination-highlights">
             <span class="highlight">🎿 <%= t('destinations.mavrovo.highlights.winter') %></span>
@@ -269,9 +272,11 @@
         <div class="destination-image">
           <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/7c/11/40/matka-canyon.jpg?w=1000&h=-1&s=1" alt="Rent a car Skopje - Autorentals.mk Matka Canyon with emerald waters and limestone cliffs" class="card-image">
           <div class="destination-badge"><%= t('destinations.matka.badge') %></div>
+          <div class="car-name-overlay">
+            <h3 class="car-name"><%= t('destinations.matka.title') %></h3>
+          </div>
         </div>
         <div class="destination-content">
-          <h3 class="destination-title"><%= t('destinations.matka.title') %></h3>
           <p class="destination-description"><%= t('destinations.matka.description') %></p>
           <div class="destination-highlights">
             <span class="highlight">🚣‍♀️ <%= t('destinations.matka.highlights.kayaking') %></span>
@@ -292,7 +297,7 @@
     <div class="destinations-cta">
       <h3><%= t('destinations.section.cta_title') %></h3>
       <p><%= t('destinations.section.cta_subtitle') %></p>
-      <%= link_to t('destinations.section.browse_cars'), cars_path, class: "btn btn-primary btn-large" %>
+      <%= link_to t('destinations.section.browse_cars'), cars_path, class: "btn btn-primary btn-medium" %>
     </div>
   </div>
 </section>
@@ -304,42 +309,42 @@
     
     <div class="faq-content">
       <div class="faq-item">
-        <h3><%= t('home.faq.q1.question') %></h3>
+        <h4><%= t('home.faq.q1.question') %></h4>
         <p><%= t('home.faq.q1.answer') %></p>
       </div>
 
       <div class="faq-item">
-        <h3><%= t('home.faq.q2.question') %></h3>
+        <h4><%= t('home.faq.q2.question') %></h4>
         <p><%= t('home.faq.q2.answer') %></p>
       </div>
 
       <div class="faq-item">
-        <h3><%= t('home.faq.q3.question') %></h3>
+        <h4><%= t('home.faq.q3.question') %></h4>
         <p><%= t('home.faq.q3.answer') %></p>
       </div>
 
       <div class="faq-item">
-        <h3><%= t('home.faq.q4.question') %></h3>
+        <h4><%= t('home.faq.q4.question') %></h4>
         <p><%= t('home.faq.q4.answer') %></p>
       </div>
 
       <div class="faq-item">
-        <h3><%= t('home.faq.q5.question') %></h3>
+        <h4><%= t('home.faq.q5.question') %></h4>
         <p><%= t('home.faq.q5.answer') %></p>
       </div>
 
       <div class="faq-item">
-        <h3><%= t('home.faq.q6.question') %></h3>
+        <h4><%= t('home.faq.q6.question') %></h4>
         <p><%= t('home.faq.q6.answer') %></p>
       </div>
 
       <div class="faq-item">
-        <h3><%= t('home.faq.q7.question') %></h3>
+        <h4><%= t('home.faq.q7.question') %></h4>
         <p><%= t('home.faq.q7.answer') %></p>
       </div>
 
       <div class="faq-item">
-        <h3><%= t('home.faq.q8.question') %></h3>
+        <h4><%= t('home.faq.q8.question') %></h4>
         <p><%= t('home.faq.q8.answer') %></p>
       </div>
     </div>
