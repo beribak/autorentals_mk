@@ -22,7 +22,7 @@
     </div>
 
     <!-- Two Column Layout -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+    <div class="banner-two-column">
       
       <!-- Left Column: Existing Filters -->
       <div>
@@ -98,11 +98,11 @@
 
       <!-- Right Column: Fleet Management -->
       <div>
-        <h2 style="color: white; margin-bottom: 1rem;">Fleet Management Solutions</h2>
+        <h2 style="color: white; margin-bottom: 1rem;"><%= t('home.fleet_management.title') %></h2>
         <p class="filters-subtitle">
-          Looking for professional fleet management services? We offer tailored solutions for businesses, including long-term rentals, bulk pricing, and dedicated account management to keep your operations running smoothly.
+          <%= t('home.fleet_management.description') %>
         </p>
-        <%= link_to "Learn More About Fleet Services", "#", class: "btn btn-primary", style: "display: inline-block;" %>
+        <%= link_to t('home.fleet_management.learn_more'), fleet_management_path, class: "btn btn-primary", style: "display: inline-block;" %>
       </div>
 
     </div>

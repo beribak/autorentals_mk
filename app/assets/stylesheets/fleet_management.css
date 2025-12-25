@@ -53,10 +53,18 @@
   gap: 3rem;
 }
 
+.fleet-faq-item {
+  display: contents;
+}
+
 .faq-questions-list {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.faq-mobile-answer {
+  display: none;
 }
 
 .faq-question-item {
@@ -215,20 +223,55 @@
 
   .faq-container {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 0;
+  }
+  
+  .fleet-faq-item {
+    display: block;
+    /* margin-bottom: 0.5rm; */
+  }
+  
+  .faq-question-item {
+    margin-bottom: 0;
+  }
+  
+  .faq-mobile-answer {
+    display: none;
+    background-color: #f0f4f8;
+    padding: 1.25rem;
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
+    animation: slideDown 0.3s ease;
+  }
+  
+  .faq-mobile-answer.active {
+    display: block;
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    to {
+      opacity: 1;
+      max-height: 500px;
+      padding-top: 1.25rem;
+      padding-bottom: 1.25rem;
+    }
+  }
+  
+  .faq-mobile-answer .answer-text {
+    font-size: 0.95rem;
+    margin: 0;
+    color: #4a5568;
+    line-height: 1.7;
   }
 
   .faq-answer-box {
-    padding: 1.5rem;
-    min-height: 250px;
-  }
-
-  .answer-question {
-    font-size: 1.25rem;
-  }
-
-  .answer-text {
-    font-size: 1rem;
+    display: none;
   }
 
   .question-text {

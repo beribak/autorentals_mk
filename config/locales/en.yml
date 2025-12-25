@@ -110,6 +110,10 @@ en:
   home:
     browse_cars: "Browse vehicles"
     learn_more: "Learn more"
+    fleet_management:
+      title: "Fleet Management Solutions"
+      description: "Looking for professional fleet management services? We offer tailored solutions for businesses, including long-term rentals, bulk pricing, and dedicated account management to keep your operations running smoothly."
+      learn_more: "Learn More About Fleet Services"
     why_choose: "Why choose AutoRentalsMK?"
     why_choose_desc: "We provide an unmatched car rental experience with premium vehicles and exceptional service."
     features:

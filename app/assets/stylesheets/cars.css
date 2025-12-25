@@ -159,7 +159,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(1px);
   padding: var(--spacing-lg);
   border-radius: var(--radius-md);
@@ -818,4 +818,21 @@ input[type="date"],
   color: white;
   margin: 0 0 var(--spacing-lg) 0;
   font-weight: 400;
+}
+
+/* Banner Two Column Layout */
+.banner-two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .banner-two-column {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
