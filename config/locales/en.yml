@@ -38,7 +38,7 @@ en:
       about: "About"
       contact: "Contact"
       book_now: "Book now"
-      long_term_rentals: "Long-Term Rentals"
+      fleet_management: "Fleet Management"
     footer:
       quick_links: "Quick links"
       contact_info: "Contact information"
@@ -54,37 +54,58 @@ en:
       hero_description: "AutoRentalsMK offers professional and safe car rental service at the highest level. Whether you are a tourist who wants to explore our beautiful region or a local client who needs a vehicle, we are here to provide you with the highest quality experience."
       hero_tagline: "Book your perfect vehicle in seconds with our streamlined process. No hassle, no waiting."
       browse_tagline: "Browse our collection and find the perfect vehicle for your next adventure. Book online in minutes!"
-    long_term_rentals:
+    fleet_management:
       banner:
-        title: "Long-Term Car Rentals"
-        subtitle: "Flexible rental solutions for extended stays. Save more when you rent longer."
+        title: "Fleet Management Solutions"
+        subtitle: "Comprehensive fleet management services for businesses of all sizes. Streamline your operations and reduce costs."
       faq:
         title: "Frequently Asked Questions"
-        description: "Everything you need to know about our long-term rental services."
+        description: "Everything you need to know about our fleet management services."
         q1:
-          question: "What is considered a long-term rental?"
-          answer: "A long-term rental typically means renting a vehicle for 30 days or more. We offer flexible rental periods ranging from one month up to a year or longer, depending on your needs."
+          question: "Fleet Analysis"
+          answer: "We conduct a comprehensive analysis of your current fleet operations to identify optimization opportunities and cost savings. Our experts evaluate your vehicle usage patterns, maintenance costs, and operational efficiency to create a tailored fleet management strategy."
         q2:
-          question: "What are the benefits of long-term rentals?"
-          answer: "Long-term rentals offer significant savings compared to daily rates, with discounts increasing the longer you rent. You also enjoy the flexibility of having a reliable vehicle without the commitment of ownership, and all our rentals include comprehensive insurance coverage."
+          question: "Vehicle Procurement"
+          answer: "We handle all aspects of vehicle acquisition, leveraging our industry relationships to secure the best prices and terms. From selecting the right vehicles for your needs to negotiating with suppliers, we ensure you get the optimal fleet at competitive rates."
         q3:
-          question: "What documents do I need for a long-term rental?"
-          answer: "You will need a valid driver's license, a passport or national ID, and a credit card for the security deposit. International customers may also need an International Driving Permit (IDP) depending on their country of origin."
+          question: "Financing"
+          answer: "We offer flexible financing solutions tailored to your business needs, including leasing, rental, and purchase options. Our financial experts work with you to structure arrangements that optimize cash flow and minimize total cost of ownership."
         q4:
-          question: "Are there mileage restrictions?"
-          answer: "Our long-term rental packages include generous mileage allowances. We offer both limited and unlimited mileage options depending on your needs. Contact us to discuss the best option for your situation."
+          question: "Registration and Insurance"
+          answer: "We manage all vehicle registration and insurance requirements, ensuring compliance with local regulations. Our team handles renewals, documentation, and coordinates with insurance providers to secure comprehensive coverage at competitive rates."
         q5:
-          question: "What is included in the rental price?"
-          answer: "All our long-term rentals include comprehensive insurance coverage, 24/7 roadside assistance, regular maintenance, and vehicle replacement in case of breakdown. Fuel and additional drivers may be available upon request."
+          question: "Vehicle Delivery"
+          answer: "We coordinate seamless vehicle delivery to your location, ensuring each vehicle is fully prepared and ready for immediate use. Our delivery service includes vehicle inspection, documentation, and driver orientation as needed."
         q6:
-          question: "Can I extend or shorten my rental period?"
-          answer: "Yes, we offer flexible rental terms. You can extend your rental period with advance notice. Early returns are also possible, though please note that early termination fees may apply depending on the terms of your agreement."
+          question: "Vehicle Maintenance"
+          answer: "Our preventive maintenance program keeps your fleet in optimal condition. We schedule and manage all service appointments, track maintenance history, and use our network of certified service centers to minimize downtime and extend vehicle life."
         q7:
-          question: "How do I get started with a long-term rental?"
-          answer: "Getting started is easy! Contact us via phone, email, or our contact form to discuss your requirements. Our team will help you choose the perfect vehicle and create a customized rental package that fits your needs and budget."
+          question: "Tire Management"
+          answer: "We provide complete tire management services including seasonal tire changes, storage, monitoring, and replacement. Our program ensures optimal tire performance, safety, and cost efficiency throughout the year."
+        q8:
+          question: "Replacement Vehicles"
+          answer: "When your vehicles are undergoing maintenance or repairs, we provide replacement vehicles to ensure business continuity. Our fleet of replacement vehicles is available 24/7 to minimize any disruption to your operations."
+        q9:
+          question: "Roadside Assistance"
+          answer: "Our 24/7 roadside assistance service ensures help is always available when you need it. From minor issues to major breakdowns, our support team coordinates rapid response to get your vehicles back on the road quickly."
+        q10:
+          question: "Damage Management"
+          answer: "We handle all aspects of accident and damage management, from initial reporting to final resolution. Our team coordinates with insurance companies, repair shops, and authorities to streamline the claims process and minimize your administrative burden."
+        q11:
+          question: "VIP Services"
+          answer: "Our VIP service packages offer premium fleet management with dedicated account managers, priority support, and exclusive benefits. Designed for businesses requiring the highest level of service and flexibility."
+        q12:
+          question: "Call Center"
+          answer: "Our dedicated call center provides 24/7 support for all your fleet management needs. Whether you need assistance, information, or emergency support, our experienced team is always ready to help."
+        q13:
+          question: "Regular Reporting"
+          answer: "We provide detailed regular reports covering all aspects of your fleet operations, including costs, utilization, maintenance schedules, and performance metrics. These insights help you make informed decisions and optimize fleet efficiency."
+        q14:
+          question: "Online Customer Portal"
+          answer: "Access your fleet information anytime through our secure online portal. Track vehicle status, view reports, manage bookings, submit service requests, and monitor all fleet activities in real-time from any device."
       cta:
-        title: "Ready to get started?"
-        description: "Contact us today to discuss your long-term rental needs and get a personalized quote."
+        title: "Ready to optimize your fleet?"
+        description: "Contact us today to discuss your fleet management needs and discover how we can help streamline your operations."
         button: "Get a Quote"
   home:
     browse_cars: "Browse cars"

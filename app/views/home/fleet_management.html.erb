@@ -1,0 +1,444 @@
+<% content_for :title, t('app.nav.fleet_management', default: 'Fleet Management') %>
+
+<!-- Hero Banner Section -->
+<section class="fleet-banner-section">
+  <div class="container">
+    <div class="fleet-banner-content">
+      <h1 class="fleet-title"><%= t('pages.fleet_management.banner.title', default: 'Fleet Management Solutions') %></h1>
+      <p class="fleet-subtitle"><%= t('pages.fleet_management.banner.subtitle', default: 'Comprehensive fleet management services for businesses of all sizes. Streamline your operations and reduce costs.') %></p>
+      <div class="fleet-cta">
+        <%= link_to t('app.nav.contact', default: 'Contact Us'), contact_path(locale: I18n.locale), class: "btn btn-primary btn-large" %>
+        <%= link_to t('app.nav.cars', default: 'Browse Cars'), cars_path(locale: I18n.locale), class: "btn btn-secondary btn-large" %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="fleet-faq-section">
+  <div class="container">
+    <div class="section-title">
+      <h2><%= t('pages.fleet_management.faq.title', default: 'Frequently Asked Questions') %></h2>
+      <p><%= t('pages.fleet_management.faq.description', default: 'Everything you need to know about our fleet management services.') %></p>
+    </div>
+
+    <div class="faq-container">
+      <div class="faq-questions-list">
+        <div class="faq-question-item active" data-faq="q1">
+          <span class="question-number">1.</span>
+          <span class="question-text"><%= t('pages.fleet_management.faq.q1.question', default: 'Fleet Analysis') %></span>
+        </div>
+        <div class="faq-question-item" data-faq="q2">
+          <span class="question-number">2.</span>
+          <span class="question-text"><%= t('pages.fleet_management.faq.q2.question', default: 'Vehicle Procurement') %></span>
+        </div>
+        <div class="faq-question-item" data-faq="q3">
+          <span class="question-number">3.</span>
+          <span class="question-text"><%= t('pages.fleet_management.faq.q3.question', default: 'Financing') %></span>
+        </div>
+        <div class="faq-question-item" data-faq="q4">
+          <span class="question-number">4.</span>
+          <span class="question-text"><%= t('pages.fleet_management.faq.q4.question', default: 'Registration and Insurance') %></span>
+        </div>
+        <div class="faq-question-item" data-faq="q5">
+          <span class="question-number">5.</span>
+          <span class="question-text"><%= t('pages.fleet_management.faq.q5.question', default: 'Vehicle Delivery') %></span>
+        </div>
+        <div class="faq-question-item" data-faq="q6">
+          <span class="question-number">6.</span>
+          <span class="question-text"><%= t('pages.fleet_management.faq.q6.question', default: 'Vehicle Maintenance') %></span>
+        </div>
+        <div class="faq-question-item" data-faq="q7">
+          <span class="question-number">7.</span>
+          <span class="question-text"><%= t('pages.fleet_management.faq.q7.question', default: 'Tire Management') %></span>
+        </div>
+        <div class="faq-question-item" data-faq="q8">
+          <span class="question-number">8.</span>
+          <span class="question-text"><%= t('pages.fleet_management.faq.q8.question', default: 'Replacement Vehicles') %></span>
+        </div>
+        <div class="faq-question-item" data-faq="q9">
+          <span class="question-number">9.</span>
+          <span class="question-text"><%= t('pages.fleet_management.faq.q9.question', default: 'Roadside Assistance') %></span>
+        </div>
+        <div class="faq-question-item" data-faq="q10">
+          <span class="question-number">10.</span>
+          <span class="question-text"><%= t('pages.fleet_management.faq.q10.question', default: 'Damage Management') %></span>
+        </div>
+        <div class="faq-question-item" data-faq="q11">
+          <span class="question-number">11.</span>
+          <span class="question-text"><%= t('pages.fleet_management.faq.q11.question', default: 'VIP Services') %></span>
+        </div>
+        <div class="faq-question-item" data-faq="q12">
+          <span class="question-number">12.</span>
+          <span class="question-text"><%= t('pages.fleet_management.faq.q12.question', default: 'Call Center') %></span>
+        </div>
+        <div class="faq-question-item" data-faq="q13">
+          <span class="question-number">13.</span>
+          <span class="question-text"><%= t('pages.fleet_management.faq.q13.question', default: 'Regular Reporting') %></span>
+        </div>
+        <div class="faq-question-item" data-faq="q14">
+          <span class="question-number">14.</span>
+          <span class="question-text"><%= t('pages.fleet_management.faq.q14.question', default: 'Online Customer Portal') %></span>
+        </div>
+      </div>
+
+      <div class="faq-answer-box">
+        <div class="faq-answer-content active" data-faq="q1">
+          <h3 class="answer-question"><%= t('pages.fleet_management.faq.q1.question', default: 'Fleet Analysis') %></h3>
+          <p class="answer-text"><%= t('pages.fleet_management.faq.q1.answer', default: 'We conduct a comprehensive analysis of your current fleet operations to identify optimization opportunities and cost savings. Our experts evaluate your vehicle usage patterns, maintenance costs, and operational efficiency to create a tailored fleet management strategy.') %></p>
+        </div>
+        <div class="faq-answer-content" data-faq="q2">
+          <h3 class="answer-question"><%= t('pages.fleet_management.faq.q2.question', default: 'Vehicle Procurement') %></h3>
+          <p class="answer-text"><%= t('pages.fleet_management.faq.q2.answer', default: 'We handle all aspects of vehicle acquisition, leveraging our industry relationships to secure the best prices and terms. From selecting the right vehicles for your needs to negotiating with suppliers, we ensure you get the optimal fleet at competitive rates.') %></p>
+        </div>
+        <div class="faq-answer-content" data-faq="q3">
+          <h3 class="answer-question"><%= t('pages.fleet_management.faq.q3.question', default: 'Financing') %></h3>
+          <p class="answer-text"><%= t('pages.fleet_management.faq.q3.answer', default: 'We offer flexible financing solutions tailored to your business needs, including leasing, rental, and purchase options. Our financial experts work with you to structure arrangements that optimize cash flow and minimize total cost of ownership.') %></p>
+        </div>
+        <div class="faq-answer-content" data-faq="q4">
+          <h3 class="answer-question"><%= t('pages.fleet_management.faq.q4.question', default: 'Registration and Insurance') %></h3>
+          <p class="answer-text"><%= t('pages.fleet_management.faq.q4.answer', default: 'We manage all vehicle registration and insurance requirements, ensuring compliance with local regulations. Our team handles renewals, documentation, and coordinates with insurance providers to secure comprehensive coverage at competitive rates.') %></p>
+        </div>
+        <div class="faq-answer-content" data-faq="q5">
+          <h3 class="answer-question"><%= t('pages.fleet_management.faq.q5.question', default: 'Vehicle Delivery') %></h3>
+          <p class="answer-text"><%= t('pages.fleet_management.faq.q5.answer', default: 'We coordinate seamless vehicle delivery to your location, ensuring each vehicle is fully prepared and ready for immediate use. Our delivery service includes vehicle inspection, documentation, and driver orientation as needed.') %></p>
+        </div>
+        <div class="faq-answer-content" data-faq="q6">
+          <h3 class="answer-question"><%= t('pages.fleet_management.faq.q6.question', default: 'Vehicle Maintenance') %></h3>
+          <p class="answer-text"><%= t('pages.fleet_management.faq.q6.answer', default: 'Our preventive maintenance program keeps your fleet in optimal condition. We schedule and manage all service appointments, track maintenance history, and use our network of certified service centers to minimize downtime and extend vehicle life.') %></p>
+        </div>
+        <div class="faq-answer-content" data-faq="q7">
+          <h3 class="answer-question"><%= t('pages.fleet_management.faq.q7.question', default: 'Tire Management') %></h3>
+          <p class="answer-text"><%= t('pages.fleet_management.faq.q7.answer', default: 'We provide complete tire management services including seasonal tire changes, storage, monitoring, and replacement. Our program ensures optimal tire performance, safety, and cost efficiency throughout the year.') %></p>
+        </div>
+        <div class="faq-answer-content" data-faq="q8">
+          <h3 class="answer-question"><%= t('pages.fleet_management.faq.q8.question', default: 'Replacement Vehicles') %></h3>
+          <p class="answer-text"><%= t('pages.fleet_management.faq.q8.answer', default: 'When your vehicles are undergoing maintenance or repairs, we provide replacement vehicles to ensure business continuity. Our fleet of replacement vehicles is available 24/7 to minimize any disruption to your operations.') %></p>
+        </div>
+        <div class="faq-answer-content" data-faq="q9">
+          <h3 class="answer-question"><%= t('pages.fleet_management.faq.q9.question', default: 'Roadside Assistance') %></h3>
+          <p class="answer-text"><%= t('pages.fleet_management.faq.q9.answer', default: 'Our 24/7 roadside assistance service ensures help is always available when you need it. From minor issues to major breakdowns, our support team coordinates rapid response to get your vehicles back on the road quickly.') %></p>
+        </div>
+        <div class="faq-answer-content" data-faq="q10">
+          <h3 class="answer-question"><%= t('pages.fleet_management.faq.q10.question', default: 'Damage Management') %></h3>
+          <p class="answer-text"><%= t('pages.fleet_management.faq.q10.answer', default: 'We handle all aspects of accident and damage management, from initial reporting to final resolution. Our team coordinates with insurance companies, repair shops, and authorities to streamline the claims process and minimize your administrative burden.') %></p>
+        </div>
+        <div class="faq-answer-content" data-faq="q11">
+          <h3 class="answer-question"><%= t('pages.fleet_management.faq.q11.question', default: 'VIP Services') %></h3>
+          <p class="answer-text"><%= t('pages.fleet_management.faq.q11.answer', default: 'Our VIP service packages offer premium fleet management with dedicated account managers, priority support, and exclusive benefits. Designed for businesses requiring the highest level of service and flexibility.') %></p>
+        </div>
+        <div class="faq-answer-content" data-faq="q12">
+          <h3 class="answer-question"><%= t('pages.fleet_management.faq.q12.question', default: 'Call Center') %></h3>
+          <p class="answer-text"><%= t('pages.fleet_management.faq.q12.answer', default: 'Our dedicated call center provides 24/7 support for all your fleet management needs. Whether you need assistance, information, or emergency support, our experienced team is always ready to help.') %></p>
+        </div>
+        <div class="faq-answer-content" data-faq="q13">
+          <h3 class="answer-question"><%= t('pages.fleet_management.faq.q13.question', default: 'Regular Reporting') %></h3>
+          <p class="answer-text"><%= t('pages.fleet_management.faq.q13.answer', default: 'We provide detailed regular reports covering all aspects of your fleet operations, including costs, utilization, maintenance schedules, and performance metrics. These insights help you make informed decisions and optimize fleet efficiency.') %></p>
+        </div>
+        <div class="faq-answer-content" data-faq="q14">
+          <h3 class="answer-question"><%= t('pages.fleet_management.faq.q14.question', default: 'Online Customer Portal') %></h3>
+          <p class="answer-text"><%= t('pages.fleet_management.faq.q14.answer', default: 'Access your fleet information anytime through our secure online portal. Track vehicle status, view reports, manage bookings, submit service requests, and monitor all fleet activities in real-time from any device.') %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="fleet-cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2><%= t('pages.fleet_management.cta.title', default: 'Ready to optimize your fleet?') %></h2>
+      <p><%= t('pages.fleet_management.cta.description', default: 'Contact us today to discuss your fleet management needs and discover how we can help streamline your operations.') %></p>
+      <%= link_to t('pages.fleet_management.cta.button', default: 'Get a Quote'), contact_path(locale: I18n.locale), class: "btn btn-primary btn-large" %>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Fleet Management Banner Section */
+.fleet-banner-section {
+  background-color: #f8f9fa;
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.fleet-banner-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.fleet-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  color: #2d3748;
+}
+
+.fleet-subtitle {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+.fleet-cta {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-large {
+  padding: 1.2rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* FAQ Section */
+.fleet-faq-section {
+  padding: 6rem 2rem;
+  background-color: white;
+}
+
+.faq-container {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+}
+
+.faq-questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.faq-question-item {
+  padding: 1.25rem 1.5rem;
+  background-color: #f7fafc;
+  border-left: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  border-radius: 0.5rem;
+}
+
+.faq-question-item:hover {
+  background-color: #edf2f7;
+  border-left-color: #4299e1;
+}
+
+.faq-question-item.active {
+  background-color: #e6f7ff;
+  border-left-color: #0066cc;
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+}
+
+.question-number {
+  font-weight: 700;
+  color: #0066cc;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.question-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2d3748;
+  line-height: 1.5;
+}
+
+.faq-answer-box {
+  background-color: #f8f9fa;
+  border-radius: 0.75rem;
+  padding: 2.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: relative;
+  min-height: 300px;
+}
+
+.faq-answer-content {
+  display: none;
+}
+
+.faq-answer-content.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.answer-question {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 1.25rem;
+  line-height: 1.3;
+}
+
+.answer-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #4a5568;
+  margin: 0;
+}
+
+/* CTA Section */
+.fleet-cta-section {
+  background-color: #f8f9fa;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.cta-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta-content h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #2d3748;
+}
+
+.cta-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+/* Section Title */
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 1rem;
+}
+
+.section-title p {
+  font-size: 1.2rem;
+  color: #718096;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .fleet-banner-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .fleet-title {
+    font-size: 2.2rem;
+  }
+
+  .fleet-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .fleet-cta {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .btn-large {
+    width: 100%;
+  }
+
+  .fleet-faq-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .faq-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .faq-answer-box {
+    padding: 1.5rem;
+    min-height: 250px;
+  }
+
+  .answer-question {
+    font-size: 1.25rem;
+  }
+
+  .answer-text {
+    font-size: 1rem;
+  }
+
+  .question-text {
+    font-size: 0.95rem;
+  }
+
+  .section-title h2 {
+    font-size: 2rem;
+  }
+
+  .section-title p {
+    font-size: 1.1rem;
+  }
+
+  .cta-content h2 {
+    font-size: 2rem;
+  }
+
+  .cta-content p {
+    font-size: 1.1rem;
+  }
+
+  .fleet-cta-section {
+    padding: 4rem 1.5rem;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const questionItems = document.querySelectorAll('.faq-question-item');
+  const answerContents = document.querySelectorAll('.faq-answer-content');
+
+  questionItems.forEach(item => {
+    item.addEventListener('click', function() {
+      const faqId = this.getAttribute('data-faq');
+      
+      // Remove active class from all questions
+      questionItems.forEach(q => q.classList.remove('active'));
+      
+      // Hide all answers
+      answerContents.forEach(a => a.classList.remove('active'));
+      
+      // Add active class to clicked question
+      this.classList.add('active');
+      
+      // Show corresponding answer
+      const activeAnswer = document.querySelector(`.faq-answer-content[data-faq="${faqId}"]`);
+      if (activeAnswer) {
+        activeAnswer.classList.add('active');
+      }
+    });
+  });
+});
+</script>

@@ -48,7 +48,7 @@
         <div class="nav-menu" data-navigation-target="menu">
           <%= link_to t('app.nav.home'), root_path, class: "nav-link #{'active' if current_page?(root_path)}" %>
           <%= link_to t('app.nav.cars'), cars_path, class: "nav-link #{'active' if current_page?(cars_path)}" %>
-          <%#= link_to t('app.nav.long_term_rentals', default: 'Long-Term Rentals'), long_term_rentals_path, class: "nav-link #{'active' if current_page?(long_term_rentals_path)}" %>
+          <%= link_to t('app.nav.fleet_management', default: 'Fleet Management'), fleet_management_path, class: "nav-link #{'active' if current_page?(fleet_management_path)}" %>
           <%= link_to t('app.nav.about'), home_path, class: "nav-link #{'active' if current_page?(home_path)}" %>
           <%= link_to t('app.nav.contact'), contact_path, class: "nav-link #{'active' if current_page?(contact_path)}" %>
           <%= link_to t('app.nav.partners', default: 'Partners'), partners_path, class: "nav-link #{'active' if current_page?(partners_path)}" %>

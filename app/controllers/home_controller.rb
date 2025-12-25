@@ -34,8 +34,8 @@ class HomeController < ApplicationController
     ]
   end
 
-  def long_term_rentals
-    # Long-term rentals page
+  def fleet_management
+    # Fleet management page
   end
 
   def privacy_policy
