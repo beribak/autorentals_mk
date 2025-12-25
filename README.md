@@ -28,8 +28,8 @@ create a renat a car application in this rails app.
 pages needed:
 
 1 nice homepage with a modern look and banner
-2 page for showcasing the cars
-3 a show page for each car
+2 page for showcasing the vehicles
+3 a show page for each vehicle
 
 use nice style with nice css folder structure and put all the styles there!!!
 

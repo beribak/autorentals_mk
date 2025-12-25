@@ -1,7 +1,7 @@
 <% content_for :title, "#{t('app.brand')} - #{t('app.meta.title')}" %>
 
 <!-- Filters Section -->
-<section class="filters-section" style="height: 100vh; background: url('<%= asset_path('macedonia.png') %>') no-repeat center center; background-size: cover;">
+<section class="filters-section" style="min-height: 100vh; background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('<%= asset_path('macedonia.png') %>') no-repeat center center; background-size: cover;">
   <div class="container mb-2">
     <div class="mobile-top-bar">
       <!-- Mobile Language Switcher (hidden on desktop) -->
@@ -9,6 +9,7 @@
         <span class="mobile-call-text"><%#= t('cars.index.call_to_book') %></span>
         <a href="tel:+38971297645" class="quick-call-link" aria-label="<%= t('contact.info.phone.title') %>">📞</a>
       </div>
+
       <div class="mobile-language-switcher">
         <% I18n.available_locales.each do |loc| %>
           <% if loc == I18n.locale %>
@@ -20,74 +21,91 @@
       </div>
     </div>
 
-    <div class="filters-header">
-      <h1 class="filters-title">Rent a car in Skopje</h1>
-      <p class="filters-subtitle"><%= t('cars.index.subtitle1') %></p>
-      <h2 class="" style="color: white;"><%= t('cars.index.find_perfect') %></h2>
-    </div>
+    <!-- Two Column Layout -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+      
+      <!-- Left Column: Existing Filters -->
+      <div>
+        <div class="filters-header">
+          <h1 class="filters-title">Rent a car in Skopje</h1>
+          <p class="filters-subtitle"><%= t('cars.index.subtitle1') %></p>
+          <h2 class="" style="color: white;"><%= t('cars.index.find_perfect') %></h2>
+        </div>
 
-    <%= form_with url: cars_path, method: :get, class: "filters-form", html: { data: { controller: "filters" } } do |form| %>
-      <div class="filters-container">
-        <!-- Date Availability Filters -->
-        <div class="date-availability-section">
-          <h4 class="filter-section-title"><%= t('cars.index.check_availability') %></h4>
-          <div class="date-filters">
-            <div class="filter-group">
-              <label class="filter-label"><%= t('cars.index.pickup_date') %></label>
-              <%= form.date_field :start_date, 
-                  value: params[:start_date], 
-                  min: Date.current,
-                  class: "filter-input" %>
+        <%= form_with url: cars_path, method: :get, class: "filters-form", html: { data: { controller: "filters" } } do |form| %>
+          <div class="filters-container">
+            <!-- Date Availability Filters -->
+            <div class="date-availability-section">
+              <h4 class="filter-section-title"><%= t('cars.index.check_availability') %></h4>
+              <div class="date-filters">
+                <div class="filter-group">
+                  <label class="filter-label"><%= t('cars.index.pickup_date') %></label>
+                  <%= form.date_field :start_date, 
+                      value: params[:start_date], 
+                      min: Date.current,
+                      class: "filter-input" %>
+                </div>
+                
+                <div class="filter-group">
+                  <label class="filter-label"><%= t('cars.index.dropoff_date') %></label>
+                  <%= form.date_field :end_date, 
+                      value: params[:end_date], 
+                      min: Date.current + 1.day,
+                      class: "filter-input" %>
+                </div>
+              </div>
+            </div>
+
+            <!-- Collapsible Other Filters -->
+            <div class="other-filters-toggle-wrapper">
+              <button type="button" class="btn btn-secondary btn-filter btn-filter-toggle"
+                      data-filters-target="button"
+                      data-action="filters#toggle"
+                      data-label="<%= t('cars.index.more_filters') %>"
+                      aria-expanded="false" aria-controls="additional-filters-panel">
+                <span data-filters-target="toggleLabel">➕ <%= t('cars.index.more_filters') %></span>
+              </button>
+            </div>
+
+            <div id="additional-filters-panel" class="other-filters-section" data-filters-target="panel" hidden>
+              <h4 class="filter-section-title"><%= t('cars.index.more_filters') %></h4>
+              <div class="other-filters">
+                <div class="filter-group">
+                  <label class="filter-label"><%= t('cars.index.brand') %></label>
+                  <%= form.text_field :brand, value: params[:brand], placeholder: t('cars.index.brand_placeholder'), class: "filter-input" %>
+                </div>
+                <div class="filter-group">
+                  <label class="filter-label"><%= t('cars.index.year_from') %></label>
+                  <%= form.number_field :year_from, value: params[:year_from], placeholder: "2020", class: "filter-input" %>
+                </div>
+                <div class="filter-group">
+                  <label class="filter-label"><%= t('cars.index.year_to') %></label>
+                  <%= form.number_field :year_to, value: params[:year_to], placeholder: "2025", class: "filter-input" %>
+                </div>
+                <div class="filter-group">
+                  <label class="filter-label"><%= t('cars.index.max_price') %></label>
+                  <%= form.number_field :max_price, value: params[:max_price], placeholder: "500", step: 0.01, class: "filter-input" %>
+                </div>
+              </div>
             </div>
             
-            <div class="filter-group">
-              <label class="filter-label"><%= t('cars.index.dropoff_date') %></label>
-              <%= form.date_field :end_date, 
-                  value: params[:end_date], 
-                  min: Date.current + 1.day,
-                  class: "filter-input" %>
+            <div class="filters-actions">
+              <%= form.submit t('cars.index.filter_submit'), class: "btn btn-primary btn-filter" %>
             </div>
           </div>
-        </div>
-
-        <!-- Collapsible Other Filters -->
-        <div class="other-filters-toggle-wrapper">
-          <button type="button" class="btn btn-secondary btn-filter btn-filter-toggle"
-                  data-filters-target="button"
-                  data-action="filters#toggle"
-                  data-label="<%= t('cars.index.more_filters') %>"
-                  aria-expanded="false" aria-controls="additional-filters-panel">
-            <span data-filters-target="toggleLabel">➕ <%= t('cars.index.more_filters') %></span>
-          </button>
-        </div>
-
-        <div id="additional-filters-panel" class="other-filters-section" data-filters-target="panel" hidden>
-          <h4 class="filter-section-title"><%= t('cars.index.more_filters') %></h4>
-          <div class="other-filters">
-            <div class="filter-group">
-              <label class="filter-label"><%= t('cars.index.brand') %></label>
-              <%= form.text_field :brand, value: params[:brand], placeholder: t('cars.index.brand_placeholder'), class: "filter-input" %>
-            </div>
-            <div class="filter-group">
-              <label class="filter-label"><%= t('cars.index.year_from') %></label>
-              <%= form.number_field :year_from, value: params[:year_from], placeholder: "2020", class: "filter-input" %>
-            </div>
-            <div class="filter-group">
-              <label class="filter-label"><%= t('cars.index.year_to') %></label>
-              <%= form.number_field :year_to, value: params[:year_to], placeholder: "2025", class: "filter-input" %>
-            </div>
-            <div class="filter-group">
-              <label class="filter-label"><%= t('cars.index.max_price') %></label>
-              <%= form.number_field :max_price, value: params[:max_price], placeholder: "500", step: 0.01, class: "filter-input" %>
-            </div>
-          </div>
-        </div>
-        
-        <div class="filters-actions">
-          <%= form.submit t('cars.index.filter_submit'), class: "btn btn-primary btn-filter" %>
-        </div>
+        <% end %>
       </div>
-    <% end %>
+
+      <!-- Right Column: Fleet Management -->
+      <div>
+        <h2 style="color: white; margin-bottom: 1rem;">Fleet Management Solutions</h2>
+        <p class="filters-subtitle">
+          Looking for professional fleet management services? We offer tailored solutions for businesses, including long-term rentals, bulk pricing, and dedicated account management to keep your operations running smoothly.
+        </p>
+        <%= link_to "Learn More About Fleet Services", "#", class: "btn btn-primary", style: "display: inline-block;" %>
+      </div>
+
+    </div>
   </div>
 </section>
 

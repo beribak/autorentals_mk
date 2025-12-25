@@ -25,5 +25,8 @@ application.register("navigation", NavigationController)
 import FiltersController from "./filters_controller"
 application.register("filters", FiltersController)
 
+import FleetFaqController from "./fleet_faq_controller"
+application.register("fleet-faq", FleetFaqController)
+
 import StatisticsChartController from "./statistics_chart_controller"
 application.register("statistics-chart", StatisticsChartController)

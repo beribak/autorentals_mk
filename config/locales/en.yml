@@ -30,11 +30,11 @@
 en:
   app:
     meta:
-      title: "Rent a Car Skopje at Autorentals.mk & get premium cars cheap!"
+      title: "Rent a Car Skopje at Autorentals.mk & get premium vehicles cheap!"
       description: "Rent a car Skopje at Autorentals.mk with prices starting from €40 per day up to €200 for the most luxurious ones 🚗."
     nav:
       home: "Home"
-      cars: "Cars"
+      cars: "Vehicles"
       about: "About"
       contact: "Contact"
       book_now: "Book now"
@@ -63,52 +63,52 @@ en:
         description: "Everything you need to know about our fleet management services."
         q1:
           question: "Fleet Analysis"
-          answer: "We conduct a comprehensive analysis of your current fleet operations to identify optimization opportunities and cost savings. Our experts evaluate your vehicle usage patterns, maintenance costs, and operational efficiency to create a tailored fleet management strategy."
+          answer: "Car Fleet Management d.o.o., as an expert in the field of fleet management, offers its clients a free advisory service aimed at optimizing vehicle fleet costs.\n\nIn this regard, upon initial contact, we propose the following steps:\n\n- In-depth analysis of the utilization and efficiency of the existing vehicle fleet.\n- Development of a proposal for fleet replacement with adaptation to current tax laws related to the use of vehicles for business purposes, as well as future legal regulations and directives related to vehicle use and reduction of harmful emissions in accordance with EU recommendations and directives.\n- Replacement of the depreciated vehicle fleet with a new one adapted to the client's needs.\n\nOptimization of economic and ecological aspects:\n\nThrough model selection according to criteria of lower fuel consumption and reduced harmful emissions for the \"benefit fleet\" (vehicles assigned to employees for 24-hour use) – we recommend:\n- Engine \"downsizing\" to reduce average fuel consumption\n- Selection of \"eco\" engines with lower CO2 emission levels\n- Advising companies in developing \"Footprint – green footprint\" & \"CO2 emission\" regulations for light commercial vehicle fleets, including platform development for a detailed strategy for introducing models with low pollution levels and lower specific fuel consumption (\"green fleet\", i.e., engines with low emissions and low mpg parameters, introduction of hybrids, EVs – electric vehicles, etc.).\n\nIn case of a need to replace the existing vehicle fleet with new vehicles, we will fully assist the client in selling existing vehicles at the best market prices."
         q2:
           question: "Vehicle Procurement"
-          answer: "We handle all aspects of vehicle acquisition, leveraging our industry relationships to secure the best prices and terms. From selecting the right vehicles for your needs to negotiating with suppliers, we ensure you get the optimal fleet at competitive rates."
+          answer: "With a completely individualized analytical approach to the needs and desires of clients, as well as very good knowledge and insight into the state of the vehicle market and related services, in agreement with the client, we align needs with current market conditions in order to achieve the best cost-benefit ratio, as well as cost reduction using all legal and tax reliefs or advantages.\n\nDue to the volume of procurement, we are able to secure the best commercial terms from vehicle suppliers or importers. All benefits achieved in this way are fully transferred to the client.\n\nThrough a series of different analyses and using rich, long-standing experience in the field of vehicle fleet management and their financing, we develop specially tailored solutions aimed at optimizing operating costs (so-called TCO - total cost of ownership) and maximally economical consideration of wishes and real needs.\n\nWe also provide clients with the opportunity to align and balance the goal based on CO2 emissions and fleet costs.\n\nAfter the analysis is completed, the client receives an optimally formed vehicle fleet in terms of the ratio of total cost and technical-functional needs."
         q3:
           question: "Financing"
-          answer: "We offer flexible financing solutions tailored to your business needs, including leasing, rental, and purchase options. Our financial experts work with you to structure arrangements that optimize cash flow and minimize total cost of ownership."
+          answer: "Our company fleet management service is available for all vehicles, regardless of whether they are owned by the company or are vehicles financed through leasing.\n\nIn cooperation with all leading financial institutions in the field of leasing, we are able to offer a comprehensive solution for vehicle procurement financing with currently the most favorable conditions on the market.\n\nAt the client's request, we can fully take over the already initiated negotiation process with financial institutions regarding vehicle procurement financing, and thus ensure the best quality conditions on the market."
         q4:
           question: "Registration and Insurance"
-          answer: "We manage all vehicle registration and insurance requirements, ensuring compliance with local regulations. Our team handles renewals, documentation, and coordinates with insurance providers to secure comprehensive coverage at competitive rates."
+          answer: "We completely take over control of the vehicle registration and insurance process, as well as their regular annual renewals.\n\nIn cooperation with leading insurance companies, we offer customized insurance solutions and conditions with maximum cost optimization. We take over the process of contracting and renewing liability insurance, comprehensive insurance and passenger insurance policies, as well as the green card.\n\nAdvantages that the client achieves:\n\n- No longer has to worry about contracting policies and renewing insurance. All vehicles are fully insured throughout the entire duration of the contract.\n- The amount of vehicle insurance is an integral part of the monthly cost of the fleet management service.\n- Also, we take complete care of periodic technical inspections and fulfillment of all legally prescribed prerequisites and documentation required for delivery and commencement of use of a new vehicle, for the entire duration of the contract."
         q5:
           question: "Vehicle Delivery"
-          answer: "We coordinate seamless vehicle delivery to your location, ensuring each vehicle is fully prepared and ready for immediate use. Our delivery service includes vehicle inspection, documentation, and driver orientation as needed."
+          answer: "We perform complete coordination of the vehicle delivery process, including vehicle preparation with all necessary documents and legally prescribed equipment.\n\nAt the client's request, we perform additional equipment and/or vehicle branding services in accordance with the client's corporate regulations.\n\nUpon delivery, the client receives a completely prepared and equipped vehicle ready for immediate use and operation."
         q6:
           question: "Vehicle Maintenance"
-          answer: "Our preventive maintenance program keeps your fleet in optimal condition. We schedule and manage all service appointments, track maintenance history, and use our network of certified service centers to minimize downtime and extend vehicle life."
+          answer: "We fully manage all processes and events related to vehicle maintenance, whether it's regular maintenance or extraordinary vehicle repairs, as well as taking on the risk of all unplanned maintenance costs, and for this we ensure clients have fixed maintenance costs known in advance.\n\nThe vehicle maintenance process management service includes all vehicle maintenance costs, regular and extraordinary, as well as all consumables during the operation period (brake pads, engine fluids, consumables, wiper blades, etc.), regardless of their required quantity under normal vehicle use conditions and for the contractually determined mileage.\n\nAll vehicles throughout the entire contract period are maintained exclusively at authorized service centers using only original spare parts and materials recommended by the vehicle manufacturer itself.\n\nOur expert team controls all maintenance actions and costs, both regular and extraordinary maintenance, thereby ensuring complete control of all actions on the vehicle and their correctness and safety of use, and the large volume of procurement ensures the most competitive conditions and prices on the market, which directly affects the lower price of the maintenance package. Our professional team continuously monitors the actual mileage traveled and consumption of all services, and in case of indication of deviations, gives the user a proposal to correct the management contract in a way that harmonizes contractual parameters and thus avoids large deviations upon contract expiration."
         q7:
           question: "Tire Management"
-          answer: "We provide complete tire management services including seasonal tire changes, storage, monitoring, and replacement. Our program ensures optimal tire performance, safety, and cost efficiency throughout the year."
+          answer: "The tire management service includes additional tires, in relation to the duration of vehicle use and contractual mileage.\n\nThe tire management service includes, in addition to tires, seasonal replacement, as well as storage of the same during the period of vehicle use.\n\nWith our advisory approach and use of appropriate dimensions and categories of tires, significant savings are possible in this segment."
         q8:
           question: "Replacement Vehicles"
-          answer: "When your vehicles are undergoing maintenance or repairs, we provide replacement vehicles to ensure business continuity. Our fleet of replacement vehicles is available 24/7 to minimize any disruption to your operations."
+          answer: "The replacement vehicle service ensures your mobility at all times by using a replacement vehicle of a pre-agreed category in case of need for the same in case of:\n\n- Major breakdowns\n- Vehicle damage\n- Theft and similar events\n\nThe service is contracted for a certain number of days of replacement vehicle use during the period."
         q9:
           question: "Roadside Assistance"
-          answer: "Our 24/7 roadside assistance service ensures help is always available when you need it. From minor issues to major breakdowns, our support team coordinates rapid response to get your vehicles back on the road quickly."
+          answer: "The roadside assistance service, which is available 24 hours a day by calling a toll-free number, includes ensuring mobility and assistance in all situations when you are unable to normally use your vehicle covered by our services.\n\nThe roadside assistance service is available with the same scope of coverage, regardless of the vehicle brand.\n\nThe roadside assistance service can also be contracted for all European countries (outside the country, the call is made to a special fixed number, with an interlocutor who speaks the local language, regardless of which country the call is made from)."
         q10:
           question: "Damage Management"
-          answer: "We handle all aspects of accident and damage management, from initial reporting to final resolution. Our team coordinates with insurance companies, repair shops, and authorities to streamline the claims process and minimize your administrative burden."
+          answer: "We completely take over the entire process of vehicle damage handling:\n\n- Processing claims with the insurance company\n- Arranging vehicle repairs with service centers\n- Claim settlement\n- Returning the vehicle to the user\n\nDuring the vehicle repair period, we ensure the client's mobility, i.e., the vehicle user through the replacement vehicle service."
         q11:
           question: "VIP Services"
-          answer: "Our VIP service packages offer premium fleet management with dedicated account managers, priority support, and exclusive benefits. Designed for businesses requiring the highest level of service and flexibility."
+          answer: "We offer specially created and customized VIP services for clients:\n\n\"Door To Door\" service\nThe service includes vehicle pick-up and return for the purpose of performing work on the vehicle (maintenance, registration, tires, etc.)\n\nOther VIP services on request\nFor our clients, we are able to provide all other VIP services on request with prior agreement."
         q12:
           question: "Call Center"
-          answer: "Our dedicated call center provides 24/7 support for all your fleet management needs. Whether you need assistance, information, or emergency support, our experienced team is always ready to help."
+          answer: "All our clients can at any time receive all necessary information related to vehicles and our services via telephone call.\n\nCalls are systematically recorded, so it is possible at any time to obtain various forms of reports on all realized requests and reported cases – open and closed, i.e., resolved.\n\nThrough the Call Center, vehicle users are able to, for example, reserve an appointment at the service center, arrange tire replacement, request Door-To-Door service, or obtain information about individual services included in their management contract."
         q13:
           question: "Regular Reporting"
-          answer: "We provide detailed regular reports covering all aspects of your fleet operations, including costs, utilization, maintenance schedules, and performance metrics. These insights help you make informed decisions and optimize fleet efficiency."
+          answer: "We provide all our users with a standard service of regular reporting on the status of their fleet, through which they have at any time a complete overview and important information about their fleet based on which they can make important decisions in their business."
         q14:
           question: "Online Customer Portal"
-          answer: "Access your fleet information anytime through our secure online portal. Track vehicle status, view reports, manage bookings, submit service requests, and monitor all fleet activities in real-time from any device."
+          answer: "All our clients receive access to our online customer center where they can track all important information about their vehicle fleet in real time:\n\n- Review details of individual contracts\n- Review all submitted requests via the call center or online service\n- Create new requests or cases for resolution, such as inquiries about individual services, requests for data delivery, reporting vehicle damage or breakdown, etc.\n- Review all issued invoices, offers, etc.\n- Download a series of pre-defined reports about their fleet"
       cta:
         title: "Ready to optimize your fleet?"
         description: "Contact us today to discuss your fleet management needs and discover how we can help streamline your operations."
         button: "Get a Quote"
   home:
-    browse_cars: "Browse cars"
+    browse_cars: "Browse vehicles"
     learn_more: "Learn more"
     why_choose: "Why choose AutoRentalsMK?"
     why_choose_desc: "We provide an unmatched car rental experience with premium vehicles and exceptional service."
@@ -132,11 +132,11 @@ en:
         title: "Best prices"
         desc: "Competitive rates without compromising on quality. Luxury doesn’t have to break the bank."
     featured_cars:
-      title: "Featured cars"
+      title: "Featured vehicles"
       desc: "Discover our most popular and in‑demand vehicles available for rent."
       badge: "Featured"
       view_details: "View details"
-      view_all: "View all cars"
+      view_all: "View all vehicles"
     cta:
       heading: "Ready to hit the road?"
       start_browsing: "Start browsing"
@@ -144,7 +144,7 @@ en:
       title: "Rent a Car in Skopje FAQs"
       q1:
         question: "Do I need an international driving permit to rent a car in Skopje?"
-        answer: "If your license is not from the EU or UK or not written in Latin characters, many rental car companies in North Macedonia require an international driving permit together with your home license. Even when not strictly required, it is often recommended for tourists."
+        answer: "If your license is not from the EU or UK or not written in Latin characters, many rental vehicle companies in North Macedonia require an international driving permit together with your home license. Even when not strictly required, it is often recommended for tourists."
       q2:
         question: "What documents are required at the rental counter?"
         answer: "You normally need a valid driving license, a passport or ID card, and a payment card in the driver's name; in some cases, rental agents may also ask for your flight details or local contact information."
@@ -152,23 +152,23 @@ en:
         question: "Can I book a one-way rental from Skopje to another city?"
         answer: "Yes, one-way rentals are allowed on many routes within North Macedonia, with a one-way fee paid at pickup; international one-way rentals are possible only on certain routes and must be checked in advance."
       q4:
-        question: "Is it safe to drive a rental car in Skopje city center?"
+        question: "Is it safe to drive a rental vehicle in Skopje city center?"
         answer: "Yes, driving is generally safe if you respect local laws, pay attention to other drivers, and avoid peak rush hours; parking can be limited in central areas, so using hotel or private parking is a smart choice."
       q5:
         question: "What happens if the rental vehicle breaks down?"
-        answer: "Most serious rental companies in North Macedonia provide 24/7 roadside assistance and, if needed, car replacement within a defined time frame, so you can continue your trip with minimal delay."
+        answer: "Most serious rental companies in North Macedonia provide 24/7 roadside assistance and, if needed, vehicle replacement within a defined time frame, so you can continue your trip with minimal delay."
       q6:
-        question: "Can young drivers rent a car in Skopje?"
+        question: "Can young drivers rent a vehicle in Skopje?"
         answer: "Policies vary, but many rental companies require drivers to be at least 21 and to have held a valid driving license for one or two years; some may charge a young driver fee for renters under a certain age."
       q7:
         question: "Are winter tires and equipment provided when needed?"
-        answer: "In winter months, rental cars in North Macedonia are commonly equipped with suitable tires and sometimes additional gear as required by local law; confirm this with the rental agent when you finalize your rental plan."
+        answer: "In winter months, rental vehicles in North Macedonia are commonly equipped with suitable tires and sometimes additional gear as required by local law; confirm this with the rental agent when you finalize your rental plan."
       q8:
-        question: "Can I drive my rented car outside North Macedonia?"
+        question: "Can I drive my rented vehicle outside North Macedonia?"
         answer: "Cross-border travel depends on the rental agreement; some companies allow it with prior notice and extra fees, while others may restrict certain countries, so always ask before you cross any border."
   cars:
     show:
-      back: "Back to cars"
+      back: "Back to vehicles"
       available: "Available"
       unavailable: "Unavailable"
       per_day: "per day"
@@ -403,7 +403,7 @@ en:
       subtitle: "Explore breathtaking destinations perfect for your next car rental adventure"
       cta_title: "Ready to explore Macedonia?"
       cta_subtitle: "Rent a reliable car and discover these amazing destinations at your own pace"
-      browse_cars: "Browse Our Cars"
+      browse_cars: "Browse Our Vehicles"
     ohrid:
       title: "Ohrid"
       badge: "UNESCO Site"
@@ -440,14 +440,14 @@ en:
   articles:
     navigation:
       back_to_home: "← Back to Homepage"
-      explore_cars: "Explore Our Cars"
+      explore_cars: "Explore Our Vehicles"
     cta:
       visit_ohrid: "Visit Ohrid Today"
       visit_mavrovo: "Discover Mavrovo's Magic"
       visit_matka: "Visit Matka Canyon Today"
       book_adventure: "Start Your Adventure"
       book_mountain: "Book Your Mountain Adventure"
-      book_now: "Book Your Car Now"
+      book_now: "Book Your Vehicle Now"
     ohrid:
       title: "Ohrid - Pearl of the Balkans"
       subtitle: "Discover the ancient beauty and rich history of Macedonia's most treasured destination"
