@@ -100,16 +100,18 @@
 }
 
 .car-price-section {
+  display: flex;
+  gap: var(--spacing-md);
   background: var(--bg-tertiary);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md);
   margin-bottom: var(--spacing-xl);
   text-align: center;
 }
 
 .price-display {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--accent-primary);
   line-height: 1;
