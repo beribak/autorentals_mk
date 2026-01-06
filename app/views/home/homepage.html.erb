@@ -1,8 +1,8 @@
 <% content_for :title, "#{t('app.brand')} - #{t('app.meta.title')}" %>
 
 <!-- Filters Section -->
-<section class="filters-section" style="min-height: 100vh; background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('<%= asset_path('macedonia.png') %>') no-repeat center center; background-size: cover;">
-  <div class="container mb-2">
+<section class="filters-section">
+  <div class="h-100">
     <div class="mobile-top-bar">
       <!-- Mobile Language Switcher (hidden on desktop) -->
       <div class="mobile-quick-call">
@@ -25,7 +25,7 @@
     <div class="banner-two-column">
       
       <!-- Left Column: Existing Filters -->
-      <div>
+      <div class="banner-column-left" style="--bg-image: url('<%= asset_path('macedonia.png') %>')">
         <div class="filters-header">
           <h1 class="filters-title">Rent a car in Skopje</h1>
           <p class="filters-subtitle"><%= t('cars.index.subtitle1') %></p>
@@ -96,7 +96,7 @@
       </div>
 
       <!-- Right Column: Fleet Management -->
-      <div>
+      <div class="banner-column-right" style="--bg-image: url('<%= asset_path('fleet_managment.jpg') %>')">
         <h2 style="color: white; margin-bottom: 1rem;"><%= t('home.fleet_management.title') %></h2>
         <p class="filters-subtitle">
           <%= t('home.fleet_management.description') %>

@@ -20,7 +20,7 @@
 
 /* Filters Section */
 .filters-section {
-  padding: var(--spacing-lg) 0;
+  padding: 0;
   /* background: image-url('macedonia.jpg'); */
   background-size: cover;
   border-bottom: 2px solid var(--accent-primary);
@@ -680,8 +680,17 @@
   /* Show mobile language switcher only on mobile */
   .mobile-language-switcher { display: flex; }
   
-  .filters-section {
-    padding: 0;
+  .banner-two-column {
+    flex-direction: column !important;
+    min-height: auto !important;
+  }
+
+  .banner-column-left,
+  .banner-column-right {
+    width: 100% !important;
+    padding: 2rem !important;
+    min-height: auto !important;
+    height: auto !important;
   }
 
   .filters-container {
@@ -828,15 +837,31 @@ input[type="date"],
 .banner-two-column {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6rem;
+  /* gap: 6rem; */
   align-items: start;
   position: relative;
   z-index: 2;
 }
 
+.banner-column-left,
+.banner-column-right {
+  padding: 2rem 6rem;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6)), var(--bg-image);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  position: relative;
+  min-height: 100vh;
+}
+
+.banner-column-left::before,
+.banner-column-right::before {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .banner-two-column {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    /* gap: 2rem; */
   }
 }
