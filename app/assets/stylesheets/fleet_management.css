@@ -144,8 +144,13 @@
 .answer-text {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #4a5568;
+  color: black;
   margin: 0;
+}
+
+.answer-list {
+  /* margin-top: 1rem; */
+  padding-left: 2rem;
 }
 
 /* CTA Section */
